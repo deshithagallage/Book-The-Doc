@@ -18,6 +18,7 @@ function FindDoc() {
           <input type="text" placeholder="Find Your Doctor" className="search-input" />
           <button className="search-button">🔍</button>
         </div>
+        <br />
         <div className="doctor-image">
           <img src="https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg" alt="Doctor" />
         </div>
@@ -45,11 +46,11 @@ function FindDoc() {
             <h3>Alternative you can try</h3>
             <div className="alternative-cards">
               {/* Replace the following with actual data */}
-              <div className="alternative-card">Product Name</div>
-              <div className="alternative-card">Product Name</div>
-              <div className="alternative-card">Product Name</div>
-              <div className="alternative-card">Product Name</div>
-              <div className="alternative-card">Product Name</div>
+              <div className="alternative-card">Oncologist</div>
+              <div className="alternative-card">Dermatologist</div>
+              <div className="alternative-card">Radiologist</div>
+              <div className="alternative-card">Psychiatrist</div>
+              <div className="alternative-card">Ophthalmology</div>
               <div className="alternative-card">Product Name</div>
             </div>
           </div>
