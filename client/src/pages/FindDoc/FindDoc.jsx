@@ -47,8 +47,10 @@ function FindDoc() {
             <h3><b>Popular</b></h3>
             <div className="category-cards">
               <div className="category-card">
+              <a className="cardiologist-button" href="/find-doctor/cardiologist">
                 <img src={cardiologistImage} width = "100" height = "100" alt="Cardiologist" />
                 <p><b>Cardiologist</b></p>
+                </a>
               </div>
               <div className="category-card">
                 <img src={pediatricianImage} width = "100" height = "100" alt="Pediatrician" />

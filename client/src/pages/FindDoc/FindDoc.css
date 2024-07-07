@@ -51,11 +51,20 @@
   
   .search-button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #ffffff;
     color: #fff;
     border: none;
     border-radius: 5px;
     margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .cardiologist-button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
   }
   
