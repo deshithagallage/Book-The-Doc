@@ -1,11 +1,17 @@
 import React from "react";
 import './FindDoc.css'; // Assuming you have a CSS file for styling
 
+import cardiologistImage from '../../images/DoctorImages/cardiologist.jpg';
+import pediatricianImage from '../../images/DoctorImages/pediatrician.png';
+import neurologistImage from '../../images/DoctorImages/neurologist.jpg';
+import logo from '../../images/logo.png';
+
+
 function FindDoc() {
   return (
     <div className="find-doc-container">
       <header className="header">
-        <div className="logo">BookTheDoc</div>
+        <div className="logo"><img src={logo} width = "180" height = "50" alt="logo" /></div>
         <nav className="nav">
           <a href="#">Home</a>
           <a href="#">About Us</a>
@@ -19,6 +25,7 @@ function FindDoc() {
           <button className="search-button">🔍</button>
         </div>
         <br />
+      
         <div className="doctor-image">
           <img src="https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg" alt="Doctor" />
         </div>
@@ -29,15 +36,15 @@ function FindDoc() {
             <h3>Popular</h3>
             <div className="category-cards">
               <div className="category-card">
-                <img src="path/to/cardiologist.jpg" alt="Cardiologist" />
+                <img src={cardiologistImage} width = "100" height = "100" alt="Cardiologist" />
                 <p>Cardiologists</p>
               </div>
               <div className="category-card">
-                <img src="path/to/pediatrician.jpg" alt="Pediatrician" />
+                <img src={pediatricianImage} width = "100" height = "100" alt="Pediatrician" />
                 <p>Pediatricians</p>
               </div>
               <div className="category-card">
-                <img src="path/to/neurologist.jpg" alt="Neurologist" />
+                <img src={neurologistImage} width = "100" height = "100" alt="Neurologist" />
                 <p>Neurologists</p>
               </div>
             </div>
@@ -51,7 +58,7 @@ function FindDoc() {
               <div className="alternative-card">Radiologist</div>
               <div className="alternative-card">Psychiatrist</div>
               <div className="alternative-card">Ophthalmology</div>
-              <div className="alternative-card">Product Name</div>
+              <div className="alternative-card">Other</div>
             </div>
           </div>
         </div>
