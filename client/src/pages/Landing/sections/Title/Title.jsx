@@ -12,6 +12,8 @@ function Title() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.backgroundEllipse1}></div>
+      <div className={styles.backgroundEllipse2}></div>
       <div className={styles.title}>
         <h1 className={styles.title1}>One Step Solution</h1>
         <h1>

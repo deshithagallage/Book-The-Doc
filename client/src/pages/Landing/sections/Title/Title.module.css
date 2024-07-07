@@ -10,11 +10,34 @@
     margin-bottom: 2rem;
 }
 
+.backgroundEllipse1 {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 500px;
+    height: 500px;
+    background: rgba(135, 206, 250, 0.5);
+    filter: blur(200px);
+    transform: translate(-50%, -50%);
+}
+
+.backgroundEllipse2 {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    width: 400px;
+    height: 400px;
+    background: rgba(135, 206, 250, 0.5);
+    filter: blur(150px);
+    transform: translate(-50%, -50%);
+}
+
 .title {
     width: 60%;
     align-items: left;
     padding-left: 4rem;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .title h1 {
@@ -61,6 +84,7 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .image img {

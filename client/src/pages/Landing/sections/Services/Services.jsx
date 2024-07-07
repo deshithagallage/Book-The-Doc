@@ -27,14 +27,14 @@ function Services() {
         <div className={styles.serviceBox}>
           <img
             src={serviceImg2}
-            alt="Medical Center Listing"
+            alt="Channelling Center Listing"
             className={styles.image}
           />
-          <h2 className={styles.serviceTitle}>Medical Center Listing</h2>
+          <h2 className={styles.serviceTitle}>Channelling Center Listing</h2>
           <p className={styles.description}>
-            Register your medical center on our platform to increase visibility
-            and reach potential patients easily. Manage appointments, update
-            queues in real-time, and provide seamless healthcare services
+            Register your channelling center on our platform to increase
+            visibility and reach potential patients easily. Manage appointments,
+            update queues in real-time, and provide seamless healthcare services
             through our user-friendly interface.
           </p>
         </div>
