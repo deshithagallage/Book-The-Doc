@@ -5,6 +5,7 @@ import Title from "./sections/Title/Title";
 import Services from "./sections/Services/Services";
 import Impacts from "./sections/Impacts/Impacts";
 import Reviews from "./sections/Reviews/Reviews";
+import Register from "./sections/Register/Register";
 
 function Landing() {
   return (
@@ -17,6 +18,7 @@ function Landing() {
         <Services />
         <Impacts />
         <Reviews />
+        <Register />
       </main>
       <footer className={styles.footer}>
         {/* Add footer content if needed */}
