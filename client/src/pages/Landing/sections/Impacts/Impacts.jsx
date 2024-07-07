@@ -22,7 +22,7 @@ function Impacts() {
     }
 
     return () => {
-      if (observer && observer.unobserve) {
+      if (containerRef.current) {
         observer.unobserve(containerRef.current);
       }
     };
