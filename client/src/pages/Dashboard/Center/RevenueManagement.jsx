@@ -3,19 +3,17 @@
 
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './CenterDashboard.css';
 
-
-
-const CenterDashboard = () => {
+const RevenueManagement = () => {
   return (
-    <div className="dashboard">
+    <div className="revenue-management">
       <CenterSidebar />
       <div className="content">
-        <h1>Center Dashboard</h1>
+        <h1>Revenue Management</h1>
+        {/* Add more content specific to Revenue Management */}
       </div>
     </div>
   );
 };
 
-export default CenterDashboard;
+export default RevenueManagement;

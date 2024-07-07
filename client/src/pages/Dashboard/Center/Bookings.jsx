@@ -1,21 +1,20 @@
 /* eslint-disable no-unused-vars */
 
+// ./pages/Dashboard/Center/Bookings.jsx
 
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './CenterDashboard.css';
 
-
-
-const CenterDashboard = () => {
+const Bookings = () => {
   return (
-    <div className="dashboard">
+    <div className="bookings">
       <CenterSidebar />
       <div className="content">
-        <h1>Center Dashboard</h1>
+        <h1>Bookings</h1>
+        {/* Add more content specific to Bookings */}
       </div>
     </div>
   );
 };
 
-export default CenterDashboard;
+export default Bookings;

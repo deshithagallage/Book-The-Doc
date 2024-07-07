@@ -1,0 +1,77 @@
+/* src/components/Sidebar.css */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #003265;
+    padding-top: 20px;
+    overflow-x: hidden;
+    transition: 0.3s;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px 20px;
+    text-align: left;
+    color: #ecf0f1;
+    font-size: 16px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  .sidebar ul li:hover,
+  .sidebar ul li.active {
+    background-color: #56a1eb;
+  }
+  
+  .sidebar ul li:hover a,
+  .sidebar ul li.active a {
+    color: #ffffff; /* Change text color when hovered or active */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+  
+    .sidebar ul li {
+      font-size: 14px;
+      padding: 12px 18px;
+    }
+  
+    .content {
+      margin-left: 200px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .sidebar {
+      width: 150px;
+    }
+  
+    .sidebar ul li {
+      font-size: 12px;
+      padding: 10px 15px;
+    }
+  
+    .content {
+      margin-left: 150px;
+    }
+  }
+  

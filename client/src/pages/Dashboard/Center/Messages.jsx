@@ -1,21 +1,19 @@
+// ./pages/Dashboard/Center/Messages.jsx
 /* eslint-disable no-unused-vars */
-
 
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './CenterDashboard.css';
 
-
-
-const CenterDashboard = () => {
+const Messages = () => {
   return (
-    <div className="dashboard">
+    <div className="messages">
       <CenterSidebar />
       <div className="content">
-        <h1>Center Dashboard</h1>
+        <h1>Messages</h1>
+        {/* Add more content specific to Messages */}
       </div>
     </div>
   );
 };
 
-export default CenterDashboard;
+export default Messages;
