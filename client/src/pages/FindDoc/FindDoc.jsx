@@ -18,7 +18,7 @@ function FindDoc() {
   return (
     <div className="find-doc-container">
       <header className="header">
-        <div className="logo"><img src={logo} width = "180" height = "50" alt="logo" /></div>
+        <div className="logo"><img src={logo} width = "160" height = "50" alt="logo" /></div>
         <nav className="nav">
           <a href="#">Home</a>
           <a href="#">About Us</a>
