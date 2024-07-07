@@ -48,15 +48,15 @@ function FindDoc() {
             <div className="category-cards">
               <div className="category-card">
                 <img src={cardiologistImage} width = "100" height = "100" alt="Cardiologist" />
-                <p><b>Cardiologists</b></p>
+                <p><b>Cardiologist</b></p>
               </div>
               <div className="category-card">
                 <img src={pediatricianImage} width = "100" height = "100" alt="Pediatrician" />
-                <p><b>Pediatricians</b></p>
+                <p><b>Pediatrician</b></p>
               </div>
               <div className="category-card">
                 <img src={neurologistImage} width = "100" height = "100" alt="Neurologist" />
-                <p><b>Neurologists</b></p>
+                <p><b>Neurologist</b></p>
               </div>
             </div>
           </div>
