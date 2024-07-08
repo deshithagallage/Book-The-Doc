@@ -1,0 +1,47 @@
+.container {
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.sliderContainer {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    position: relative;
+    background-color: white;
+}
+
+.reviewBox {
+    border-radius: 20px;
+    padding: 1.3rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.reviewBox:focus,
+.reviewBox:active {
+    outline: none;
+}
+
+.text {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+}

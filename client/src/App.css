@@ -1,6 +1,6 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem, 0;
+  width: 100%;
+  min-height: 100vh;
   text-align: center;
+  background-color: #f3f3fd;
 }
