@@ -10,23 +10,6 @@ const getDoctors = async (req, res) => {
   }
 };
 
-const createDoctor = async (req, res) => {
-  const { name, specialization, hospitalId } = req.body;
-
-  try {
-    const hospital = await Hospital.findById(hospitalId);
-    if (!hospital) {
-      return res.status(404).json({ message: 'Hospital not found' });
-    }
-
-    const newDoctor = new Doctor({ name, specialization, hospital: hospitalId });
-    await newDoctor.save();
-    res.status(201).json(newDoctor);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
 const getDoctorsByHospital = async (req, res) => {
     const { hospitalId } = req.params;
   
@@ -41,6 +24,16 @@ const getDoctorsByHospital = async (req, res) => {
     }
 };
   
+const getDoctorsBySpecialization = async (req, res) => {
+    const { specialization } = req.params;
+  
+    try {
+      const doctors = await Doctor.find({ specialization });
+      res.json(doctors);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+};
   
 
-module.exports = { getDoctors, createDoctor, getDoctorsByHospital};
+module.exports = { getDoctors, getDoctorsByHospital, getDoctorsBySpecialization};
