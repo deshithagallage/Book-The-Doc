@@ -1,0 +1,106 @@
+.find-doc-container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333333;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .search-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .search-button {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .cardiologist-button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .doctor-image img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .category-section {
+    padding: 20px;
+  }
+  
+  .category-section h2 {
+    margin-top: 0;
+  }
+  
+  .category-cards,
+  .alternative-cards {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .category-card,
+  .alternative-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .category-card img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .alternative-card {
+    flex: 1;
+  }
+  

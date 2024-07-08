@@ -10,6 +10,7 @@ import CenterSignUp from "./pages/SignUp/Center/CenterSignUp";
 import UserDashboard from "./pages/Dashboard/User/UserDashboard";
 import CenterDashboard from "./pages/Dashboard/Center/CenterDashboard";
 import FindDoc from "./pages/FindDoc/FindDoc";
+import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/dashboard/center" element={<CenterDashboard />} />
 
         <Route path="/find-doctor" element={<FindDoc />} />
+        <Route path="/find-doctor/cardiologist" element={<CardiologistPage />} />
       </Routes>
     </BrowserRouter>
   );
