@@ -1,0 +1,84 @@
+.find-doc-container {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+  display: block;
+}
+
+.nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.login-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.search-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.doctor-image img {
+  display: block;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.category-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.category-section h2 {
+  margin-top: 0;
+}
+
+.category-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.category-section ul li {
+  padding: 5px 0;
+}
+

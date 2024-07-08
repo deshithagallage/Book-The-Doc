@@ -10,7 +10,9 @@ import CenterSignUp from "./pages/SignUp/Center/CenterSignUp";
 import UserDashboard from "./pages/Dashboard/User/UserDashboard";
 import CenterDashboard from "./pages/Dashboard/Center/CenterDashboard";
 import FindDoc from "./pages/FindDoc/FindDoc";
-import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist";
+import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist/cardiologist"
+import PediatricianPage from "./pages/FindDoc/DoctorPages/pediatrician/pediatrician"
+import NeurologistPage from "./pages/FindDoc/DoctorPages/neurologist/neurologist"
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
 
         <Route path="/find-doctor" element={<FindDoc />} />
         <Route path="/find-doctor/cardiologist" element={<CardiologistPage />} />
+        <Route path="/find-doctor/pediatrician" element={<PediatricianPage />} />
+        <Route path="/find-doctor/neurologist" element={<NeurologistPage />} />
       </Routes>
     </BrowserRouter>
   );

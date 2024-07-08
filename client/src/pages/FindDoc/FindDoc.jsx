@@ -1,5 +1,6 @@
 import React from "react";
-import "./FindDoc.css"; // Assuming you have a CSS file for styling
+import './FindDoc.css';
+import {useNavigate} from 'react-router-dom';
 
 import cardiologistImage from "../../images/DoctorImages/cardiologist.jpg";
 import pediatricianImage from "../../images/DoctorImages/pediatrician.png";
@@ -14,6 +15,21 @@ import otherImage from "../../images/DoctorImages/otherdoctor.jpeg";
 import Navbar from "../../components/Navbar/Navbar";
 
 function FindDoc() {
+
+  const navigate = useNavigate();
+
+  const handleCardiologistButtonClick = () => {
+    navigate('/find-doctor/cardiologist');
+  };
+
+  const handlePediatricianButtonClick = () => {
+    navigate('/find-doctor/pediatrician');
+  };
+
+  const handleNeurologistButtonClick = () => {
+    navigate('/find-doctor/neurologist');
+  }
+
   return (
     <div className="find-doc-container">
       <Navbar />
@@ -49,42 +65,22 @@ function FindDoc() {
             </h3>
             <div className="category-cards">
               <div className="category-card">
-                <a
-                  className="cardiologist-button"
-                  href="/find-doctor/cardiologist"
-                >
-                  <img
-                    src={cardiologistImage}
-                    width="100"
-                    height="100"
-                    alt="Cardiologist"
-                  />
-                  <p>
-                    <b>Cardiologist</b>
-                  </p>
-                </a>
+                <button className="cardiologist-button" onClick={handleCardiologistButtonClick}>
+                <img src={cardiologistImage} width = "100" height = "100" alt="Cardiologist" />
+                <p><b>Cardiologist</b></p>
+                </button>
               </div>
               <div className="category-card">
-                <img
-                  src={pediatricianImage}
-                  width="100"
-                  height="100"
-                  alt="Pediatrician"
-                />
-                <p>
-                  <b>Pediatrician</b>
-                </p>
+                <button className="pediatrician-button" onClick={handlePediatricianButtonClick}>
+                <img src={pediatricianImage} width = "100" height = "100" alt="Pediatrician" />
+                <p><b>Pediatrician</b></p>
+                </button>
               </div>
               <div className="category-card">
-                <img
-                  src={neurologistImage}
-                  width="100"
-                  height="100"
-                  alt="Neurologist"
-                />
-                <p>
-                  <b>Neurologist</b>
-                </p>
+                <button className="neurologist-button" onClick={handleNeurologistButtonClick}>
+                <img src={neurologistImage} width = "100" height = "100" alt="Neurologist" />
+                <p><b>Neurologist</b></p>
+                </button>
               </div>
             </div>
           </div>
