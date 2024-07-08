@@ -25,7 +25,10 @@ const Navbar = () => {
             <li>
               <div className="h-9 ml-5 flex space-x-4">
                 <Link to="/login">
-                  <PrimaryButton text="Log In / Register" removeTranslate={true} />
+                  <PrimaryButton
+                    text="Log In / Register"
+                    removeTranslate={true}
+                  />
                 </Link>
               </div>
             </li>
