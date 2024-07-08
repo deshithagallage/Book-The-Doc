@@ -63,6 +63,9 @@
     display: flex;
     justify-content: left;
     margin-top: 20px;
+    width: 13rem;
+    height: 4rem;
+    font-size: 24px;
 }
 
 .doctorButton {

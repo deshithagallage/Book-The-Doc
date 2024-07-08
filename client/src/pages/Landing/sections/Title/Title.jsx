@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import titleImg from "../../../../assets/landingImage.png";
 import styles from "./Title.module.css";
+import PrimaryButton from "../../../../components/PrimaryButton/PrimaryButton";
 
 function Title() {
   const navigate = useNavigate();
@@ -25,12 +26,10 @@ function Title() {
           Appointments
         </p>
         <div className={styles.buttonContainer}>
-          <button
-            className={styles.doctorButton}
-            onClick={handleDocButtonClick}
-          >
-            Find a Doctor
-          </button>
+          <PrimaryButton
+            text="Find a Doctor"
+            onClickFunc={handleDocButtonClick}
+          />
         </div>
       </div>
       <div className={styles.image}>
