@@ -1,10 +1,28 @@
 import React from "react";
+import styles from "./Landing.module.css";
+
+import Title from "./sections/Title/Title";
+import Services from "./sections/Services/Services";
+import Impacts from "./sections/Impacts/Impacts";
+import Reviews from "./sections/Reviews/Reviews";
+import Register from "./sections/Register/Register";
 
 function Landing() {
   return (
-    <div>
-      <div>Landing Page</div>
-      <div>Meka Deshitha edit karawi...</div>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        {/* Add navbar content if needed */}
+      </header>
+      <main className={styles.main}>
+        <Title />
+        <Services />
+        <Impacts />
+        <Reviews />
+        <Register />
+      </main>
+      <footer className={styles.footer}>
+        {/* Add footer content if needed */}
+      </footer>
     </div>
   );
 }
