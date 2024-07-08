@@ -1,18 +1,30 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const cors = require('cors');
+const mongoose = require('mongoose');
 
-const db=require('./db.js');
+const appointmentRoutes = require('./routes/appointments');
+const userRoutes = require('./routes/users');
 
-// const createBookRouter = require('./routes/create_books.js');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use('/api', createBookRouter);
+// MongoDB connection setup
+mongoose.connect(`mongodb+srv://ABC:ABC@mern-crud.t4kweiu.mongodb.net/?retryWrites=true&w=majority&appName=mern-crud`, {
+  useNewUrlParser: true,
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
 
-const port =process.env.PORT || 8000;
+// Routes
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/users', userRoutes);
+
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });

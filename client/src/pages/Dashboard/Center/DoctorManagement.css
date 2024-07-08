@@ -1,0 +1,78 @@
+/* ./pages/Dashboard/Center/DoctorManagement.css */
+
+.doctor-management {
+    display: flex;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .doctor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .doctor-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+  }
+  
+  .doctor-card h2 {
+    margin: 0 0 10px;
+  }
+  
+  .doctor-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .doctor-card li {
+    background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-doctor {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+  }
+  
+  .add-doctor:hover {
+    background-color: #218838;
+  }
+  

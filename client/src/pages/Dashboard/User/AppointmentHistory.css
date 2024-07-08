@@ -1,38 +1,100 @@
+/* AppointmentHistory.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 .appointment-history {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 100%;
+  background-color: #2c3e50;
+  padding: 20px;
+  color: #ecf0f1;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #ecf0f1;
+}
+
+.content h1 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.appointment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.appointment-item {
+  border: 1px solid #bdc3c7;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.appointment-item:hover {
+  transform: scale(1.02);
+}
+
+.appointment-item h2 {
+  margin-top: 0;
+  color: #2980b9;
+}
+
+.appointment-item p {
+  margin: 5px 0;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.completed {
+  color: green;
+}
+
+.status.cancelled {
+  color: red;
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 768px) {
+  .appointment-history {
+    flex-direction: row;
   }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
+
+  .sidebar {
+    width: 250px;
   }
-  
-  .appointment-list {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .appointment-item {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-  }
-  
-  .appointment-item h2 {
-    margin-top: 0;
-  }
-  
-  .status {
-    font-weight: bold;
-  }
-  
-  .status.completed {
-    color: green;
-  }
-  
-  .status.cancelled {
-    color: red;
-  }
-  
+}

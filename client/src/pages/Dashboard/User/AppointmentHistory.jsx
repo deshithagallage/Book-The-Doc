@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import './AppointmentHistory.css'; // Assuming you have a CSS file for styling
+import './AppointmentHistory.css';
 
 const AppointmentHistory = () => {
-  // Mock data, replace this with API call
   const [appointments, setAppointments] = useState([
     {
       id: 1,
@@ -29,17 +28,12 @@ const AppointmentHistory = () => {
     }
   ]);
 
-  // useEffect to fetch appointments from API if needed
-  // useEffect(() => {
-  //   // Fetch appointments from an API
-  //   // setAppointments(fetchedAppointments);
-  // }, []);
-
   return (
     <div className="appointment-history">
       <UserSidebar />
       <div className="content">
-        <h1>Appointment History</h1>
+     
+      <h1>Appointment History</h1>
         <div className="appointment-list">
           {appointments.length > 0 ? (
             appointments.map((appointment) => (

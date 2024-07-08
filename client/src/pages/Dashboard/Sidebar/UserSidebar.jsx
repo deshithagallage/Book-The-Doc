@@ -12,7 +12,7 @@ const UserSidebar = () => {
         <li><Link to="/dashboard/user">Dashboard</Link></li>
         <li><Link to="/dashboard/user/upcoming-appointments">Upcoming Appointments</Link></li>
         <li><Link to="/dashboard/user/appointment-history">Appointment History</Link></li>
-        <li><Link to="/dashboard/user/manage-profile">Manage Profile</Link></li>
+        <li><Link to="/dashboard/user/manage-profile">Profile</Link></li>
         
       </ul>
     </div>
