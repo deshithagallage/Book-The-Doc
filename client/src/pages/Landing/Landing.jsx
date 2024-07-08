@@ -6,13 +6,12 @@ import Services from "./sections/Services/Services";
 import Impacts from "./sections/Impacts/Impacts";
 import Reviews from "./sections/Reviews/Reviews";
 import Register from "./sections/Register/Register";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Landing() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        {/* Add navbar content if needed */}
-      </header>
+      <Navbar />
       <main className={styles.main}>
         <Title />
         <Services />
