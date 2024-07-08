@@ -1,10 +1,10 @@
 import React from "react";
 
-const PrimaryButton = ({ text, onClickFunc }) => {
+const PrimaryButton = ({ text, onClick, removeTranslate = false }) => {
   return (
     <button
-      onClick={onClickFunc}
-      className="w-full h-full mt-4 bg-blue-500 text-white rounded-md drop-shadow-xl flex justify-center items-center hover:-translate-y-1 hover:bg-blue-600 hover:shadow-lg transition-transform duration-300"
+      onClick={onClick}
+      className={`w-full h-full bg-blue-500 text-white rounded-md drop-shadow-xl tracking-widest flex justify-center items-center hover:bg-blue-600 hover:shadow-lg transition-transform ${!removeTranslate ? "hover:-translate-y-1" : ""} duration-300`}
     >
       {text}
     </button>
