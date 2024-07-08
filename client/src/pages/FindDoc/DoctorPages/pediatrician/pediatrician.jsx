@@ -1,8 +1,8 @@
 import React from "react";
-import './cardiologist.css'; // Assuming you have a CSS file for styling
+import './pediatrician.css'; // Assuming you have a CSS file for styling
 
-import cardiologistImage from '../../../images/DoctorImages/cardiologist.jpg';
-import logo from '../../../images/logo.png';
+import pediatricianImage from '../../../../images/DoctorImages/pediatrician.png';
+import logo from '../../../../images/logo.png';
 
 function Cardiologist() {
   return (
@@ -26,7 +26,7 @@ function Cardiologist() {
         </div>
         
         <div className="doctor-image">
-          <img src={cardiologistImage} width="300" height="300" alt="Cardiologist" />
+          <img src={pediatricianImage} width="300" height="300" alt="Cardiologist" />
         </div>
         </div>
 
