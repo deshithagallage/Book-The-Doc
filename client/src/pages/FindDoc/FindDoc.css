@@ -60,11 +60,32 @@
   }
   
   .cardiologist-button {
-    padding: 10px 20px;
+    padding: 10px;
     background-color: #ffffff;
     color: #000000;
     border: none;
     border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .neurologist-button {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .pediatrician-button {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
     cursor: pointer;
   }
   

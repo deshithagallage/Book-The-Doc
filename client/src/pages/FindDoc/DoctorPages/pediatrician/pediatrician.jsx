@@ -4,7 +4,7 @@ import './pediatrician.css'; // Assuming you have a CSS file for styling
 import pediatricianImage from '../../../../images/DoctorImages/pediatrician.png';
 import logo from '../../../../images/logo.png';
 
-function Cardiologist() {
+function Pediatrician() {
   return (
     <div className="find-doc-container">
       <header className="header">
@@ -26,13 +26,13 @@ function Cardiologist() {
         </div>
         
         <div className="doctor-image">
-          <img src={pediatricianImage} width="300" height="300" alt="Cardiologist" />
+          <img src={pediatricianImage} width="300" height="300" alt="Pediatrician" />
         </div>
         </div>
 
         <div className="category-section">
-          <h2>Cardiologists</h2>
-          <p>Our expert cardiologists specialize in diagnosing and treating diseases of the cardiovascular system.</p>
+          <h2>Pediatricians</h2>
+          <p>Our expert pediatricians specialize in diagnosing and treating diseases in children.</p>
           <ul>
             <li>Dr. John Smith</li>
             <li>Dr. Emily Davis</li>
@@ -46,4 +46,4 @@ function Cardiologist() {
   );
 }
 
-export default Cardiologist;
+export default Pediatrician;
