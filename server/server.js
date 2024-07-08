@@ -11,6 +11,7 @@ connectDB();
 app.use(express.json());
 
 // Define Routes
+app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/hospitals', require('./routes/hospitalRoutes'));
 app.use('/api/doctors', require('./routes/doctorRoutes'));
 
