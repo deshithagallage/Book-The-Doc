@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const patientSchema = new mongoose.Schema({
     name: {
@@ -30,6 +31,8 @@ const patientSchema = new mongoose.Schema({
         type: String,
         default: 'patient',
     },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
 });
 
 patientSchema.pre('save', async function(next) {
