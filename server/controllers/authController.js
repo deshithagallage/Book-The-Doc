@@ -52,12 +52,12 @@ const registerDoctor = async (req, res) => {
     const { name, specialization, hospital, address, phone, email, dob, password } = req.body;
   
     try {
-      let user = await Patient.findOne({ email });
+      let user = await Doctor.findOne({ email });
       if (user) {
         return res.status(400).json({ message: 'User already exists' });
       }
   
-      user = new Patient({
+      user = new Doctor({
         name,
         specialization,
         hospital,
@@ -102,13 +102,13 @@ const loginUser = async (req, res) => {
       if (!user) {
         let user = await Doctor.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(400).json({ message: 'Invalid credentials1' });
         }
       }
   
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
+        return res.status(400).json({ message: 'Invalid credentials2' });
       }
   
       const payload = {
