@@ -27,4 +27,20 @@ const createDoctor = async (req, res) => {
   }
 };
 
-module.exports = { getDoctors, createDoctor };
+const getDoctorsByHospital = async (req, res) => {
+    const { hospitalId } = req.params;
+  
+    try {
+      const doctors = await Doctor.find({ hospital: hospitalId }).populate('hospital', 'name address phone');
+      if (doctors.length === 0) {
+        return res.status(404).json({ message: 'No doctors found for this hospital' });
+      }
+      res.json(doctors);
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+};
+  
+  
+
+module.exports = { getDoctors, createDoctor, getDoctorsByHospital};
