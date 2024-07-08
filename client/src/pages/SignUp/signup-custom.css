@@ -1,0 +1,37 @@
+/* custom.css */
+::placeholder {
+  font-size: 0.875rem; /* Example size: text-sm */
+  font-style: italic;
+  color: rgba(156, 163, 175, 1); /* text-gray-400 */
+}
+/* Floating label styles */
+.floating-label-group {
+  position: relative;
+  margin-top: 20px;
+}
+
+.floating-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: 0.2s ease all;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.floating-label-input:focus ~ .floating-label,
+.floating-label-input:not(:placeholder-shown) ~ .floating-label {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(156, 163, 175, 1); /* text-gray-400 */
+  opacity: 1;
+  background: transparent;
+  padding: 0 5px;
+}
+
+.floating-label-input:focus {
+  border-color: white;
+  outline: none;
+}
