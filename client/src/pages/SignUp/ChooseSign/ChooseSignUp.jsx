@@ -28,10 +28,9 @@ function ChooseSignUp() {
           onClick={setMember}
         >
           <p
-            className={`text-center mt-6 ${isMember ? "text-blue-100" : "text-blue-500 group-hover:text-blue-100"} text-2xl font-bold`}
+            className={`text-center mt-6 ${isMember ? "text-blue-100" : "text-blue-500 group-hover:text-blue-100"} text-3xl font-bold`}
           >
-            Sign up as <br />a Member <br />
-            or a Patient
+            Register as <br />a Patient
           </p>
           <img
             src="/src/assets/user-cover.png"
@@ -44,9 +43,12 @@ function ChooseSignUp() {
           onClick={setDoctor}
         >
           <p
-            className={`text-center mt-6 ${isDoctor ? "text-blue-100" : "text-blue-500 group-hover:text-blue-100"} text-2xl font-bold`}
+            className={`text-center mt-4 ${isDoctor ? "text-blue-100" : "text-blue-500 group-hover:text-blue-100"} text-3xl font-bold`}
           >
-            Sign up as <br />a Doctor or <br />a Medical Clinic
+            Register as a
+            <br />
+            Channeling <br />
+            Center
           </p>
           <img
             src="/src/assets/clinic-cover.png"
