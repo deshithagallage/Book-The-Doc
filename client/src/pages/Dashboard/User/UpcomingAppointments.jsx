@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
 import styles from './UpcomingAppointments.module.css'; // Updated import
 import axios from 'axios';
+import Navbar from '../../../components/Navbar/Navbar';
 
 const UpcomingAppointments = () => {
   const [appointments, setAppointments] = useState([
@@ -43,6 +44,8 @@ const UpcomingAppointments = () => {
   }, []);
 
   return (
+    <div>
+    <Navbar />
     <div className={styles.upcomingAppointments}>
       <UserSidebar />
       <div className={styles.content}>
@@ -62,6 +65,7 @@ const UpcomingAppointments = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './Appointments.module.css';
+import Navbar from '../../../components/Navbar/Navbar';
 
 const Appointments = () => {
   const ongoingAppointment = {
@@ -22,7 +23,8 @@ const Appointments = () => {
     { date: "2024-07-15", event: "Medical Camp" }
   ];
 
-  return (
+  return (<div>
+    <Navbar/>
     <div className={styles.appointments}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -63,6 +65,7 @@ const Appointments = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from "./UsersList.module.css"; // Import CSS Module for styling
+import Navbar from '../../../components/Navbar/Navbar';
 
 // Dummy data (replace with actual data from your API or state)
 const dummyUsers = [
@@ -16,6 +17,8 @@ const PatientsList = () => {
   const patients = dummyUsers.filter(user => user.role === 'User');
 
   return (
+    <div>
+      <Navbar/>
     <div className={styles.patientsList}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -43,6 +46,7 @@ const PatientsList = () => {
           </table>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './CenterDashboard.module.css'; // Import CSS module
+import Navbar from '../../../components/Navbar/Navbar';
 
 const CenterDashboard = () => {
   // Dummy data (replace with actual data fetching)
@@ -19,7 +20,8 @@ const CenterDashboard = () => {
     email: 'info@medicalcenter.com'
   };
 
-  return (
+  return (<div>
+    <Navbar/>
     <div className={styles.dashboard}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -80,6 +82,7 @@ const CenterDashboard = () => {
 
       </div>
     </div>
+  </div>
   );
 };
 

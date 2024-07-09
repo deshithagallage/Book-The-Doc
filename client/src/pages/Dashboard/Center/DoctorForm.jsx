@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './DoctorForm.module.css'; // Import CSS module
+import Navbar from '../../../components/Navbar/Navbar';
 
 const DoctorForm = () => {
   const { doctorId } = useParams();
@@ -40,6 +41,8 @@ const DoctorForm = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <div className={styles.doctorForm}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -66,6 +69,7 @@ const DoctorForm = () => {
           <button type="submit">{doctorId === 'new' ? 'Add Doctor' : 'Save Changes'}</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
 import styles from './ManageProfile.module.css'; // Updated import
+import Navbar from '../../../components/Navbar/Navbar';
 
 const ManageProfile = () => {
   const [user, setUser] = useState({
@@ -37,7 +38,8 @@ const ManageProfile = () => {
     setIsEditing(false);
   };
 
-  return (
+  return (<div>
+    <Navbar/>
     <div className={styles.manageProfile}>
       <UserSidebar />
       <div className={styles.content}>
@@ -132,6 +134,7 @@ const ManageProfile = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

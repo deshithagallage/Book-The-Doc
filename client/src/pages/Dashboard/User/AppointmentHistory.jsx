@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
 import styles from './AppointmentHistory.module.css';
+import Navbar from '../../../components/Navbar/Navbar';
 
 const AppointmentHistory = () => {
   const [appointments, setAppointments] = useState([
@@ -49,7 +50,8 @@ const AppointmentHistory = () => {
     }
   ]);
 
-  return (
+  return (<div>
+    <Navbar/>
     <div className={styles.appointmentHistory}>
       <UserSidebar />
       <div className={styles.content}>
@@ -70,6 +72,7 @@ const AppointmentHistory = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

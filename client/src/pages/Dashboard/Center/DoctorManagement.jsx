@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './DoctorManagement.module.css'; // Import CSS module
+import Navbar from '../../../components/Navbar/Navbar';
 
 const DoctorManagement = () => {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ const DoctorManagement = () => {
     { id: 2, name: 'Dr. Jane Smith', timeslots: ['10am - 1pm', '3pm - 6pm'] },
   ];
 
-  return (
+  return (<div>
+    <Navbar/>
     <div className={styles.doctorManagement}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -45,6 +47,7 @@ const DoctorManagement = () => {
         </button>
       </div>
     </div>
+  </div>
   );
 };
 
