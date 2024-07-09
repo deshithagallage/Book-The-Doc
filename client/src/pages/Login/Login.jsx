@@ -32,6 +32,7 @@ function Login() {
       });
       if (res.status >= 200 && res.status < 300) {
         setIsLoginSuccess(1);
+        console.log(res.data);
         const { token } = res.data;
         localStorage.setItem("token", token);
         navigate("/");
@@ -39,7 +40,7 @@ function Login() {
         setIsLoginSuccess(0);
       }
     } catch (err) {
-      console.log(err);
+      console.log("msg", err);
     }
   };
 
