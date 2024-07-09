@@ -1,7 +1,14 @@
 /* UserDashboard.module.css */
 
+/* Reset default styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 .dashboard {
   display: flex;
+  min-height: 100vh; /* Ensure full height */
 }
 
 .content {
@@ -10,9 +17,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto; /* Enable scrolling for content */
 }
 
-.user-info {
+.greeting {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -21,16 +29,15 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.dashboard-section {
-  width: 100%;
   margin-bottom: 20px;
 }
 
-.find-doc-button,
-.logout-button {
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.find-doc-button {
   padding: 15px 30px;
   font-size: 1.2em;
   color: white;
@@ -40,42 +47,245 @@
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
   transition: all 0.3s ease;
-  margin: 10px;
+  margin-top: 20px;
 }
 
-.find-doc-button:hover,
-.logout-button:hover {
+.find-doc-button:hover {
   background-color: #0056b3;
   box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
 }
 
-.appointments-section {
+.next-appointment {
   margin-top: 20px;
   width: 100%;
 }
 
-.appointments-section h2 {
-  margin-bottom: 10px;
+.previous-appointments {
+  margin-top: 20px;
+  width: 100%;
 }
 
-.appointments-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.appointments-section li {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-}
-
-.appointments-section li p {
-  margin: 5px 0;
-}
-
-.appointments-section .no-appointments {
+.no-appointments {
   text-align: center;
   color: #777;
+}
+
+.calendar {
+  margin-top: 20px;
+  width: 100%; /* Adjust width as needed */
+  max-width: 600px; /* Limit calendar width for larger screens */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 768px) {
+  .dashboard {
+    flex-direction: row; /* Side-by-side layout */
+  }
+
+  .content {
+    align-items: flex-start; /* Align items to the start */
+    padding: 20px 40px; /* Increase padding for larger screens */
+    overflow-y: auto; /* Enable scrolling for content */
+  }
+
+  .profile-picture {
+    margin-right: 20px; /* Space between profile picture and content */
+  }
+
+  .calendar {
+    width: 40%; /* Adjust calendar width */
+    margin-left: auto; /* Align to the right */
+    margin-right: 20px; /* Space from right side */
+  }
+
+  .next-appointment,
+  .previous-appointments {
+    width: 60%; /* Adjust width for upcoming and past appointments */
+  }
+}
+
+.card-title {
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+body {
+  /* Created with https://www.css-gradient.com */
+  background: #161616;
+}
+
+h1 {
+  color: #fff;
+}
+
+.lead {
+  color: #aaa;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.card {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: none;
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  border-radius: 20px;
+  min-height: 150px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    min-height: 100px;
+  }
+}
+
+.card-has-bg {
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.card-has-bg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  -webkit-filter: grayscale(1);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.card-has-bg:hover {
+  transform: scale(0.98);
+  box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
+  background-size: 130%;
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card-has-bg:hover .card-img-overlay {
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  background: rgb(255,186,33);
+  background: linear-gradient(0deg, rgba(255,186,33,0.5) 0%, rgba(255,186,33,1) 100%);
+}
+
+.card-footer {
+  background: none;
+  border-top: none;
+}
+
+.card-footer .media img {
+  border: solid 3px rgba(255, 255, 255, 0.3);
+}
+
+.card-title {
+  font-weight: 800;
+}
+
+.card-meta {
+  color: rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.card-body {
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card:hover .card-body {
+  margin-top: 30px;
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card:hover {
+  cursor: pointer;
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card-img-overlay {
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  background: rgb(255,186,33);
+  background: linear-gradient(0deg, rgba(255,186,33,0.3785889355742297) 0%, rgba(255,186,33,1) 100%);
+}
+
+.card1 {
+  position: 0 0 ;
+  background: linear-gradient(90deg, #ff5733, #ffc371);
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Adjust as needed */
+}
+
+.card {
+  
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+
+
+.card1 {
+  background: linear-gradient(90deg, #ff5733, #ffc371);
+  top: 160px;
+  left: 160px;
+}
+
+.card2 {
+  background: linear-gradient(90deg, #36d1dc, #5b86e5);
+  top: 20px;
+  left: 200px;
+}
+
+.card3 {
+  background: linear-gradient(90deg, #ff9a9e, #fecfef);
+  top: 200px;
+  left: 20px;
+}
+
+.card4 {
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+  top: 200px;
+  left: 200px;
+}
+
+.card5 {
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+  top: 200px;
+  left: 200px;
 }

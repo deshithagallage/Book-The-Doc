@@ -25,6 +25,27 @@ const AppointmentHistory = () => {
       date: '2024-06-10',
       time: '11:00 AM',
       status: 'Completed'
+    },
+    {
+      id: 3,
+      doctor: 'Dr. Michael Brown',
+      date: '2024-06-10',
+      time: '11:00 AM',
+      status: 'Completed'
+    },
+    {
+      id: 3,
+      doctor: 'Dr. Michael Brown',
+      date: '2024-06-10',
+      time: '11:00 AM',
+      status: 'Completed'
+    },
+    {
+      id: 3,
+      doctor: 'Dr. Michael Brown',
+      date: '2024-06-10',
+      time: '11:00 AM',
+      status: 'Completed'
     }
   ]);
 

@@ -1,9 +1,16 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
 import styles from './UserDashboard.module.css'; // Import styles from module.css
 import axios from 'axios';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import Navbar from '../../../components/Navbar/Navbar';
+
+const localizer = momentLocalizer(moment);
 
 const UserDashboard = () => {
   const [user, setUser] = useState({
@@ -17,8 +24,9 @@ const UserDashboard = () => {
     totalAppointments: 5,
     bookedPreviousDoctors: ['Dr. Smith', 'Dr. Johnson']
   });
-  
+
   const [appointments, setAppointments] = useState([]);
+  const [nextAppointment, setNextAppointment] = useState(null);
 
   useEffect(() => {
     // Fetch appointments data from the backend
@@ -27,6 +35,9 @@ const UserDashboard = () => {
         const response = await axios.get('/api/appointments'); // Make sure the endpoint is correct
         if (Array.isArray(response.data)) {
           setAppointments(response.data);
+          // Find next upcoming appointment
+          const next = response.data.find(appointment => appointment.status === 'upcoming');
+          setNextAppointment(next);
         } else {
           console.error('Fetched appointments data is not an array:', response.data);
         }
@@ -38,48 +49,78 @@ const UserDashboard = () => {
     fetchAppointments();
   }, []);
 
-  const upcomingAppointments = appointments.filter(appointment => appointment.status === 'upcoming');
-  const pastAppointments = appointments.filter(appointment => appointment.status === 'completed');
+  // Good morning message
+  const currentTime = new Date();
+  let greeting = '';
+  if (currentTime.getHours() < 12) {
+    greeting = 'Good Morning';
+  } else if (currentTime.getHours() < 18) {
+    greeting = 'Good Afternoon';
+  } else {
+    greeting = 'Good Evening';
+  }
+
+  // Calendar events setup (example data)
+  const events = appointments.map(appointment => ({
+    title: appointment.doctorName,
+    start: new Date(appointment.date),
+    end: new Date(appointment.date)
+  }));
 
   return (
+    <div>
+      <Navbar/>
     <div className={styles.dashboard}>
       <UserSidebar />
+      
+
       <div className={styles.content}>
         <h1>User Dashboard</h1>
-        <img src={user.profilePicture} alt="Profile" className={styles['profile-picture']} />
-        <div className={styles['user-info']}>
-          <p><strong>Username:</strong> {user.username}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Age:</strong> {user.age}</p>
-          <p><strong>City:</strong> {user.city}</p>
-          <p><strong>Sugar Level:</strong> {user.sugarLevel}</p>
-          <p><strong>Blood Pressure:</strong> {user.bloodPressure}</p>
-          <p><strong>Total Appointments:</strong> {user.totalAppointments}</p>
-          <p><strong>Booked Previous Doctors:</strong> {user.bookedPreviousDoctors.join(', ')}</p>
+
+        <div className={`${styles.card1} ${styles.greeting}`}>
+          <p>{greeting}, {user.username}</p>
+          <p>Appointment Number: {user.totalAppointments}</p>
         </div>
+
+        <div className={`${styles.card2} ${styles.calendar}`}>
+          <Calendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 500 }}
+          />
+        </div>
+
+        <div className={`${styles.card3} ${styles['user-info']}`}>
+          <img src={user.profilePicture} alt="Profile" className={styles['profile-picture']} />
+          <div className={styles['card-content']}>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Age:</strong> {user.age}</p>
+            <p><strong>City:</strong> {user.city}</p>
+            <p><strong>Sugar Level:</strong> {user.sugarLevel}</p>
+            <p><strong>Blood Pressure:</strong> {user.bloodPressure}</p>
+            <p><strong>Booked Previous Doctors:</strong> {user.bookedPreviousDoctors.join(', ')}</p>
+          </div>
+        </div>
+
         <Link to="/find-doctor">
           <button className={styles['find-doc-button']}>Find a Doctor</button>
         </Link>
-        <div className={styles['appointments-section']}>
-          <h2>Upcoming Appointments</h2>
-          {upcomingAppointments.length > 0 ? (
+
+        {nextAppointment && (
+          <div className={`${styles.card4} ${styles['next-appointment']}`}>
+            <h2>Next Appointment</h2>
+            <p><strong>Doctor:</strong> {nextAppointment.doctorName}</p>
+            <p><strong>Date:</strong> {new Date(nextAppointment.date).toLocaleString()}</p>
+          </div>
+        )}
+
+        <div className={`${styles.card5} ${styles['previous-appointments']}`}>
+          <h2>Previous Appointments</h2>
+          {appointments.filter(appointment => appointment.status === 'completed').length > 0 ? (
             <ul>
-              {upcomingAppointments.map(appointment => (
-                <li key={appointment._id}>
-                  <p><strong>Doctor:</strong> {appointment.doctorName}</p>
-                  <p><strong>Date:</strong> {new Date(appointment.date).toLocaleString()}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className={styles['no-appointments']}>No upcoming appointments.</p>
-          )}
-        </div>
-        <div className={styles['appointments-section']}>
-          <h2>Past Appointments</h2>
-          {pastAppointments.length > 0 ? (
-            <ul>
-              {pastAppointments.map(appointment => (
+              {appointments.filter(appointment => appointment.status === 'completed').map(appointment => (
                 <li key={appointment._id}>
                   <p><strong>Doctor:</strong> {appointment.doctorName}</p>
                   <p><strong>Date:</strong> {new Date(appointment.date).toLocaleString()}</p>
@@ -91,6 +132,7 @@ const UserDashboard = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };
