@@ -4,24 +4,28 @@ import "../signup-custom.css";
 import Alert from "../../../components/Alert/Alert";
 import Navbar from "../../../components/Navbar/Navbar";
 import PrimaryInput from "../../../components/PrimaryInput/PrimaryInput";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function UserSignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [dob, setDob] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confPass, setConfPass] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !firstName ||
       !lastName ||
       !email ||
       !gender ||
-      !birthday ||
+      !dob ||
       !password ||
       !confPass
     ) {
@@ -32,7 +36,26 @@ function UserSignUp() {
       alert("Passwords do not match");
       return;
     }
-    history.push("/login");
+    const name = firstName + " " + lastName;
+    const address = "linda";
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/register/patient",
+        {
+          name,
+          address,
+          phone,
+          email,
+          dob,
+          password,
+        }
+      );
+      if (res.status >= 200 && res.status < 300) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -102,11 +125,19 @@ function UserSignUp() {
                 <div className="w-1/2 relative ml-2">
                   <PrimaryInput
                     type="date"
-                    value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                    label="Birthday"
+                    value={dob}
+                    onChange={(e) => setDob(e.target.value)}
+                    label="dob"
                   />
                 </div>
+              </div>
+              <div className="w-full relative mt-4">
+                <PrimaryInput
+                  type="text"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  label="Phone Number"
+                />
               </div>
               <div className="w-full relative mt-4">
                 <PrimaryInput

@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
-// ./pages/Dashboard/Center/UsersList.jsx
-
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
+import styles from "./UsersList.module.css"; // Import CSS Module for styling
 
 // Dummy data (replace with actual data from your API or state)
 const dummyUsers = [
@@ -13,16 +12,16 @@ const dummyUsers = [
 ];
 
 const PatientsList = () => {
-  // Filter out users with role 'Admin'
+  // Filter out users with role 'User'
   const patients = dummyUsers.filter(user => user.role === 'User');
 
   return (
-    <div className="patients-list">
+    <div className={styles.patientsList}>
       <CenterSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Patients List</h1>
-        <div className="patients-table">
-          <table>
+        <div className={styles.patientsTable}>
+          <table className={styles.table}>
             <thead>
               <tr>
                 <th>ID</th>

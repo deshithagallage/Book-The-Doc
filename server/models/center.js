@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const medicalCenterSchema = new mongoose.Schema({
   name: {
@@ -27,7 +28,7 @@ const medicalCenterSchema = new mongoose.Schema({
   },
   zipCode: {
     type: Number,
-    required: true,
+    required: false,
   },
   phone: {
     type: String,
@@ -35,16 +36,8 @@ const medicalCenterSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: 'medicalCenter',
+    default: "medicalCenter",
   },
 });
 
-medicalCenterSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) {
-      next();
-    }
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-  });
-
-module.exports = mongoose.model('MedicalCenter', medicalCenterSchema);
+module.exports = mongoose.model("MedicalCenter", medicalCenterSchema);

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './DoctorForm.css';
+import styles from './DoctorForm.module.css'; // Import CSS module
 
 const DoctorForm = () => {
   const { doctorId } = useParams();
@@ -40,9 +40,9 @@ const DoctorForm = () => {
   };
 
   return (
-    <div className="doctor-form">
+    <div className={styles.doctorForm}>
       <CenterSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>{doctorId === 'new' ? 'Add New Doctor' : 'Edit Doctor'}</h1>
         <form onSubmit={handleSubmit}>
           <div>

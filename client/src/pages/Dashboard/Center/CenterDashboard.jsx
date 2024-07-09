@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
-
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './CenterDashboard.css';
+import styles from './CenterDashboard.module.css'; // Import CSS module
 
 const CenterDashboard = () => {
   // Dummy data (replace with actual data fetching)
@@ -21,54 +20,54 @@ const CenterDashboard = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className={styles.dashboard}>
       <CenterSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Center Dashboard</h1>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>Registered Users</h2>
           <p>Total: {registeredUsersCount}</p>
           {/* Additional details about registered users */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>Pending Requests</h2>
           <p>Total: {pendingRequestsCount}</p>
           {/* Additional details about pending requests */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>Appointments Today</h2>
           <p>Total: {appointmentsTodayCount}</p>
           {/* Additional details about appointments today */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>Upcoming Appointments</h2>
           <p>Total: {upcomingAppointmentsCount}</p>
           {/* Additional details about upcoming appointments */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>Doctors</h2>
           <p>Total: {doctorsCount}</p>
           {/* Additional details about doctors */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>TODO Tasks</h2>
           <p>Total: {todoTasksCount}</p>
           {/* Additional details about TODO tasks */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>DONE Tasks</h2>
           <p>Total: {doneTasksCount}</p>
           {/* Additional details about DONE tasks */}
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h2>Owner Details</h2>
           <p>Name: {ownerDetails.name}</p>
           <p>Address: {ownerDetails.address}</p>
