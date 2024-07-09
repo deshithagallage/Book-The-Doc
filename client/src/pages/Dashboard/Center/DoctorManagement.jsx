@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './DoctorManagement.css';
+import styles from './DoctorManagement.module.css'; // Import CSS module
 
 const DoctorManagement = () => {
   const navigate = useNavigate();
@@ -22,13 +22,13 @@ const DoctorManagement = () => {
   ];
 
   return (
-    <div className="doctor-management">
+    <div className={styles.doctorManagement}>
       <CenterSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Doctor Management</h1>
-        <div className="doctor-list">
+        <div className={styles.doctorList}>
           {doctors.map((doctor) => (
-            <div key={doctor.id} className="doctor-card">
+            <div key={doctor.id} className={styles.doctorCard}>
               <h2>{doctor.name}</h2>
               <p>Timeslots:</p>
               <ul>
@@ -40,7 +40,7 @@ const DoctorManagement = () => {
             </div>
           ))}
         </div>
-        <button className="add-doctor" onClick={handleAddDoctor}>
+        <button className={styles.addDoctor} onClick={handleAddDoctor}>
           Add New Doctor
         </button>
       </div>

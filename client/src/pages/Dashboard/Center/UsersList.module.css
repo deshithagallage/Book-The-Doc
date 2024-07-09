@@ -1,11 +1,28 @@
-.patients-table {
+/* ./pages/Dashboard/Center/PatientsList.module.css */
+
+.patientsList {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.patientsTable {
   margin-top: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
 }
 
-table {
+.table {
   width: 100%;
   border-collapse: collapse;
 }

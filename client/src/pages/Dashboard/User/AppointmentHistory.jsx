@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import './AppointmentHistory.css';
+import styles from './AppointmentHistory.module.css';
 
 const AppointmentHistory = () => {
   const [appointments, setAppointments] = useState([
@@ -29,19 +29,18 @@ const AppointmentHistory = () => {
   ]);
 
   return (
-    <div className="appointment-history">
+    <div className={styles.appointmentHistory}>
       <UserSidebar />
-      <div className="content">
-     
-      <h1>Appointment History</h1>
-        <div className="appointment-list">
+      <div className={styles.content}>
+        <h1>Appointment History</h1>
+        <div className={styles.appointmentList}>
           {appointments.length > 0 ? (
             appointments.map((appointment) => (
-              <div key={appointment.id} className="appointment-item">
+              <div key={appointment.id} className={styles.appointmentItem}>
                 <h2>{appointment.doctor}</h2>
                 <p><strong>Date:</strong> {appointment.date}</p>
                 <p><strong>Time:</strong> {appointment.time}</p>
-                <p><strong>Status:</strong> <span className={`status ${appointment.status.toLowerCase()}`}>{appointment.status}</span></p>
+                <p><strong>Status:</strong> <span className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}>{appointment.status}</span></p>
               </div>
             ))
           ) : (
