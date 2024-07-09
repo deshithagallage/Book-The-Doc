@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { HiOutlineEye, HiOutlineEyeSlash, HiEye } from "react-icons/hi2";
 import PrimaryButtton from "../../components/PrimaryButton/PrimaryButton";
 import Navbar from "../../components/Navbar/Navbar";
@@ -12,6 +13,7 @@ function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [isFirstTime, setIsFirstTime] = React.useState(true);
   const [isLoginSuccess, setIsLoginSuccess] = React.useState(-1);
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -32,6 +34,7 @@ function Login() {
         setIsLoginSuccess(1);
         const { token } = res.data;
         localStorage.setItem("token", token);
+        navigate("/");
       } else {
         setIsLoginSuccess(0);
       }
