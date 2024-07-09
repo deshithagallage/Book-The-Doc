@@ -40,7 +40,7 @@ function UserSignUp() {
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <Navbar />
-      <div className="w-4/6 h-hull mt-7 flex justify-center items-center">
+      <div className="w-1/2 h-hull mt-7 flex justify-center items-center">
         <div className="w-1/2 h-full bg-blue-500 bg-opacity-70 rounded-l-xl">
           <img
             src="/src/assets/login_cover.png"
