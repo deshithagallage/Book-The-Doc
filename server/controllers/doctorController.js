@@ -34,6 +34,20 @@ const getDoctorsBySpecialization = async (req, res) => {
       res.status(500).json({ message: error.message });
     }
 };
+
+const addDoctor = async (req, res) => {
+    const { name, specialization, qualifications, gender} = req.body;
+  
+    try {
+      const newDoctor = new Doctor({ name, specialization, qualifications, gender });
+      await newDoctor.save();
+      res.status(201).json(newDoctor);
+    }
+    catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+}
+      
   
 
-module.exports = { getDoctors, getDoctorsByHospital, getDoctorsBySpecialization};
+module.exports = { getDoctors, getDoctorsByHospital, getDoctorsBySpecialization, addDoctor};

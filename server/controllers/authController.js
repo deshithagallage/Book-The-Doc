@@ -131,7 +131,7 @@ const registerCenter = async (req, res) => {
       { expiresIn: '2h' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token: token, userId: user.id, userName: user.name });
       }
     );
   } catch (error) {

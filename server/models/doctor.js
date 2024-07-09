@@ -10,34 +10,13 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    hospital: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Hospital',
-        required: false,
-    },
-    address: {
+    qualifications: {
         type: String,
         required: true,
     },
-    phone: {
+    gender: {
         type: String,
         required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    dob: {
-        type: Date,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    role: {
-        type: String,
-        default: 'doctor',
     },
 });
 
