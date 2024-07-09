@@ -22,58 +22,6 @@ const registerPatient = async (req, res) => {
       dob,
     });
 
-    await user.save();
-
-    const payload = {
-      user: {
-        id: user.id,
-        role: user.role,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: "2h" },
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token: token, userId: user.id, userName: user.name });
-      }
-    );
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-const registerDoctor = async (req, res) => {
-  const {
-    name,
-    specialization,
-    hospital,
-    address,
-    phone,
-    email,
-    dob,
-    password,
-  } = req.body;
-
-  try {
-    let user = await Doctor.findOne({ email });
-    if (user) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
-    user = new Doctor({
-      name,
-      specialization,
-      hospital,
-      address,
-      phone,
-      email,
-      dob,
-      password,
-    });
-
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
 
@@ -92,7 +40,7 @@ const registerDoctor = async (req, res) => {
       { expiresIn: "2h" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ message: "Registation Success" });
       }
     );
   } catch (error) {
@@ -147,7 +95,7 @@ const registerCenter = async (req, res) => {
       { expiresIn: "2h" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ message: "Registation Success" });
       }
     );
   } catch (error) {
@@ -157,18 +105,13 @@ const registerCenter = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  // Log the request data
-  console.log("Email:", email);
-  console.log("Password:", password);
+
   try {
     let user = await Patient.findOne({ email });
     if (!user) {
-      let user = await Doctor.findOne({ email });
+      user = await Center.findOne({ email });
       if (!user) {
-        let user = await Center.findOne({ email });
-        if (!user) {
-          return res.status(400).json({ message: "Invalid credentials1" });
-        }
+        return res.status(400).json({ message: "Invalid credentials1" });
       }
     }
 
@@ -198,4 +141,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerDoctor, registerPatient, loginUser, registerCenter };
+module.exports = { registerPatient, loginUser, registerCenter };
