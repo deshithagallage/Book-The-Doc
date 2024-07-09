@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import './UserDashboard.css'; // Assuming you have a CSS file for styling
+import styles from './UserDashboard.module.css'; // Import styles from module.css
 import axios from 'axios';
 
 const UserDashboard = () => {
@@ -42,12 +42,12 @@ const UserDashboard = () => {
   const pastAppointments = appointments.filter(appointment => appointment.status === 'completed');
 
   return (
-    <div className="dashboard">
+    <div className={styles.dashboard}>
       <UserSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>User Dashboard</h1>
-        <img src={user.profilePicture} alt="Profile" className="profile-picture" />
-        <div className="user-info">
+        <img src={user.profilePicture} alt="Profile" className={styles['profile-picture']} />
+        <div className={styles['user-info']}>
           <p><strong>Username:</strong> {user.username}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Age:</strong> {user.age}</p>
@@ -57,10 +57,10 @@ const UserDashboard = () => {
           <p><strong>Total Appointments:</strong> {user.totalAppointments}</p>
           <p><strong>Booked Previous Doctors:</strong> {user.bookedPreviousDoctors.join(', ')}</p>
         </div>
-        <Link to="/finddoc">
-          <button className="find-doc-button">Find a Doctor</button>
+        <Link to="/find-doctor">
+          <button className={styles['find-doc-button']}>Find a Doctor</button>
         </Link>
-        <div className="appointments-section">
+        <div className={styles['appointments-section']}>
           <h2>Upcoming Appointments</h2>
           {upcomingAppointments.length > 0 ? (
             <ul>
@@ -72,10 +72,10 @@ const UserDashboard = () => {
               ))}
             </ul>
           ) : (
-            <p>No upcoming appointments.</p>
+            <p className={styles['no-appointments']}>No upcoming appointments.</p>
           )}
         </div>
-        <div className="appointments-section">
+        <div className={styles['appointments-section']}>
           <h2>Past Appointments</h2>
           {pastAppointments.length > 0 ? (
             <ul>
@@ -87,7 +87,7 @@ const UserDashboard = () => {
               ))}
             </ul>
           ) : (
-            <p>No past appointments.</p>
+            <p className={styles['no-appointments']}>No past appointments.</p>
           )}
         </div>
       </div>
