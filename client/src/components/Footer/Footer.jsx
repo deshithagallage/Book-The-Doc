@@ -1,72 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Footer.module.css";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+
+import logo1 from "../../assets/logo1.png";
+import logo2 from "../../assets/logo2.png";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (event) => {
+    event.preventDefault();
+    console.log("Subscribed to newsletter!");
+    setEmail("");
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.row}>
-          <div className={styles.col}>
-            <a href="#" className={styles.link}>
-              Product
-            </a>
-            <a href="#" className={styles.link}>
-              Features
-            </a>
-            <a href="#" className={styles.link}>
-              Updates
-            </a>
+        <div className={styles.logo}>
+          <div>
+            <img src={logo1} alt="HealthyMe Logo" className={styles.logoImg1} />
+            <img src={logo2} alt="HealthyMe Logo" className={styles.logoImg2} />
           </div>
-          <div className={styles.col}>
-            <a href="#" className={styles.link}>
-              Company
+          <p className={styles.quote}>
+            One Step Solution for all your medical needs
+          </p>
+          <div className={styles.socialMedia}>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className={styles.socialIcon} />
             </a>
-            <a href="#" className={styles.link}>
-              About
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className={styles.socialIcon} />
             </a>
-            <a href="#" className={styles.link}>
-              Careers
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter className={styles.socialIcon} />
             </a>
-          </div>
-          <div className={styles.col}>
-            <a href="#" className={styles.link}>
-              Support
-            </a>
-            <a href="#" className={styles.link}>
-              Getting Started
-            </a>
-            <a href="#" className={styles.link}>
-              Help Center
-            </a>
-          </div>
-          <div className={styles.col}>
-            <a href="#" className={styles.link}>
-              Contact
-            </a>
-            <a href="#" className={styles.link}>
-              Contact Us
-            </a>
-            <a href="#" className={styles.link}>
-              Chat Support
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className={styles.socialIcon} />
             </a>
           </div>
         </div>
-        <div className={styles.info}>
-          <a href="#" className={styles.email}>
-            contact@company.com
-          </a>
-          <a href="#" className={styles.phone}>
-            (414) 687-5892
-          </a>
-          <address className={styles.address}>
-            794 Mcallister St, San Francisco, 94102
-          </address>
+        <div className={styles.col}>
+          <h3 className={styles.subscribeTitle}>Subscribe to Our Newsletter</h3>
+          <form className={styles.subscribeForm} onSubmit={handleSubscribe}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email address"
+              className={styles.subscribeInput}
+            />
+            <button type="submit" className={styles.subscribeButton}>
+              Subscribe
+            </button>
+          </form>
+        </div>
+        <div className={styles.col}>
+          <h3 className={styles.contactTitle}>Contact Us</h3>
+          <div className={styles.contactItem}>
+            <FaEnvelope className={styles.contactIcon} />
+            <a href="mailto:teamnovacoders@gmail.com" className={styles.email}>
+              info@bookthedoc.com
+            </a>
+          </div>
+          <div className={styles.contactItem}>
+            <FaPhone className={styles.contactIcon} />
+            <a href="tel:4146875892" className={styles.phone}>
+              0414-687-5892
+            </a>
+          </div>
+          <div className={styles.contactItem}>
+            <FaMapMarkerAlt className={styles.contactIcon} />
+            <address className={styles.address}>
+              No.123, Molpe Rd, Katubedda, Moratuwa
+            </address>
+          </div>
         </div>
       </div>
       <div className={styles.copyright}>
         <p className={styles.text}>
-          Copyright © 2022 All Rights Reserved | Terms and Conditions | Privacy
-          Policy
+          Copyright © BookTheDoc 2024 | All Rights Reserved
         </p>
       </div>
     </footer>
