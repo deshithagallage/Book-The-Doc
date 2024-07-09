@@ -10,7 +10,7 @@ const NavListItem = ({ text, icon, href = "/" }) => {
         {icon}
         <span>{text}</span>
       </a>
-      <div className="absolute left-0 right-0 -bottom-3 h-0 bg-transparent transition-all duration-300 group-hover:h-12 z-0">
+      <div className="absolute left-0 right-0 -bottom-[14px] h-0 bg-transparent transition-all duration-300 group-hover:h-12 z-0">
         <img
           src="/src/assets/nav-item-box.png"
           alt="nav-item-box"

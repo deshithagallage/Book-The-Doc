@@ -1,6 +1,6 @@
 import React from "react";
 import { HiOutlineEye, HiOutlineEyeSlash, HiEye } from "react-icons/hi2";
-import PButton from "../../components/primary_button/PButton";
+import PrimaryButtton from "../../components/PrimaryButton/PrimaryButton";
 import Navbar from "../../components/Navbar/Navbar";
 import PrimaryInput from "../../components/PrimaryInput/PrimaryInput";
 
@@ -16,7 +16,7 @@ function Login() {
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <Navbar />
-      <div className="mt-20 w-4/6 h-hull flex justify-center items-center">
+      <div className="mt-20 w-1/2 h-hull flex justify-center items-center">
         <div className="w-1/2 h-full bg-blue-500 bg-opacity-70 rounded-l-xl">
           <img
             src="/src/assets/login_cover.png"
@@ -81,7 +81,7 @@ function Login() {
 
               {/* login button */}
               <div className="w-4/6 h-10 mt-4 flex justify-end items-center">
-                <PButton text="LOGIN" />
+                <PrimaryButtton text="LOGIN" />
               </div>
 
               {/* divider */}
@@ -128,7 +128,7 @@ function Login() {
               </div>
               <div className="w-4/6 flex justify-center">
                 <a
-                  href="/signup"
+                  href="/register"
                   className="italic text-blue-600 text-opacity-70 text-sm mb-10"
                 >
                   {" "}
