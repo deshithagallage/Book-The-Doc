@@ -12,6 +12,17 @@ function Pediatrician() {
     "Dr. Michael Brown",
     "Dr. Sarah Wilson",
     "Dr. David Johnson",
+    "Dr. Jessica Lee",
+    "Dr. Andrew Miller",
+    "Dr. Olivia Clark",
+    "Dr. Benjamin Garcia",
+    "Dr. Sophia Martinez",
+    "Dr. Ethan Thompson",
+    "Dr. Isabella White",
+    "Dr. Jacob Harris",
+    "Dr. Mia Lopez",
+    "Dr. Alexander Robinson",
+    "Dr. Ava Young",
   ];
 
   const filteredPediatricians = pediatricians.filter(pediatrician =>
