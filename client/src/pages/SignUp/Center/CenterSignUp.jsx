@@ -4,28 +4,31 @@ import "../signup-custom.css";
 import Alert from "../../../components/Alert/Alert";
 import Navbar from "../../../components/Navbar/Navbar";
 import PrimaryInput from "../../../components/PrimaryInput/PrimaryInput";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function UserSignUp() {
-  const [centerName, setCenterName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [medLcnNum, setMedLcnNum] = useState("");
+  const [medicalNumber, setMedicalNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confPass, setConfPass] = useState("");
-  const [province, setProvince] = useState("");
+  const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [isFirstTime, setIsFirstTime] = useState(true);
 
-  const handleSubmit = (e) => {
+  const [isFirstTime, setIsFirstTime] = useState(true);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsFirstTime(false);
     if (
-      !centerName ||
+      !name ||
       !email ||
-      !medLcnNum ||
-      !province ||
+      !medicalNumber ||
+      !district ||
       !city ||
-      !zipCode ||
       !password ||
       !confPass
     ) {
@@ -34,7 +37,26 @@ function UserSignUp() {
     if (password !== confPass) {
       return;
     }
-    history.push("/login");
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/register/center",
+        {
+          name,
+          email,
+          medicalNumber,
+          password,
+          district,
+          city,
+          zipCode,
+          phone: "linda",
+        }
+      );
+      if (res.status >= 200 && res.status < 300) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -64,8 +86,8 @@ function UserSignUp() {
               <div className="w-full relative mt-4">
                 <PrimaryInput
                   type="text"
-                  value={centerName}
-                  onChange={(e) => setCenterName(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   label="Channeling Center Name"
                 />
               </div>
@@ -93,8 +115,8 @@ function UserSignUp() {
               <div className="w-full relative mt-4">
                 <PrimaryInput
                   type="text"
-                  value={medLcnNum}
-                  onChange={(e) => setMedLcnNum(e.target.value)}
+                  value={medicalNumber}
+                  onChange={(e) => setMedicalNumber(e.target.value)}
                   label="Medical License Number"
                 />
               </div>
@@ -139,12 +161,12 @@ function UserSignUp() {
                 </div>
               ) : null}
 
-              {/* province and city input */}
+              {/* district and city input */}
               <div className="w-full flex items-center justify-center mt-4">
-                {/* province input */}
+                {/* district input */}
                 <div className="w-1/2 relative mr-2">
                   <select
-                    onChange={(e) => setProvince(e.target.value)}
+                    onChange={(e) => setDistrict(e.target.value)}
                     className="bg-white w-full h-10 rounded-md opacity-80 pl-2 drop-shadow-lg text-sm"
                   >
                     <option value="" disabled selected hidden>
@@ -161,7 +183,7 @@ function UserSignUp() {
                     <option value="southern">Southern</option>
                   </select>
                   <label className="absolute -top-[10px] left-4 text-[12px] italic  text-gray-400">
-                    State/Province
+                    State/district
                   </label>
                 </div>
 
@@ -179,7 +201,7 @@ function UserSignUp() {
               {/* zip code input */}
               <div className="w-full relative mt-4">
                 <PrimaryInput
-                  type="text"
+                  type="number"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
                   label="Zip Code"
@@ -188,18 +210,17 @@ function UserSignUp() {
 
               {/* alert if any field is empty */}
               {!(
-                centerName &&
+                name &&
                 email &&
-                medLcnNum &&
+                medicalNumber &&
                 password &&
                 confPass &&
-                province &&
-                city &&
-                zipCode
+                district &&
+                city
               ) && !isFirstTime ? (
                 <div className="w-full flex items-start">
                   <Alert
-                    message="Fill out All the fields!"
+                    message="Fill out All the Required fields!"
                     isVisible={true}
                     type="error"
                   />
