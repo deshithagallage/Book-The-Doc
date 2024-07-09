@@ -1,0 +1,81 @@
+/* UserDashboard.module.css */
+
+.dashboard {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.dashboard-section {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.find-doc-button,
+.logout-button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.find-doc-button:hover,
+.logout-button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
+}
+
+.appointments-section {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.appointments-section h2 {
+  margin-bottom: 10px;
+}
+
+.appointments-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.appointments-section li {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.appointments-section li p {
+  margin: 5px 0;
+}
+
+.appointments-section .no-appointments {
+  text-align: center;
+  color: #777;
+}
