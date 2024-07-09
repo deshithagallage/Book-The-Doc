@@ -11,6 +11,7 @@ function UserSignUp() {
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
   const [birthday, setBirthday] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
   const [password, setPassword] = useState("");
   const [confPass, setConfPass] = useState("");
 
@@ -107,6 +108,14 @@ function UserSignUp() {
                     label="Birthday"
                   />
                 </div>
+              </div>
+              <div className="w-full relative mt-4">
+                <PrimaryInput
+                  type="text"
+                  value={phoneNum}
+                  onChange={(e) => setPhoneNum(e.target.value)}
+                  label="Phone Number"
+                />
               </div>
               <div className="w-full relative mt-4">
                 <PrimaryInput
