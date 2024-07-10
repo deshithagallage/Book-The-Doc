@@ -5,6 +5,8 @@ const Timeslot = require('../models/timeslot');
 const bookAppointment = async (req, res) => {
   const {timeslotId } = req.body;
   patient = req.user.id;
+  console.log(patient);
+  console.log(timeslotId);
 
   try {
     const timeslot = await Timeslot.findById(timeslotId);
