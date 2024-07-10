@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "../categories.module.css"; // Import CSS module
+import styles from "../categories.module.css";
 import axios from "axios";
 
 import pediatricianImage from "../../../../assets/DoctorImages/pediatrician.png";
-import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
+import Navbar from "../../../../components/Navbar/Navbar";
 
 function Pediatrician() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,7 +30,7 @@ function Pediatrician() {
   }, []);
 
   return (
-    <div className={styles.findDocContainer}>
+    <div className={styles.container}>
       <Navbar />
       <main className={styles.mainContent}>
         <div className={styles.searchSection}>
@@ -43,20 +43,18 @@ function Pediatrician() {
           />
           <button className={styles.searchButton}>🔍</button>
         </div>
-
-        <div className={styles.space}></div>
-
         <div className={styles.contentContainer}>
           <div className={styles.doctorImage}>
             <img src={pediatricianImage} alt="Pediatrician" />
           </div>
-
           <div className={styles.categorySection}>
-            <h2>Pediatricians</h2>
-            <p>
-              Our expert pediatricians specialize in diagnosing and treating
-              diseases in children.
-            </p>
+            <div className={styles.title}>
+              <h2>Pediatricians</h2>
+              <p>
+                Our expert pediatricians specialize in diagnosing and treating
+                diseases in children.
+              </p>
+            </div>
             <ul>
               {filteredPediatricians.length > 0 ? (
                 filteredPediatricians.map((pediatrician, index) => (

@@ -43,20 +43,18 @@ function Cardiologist() {
           />
           <button className={styles.searchButton}>🔍</button>
         </div>
-
-        <div className={styles.space}></div>
-
         <div className={styles.contentContainer}>
           <div className={styles.doctorImage}>
             <img src={cardiologistImage} alt="Cardiologist" />
           </div>
-
           <div className={styles.categorySection}>
-            <h2>Cardiologists</h2>
-            <p>
-              Our expert cardiologists specialize in diagnosing and treating
-              diseases of the cardiovascular system.
-            </p>
+            <div className={styles.title}>
+              <h2>Cardiologists</h2>
+              <p>
+                Our expert cardiologists specialize in diagnosing and treating
+                diseases of the cardiovascular system.
+              </p>
+            </div>
             <ul>
               {filteredCardiologists.length > 0 ? (
                 filteredCardiologists.map((cardiologist, index) => (
