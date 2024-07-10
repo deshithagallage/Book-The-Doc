@@ -1,4 +1,4 @@
-/* Dashboard.module.css */
+/* ManageProfile.module.css */
 
 .manageProfile {
   display: flex;
@@ -28,11 +28,17 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background: linear-gradient(145deg, #46baf98f, #e6e6e6);
 }
 
 .profileDetails p {
   margin: 10px 0;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .editForm label {
@@ -45,6 +51,18 @@
   padding: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.editForm input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.editForm input[type="number"]::-webkit-outer-spin-button,
+.editForm input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .buttons {
@@ -56,4 +74,40 @@
   padding: 10px 20px;
   margin: 5px;
   cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
+}
+
+.viewForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+  text-align: left;
+}
+
+.viewForm button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.viewForm button:hover {
+  background-color: #0056b3;
+}
+
+input{
+  background-color: #ccc;
 }
