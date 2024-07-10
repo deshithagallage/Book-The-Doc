@@ -135,6 +135,10 @@
   background-color: #222;
 }
 
+.subscribeButton:focus {
+  outline: none;
+}
+
 .copyright {
   text-align: center;
   margin: 20px 0;
