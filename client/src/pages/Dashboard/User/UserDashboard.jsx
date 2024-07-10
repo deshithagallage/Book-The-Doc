@@ -69,71 +69,69 @@ const UserDashboard = () => {
 
   return (
     <div>
-      <Navbar/>
-    <div className={styles.dashboard}>
-      <UserSidebar />
-      
-      
+      <Navbar />
+      <div className={styles.dashboard}>
+        <UserSidebar />
 
-      <div className={styles.content}>
-        <h1>User Dashboard</h1>
+        <div className={styles.content}>
+          <h1>User Dashboard</h1>
 
-        <div className={`${styles.card1} ${styles.greeting}`}>
-          <p>{greeting}, {user.username}</p>
-          <p>Appointment Number: {user.totalAppointments}</p>
-        </div>
-
-        <div className={`${styles.card2} ${styles.calendar}`}>
-          <Calendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 500 }}
-          />
-        </div>
-
-        <div className={`${styles.card3} ${styles['user-info']}`}>
-          <img src={user.profilePicture} alt="Profile" className={styles['profile-picture']} />
-          <div className={styles['card-content']}>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Age:</strong> {user.age}</p>
-            <p><strong>City:</strong> {user.city}</p>
-            <p><strong>Sugar Level:</strong> {user.sugarLevel}</p>
-            <p><strong>Blood Pressure:</strong> {user.bloodPressure}</p>
-            <p><strong>Booked Previous Doctors:</strong> {user.bookedPreviousDoctors.join(', ')}</p>
+          <div className={`${styles.card1} ${styles.greeting}`}>
+            <p>{greeting}, {user.username}</p>
+            <p>Appointment Number: {user.totalAppointments}</p>
           </div>
-        </div>
 
-        <Link to="/find-doctor">
-          <button className={styles['find-doc-button']}>Find a Doctor</button>
-        </Link>
-
-        {nextAppointment && (
-          <div className={`${styles.card4} ${styles['next-appointment']}`}>
-            <h2>Next Appointment</h2>
-            <p><strong>Doctor:</strong> {nextAppointment.doctorName}</p>
-            <p><strong>Date:</strong> {new Date(nextAppointment.date).toLocaleString()}</p>
+          <div className={`${styles.card2} ${styles.calendar}`}>
+            <Calendar
+              localizer={localizer}
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: 500 }}
+            />
           </div>
-        )}
 
-        <div className={`${styles.card5} ${styles['previous-appointments']}`}>
-          <h2>Previous Appointments</h2>
-          {appointments.filter(appointment => appointment.status === 'completed').length > 0 ? (
-            <ul>
-              {appointments.filter(appointment => appointment.status === 'completed').map(appointment => (
-                <li key={appointment._id}>
-                  <p><strong>Doctor:</strong> {appointment.doctorName}</p>
-                  <p><strong>Date:</strong> {new Date(appointment.date).toLocaleString()}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className={styles['no-appointments']}>No past appointments.</p>
+          <div className={`${styles.card3} ${styles['user-info']}`}>
+            <img src={user.profilePicture} alt="Profile" className={styles['profile-picture']} />
+            <div className={styles['card-content']}>
+              <p><strong>Email:</strong> {user.email}</p>
+              <p><strong>Age:</strong> {user.age}</p>
+              <p><strong>City:</strong> {user.city}</p>
+              <p><strong>Sugar Level:</strong> {user.sugarLevel}</p>
+              <p><strong>Blood Pressure:</strong> {user.bloodPressure}</p>
+              <p><strong>Booked Previous Doctors:</strong> {user.bookedPreviousDoctors.join(', ')}</p>
+            </div>
+          </div>
+
+          <Link to="/find-doctor">
+            <button className={styles['find-doc-button']}>Find a Doctor</button>
+          </Link>
+
+          {nextAppointment && (
+            <div className={`${styles.card4} ${styles['next-appointment']}`}>
+              <h2>Next Appointment</h2>
+              <p><strong>Doctor:</strong> {nextAppointment.doctorName}</p>
+              <p><strong>Date:</strong> {new Date(nextAppointment.date).toLocaleString()}</p>
+            </div>
           )}
+
+          <div className={`${styles.card5} ${styles['previous-appointments']}`}>
+            <h2>Previous Appointments</h2>
+            {appointments.filter(appointment => appointment.status === 'completed').length > 0 ? (
+              <ul>
+                {appointments.filter(appointment => appointment.status === 'completed').map(appointment => (
+                  <li key={appointment._id}>
+                    <p><strong>Doctor:</strong> {appointment.doctorName}</p>
+                    <p><strong>Date:</strong> {new Date(appointment.date).toLocaleString()}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className={styles['no-appointments']}>No past appointments.</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
