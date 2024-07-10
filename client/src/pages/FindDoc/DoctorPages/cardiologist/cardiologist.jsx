@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "../categories.module.css"; // Updated to CSS module
+import styles from "../categories.module.css";
 import axios from "axios";
 
 import cardiologistImage from "../../../../assets/DoctorImages/cardiologist.jpg";
-import Navbar from "../../../../components/Navbar/Navbar"; // Assuming this is the correct path to the Navbar component
+import Navbar from "../../../../components/Navbar/Navbar";
 
 function Cardiologist() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,7 +30,7 @@ function Cardiologist() {
   }, []);
 
   return (
-    <div className={styles.findDocContainer}>
+    <div className={styles.container}>
       <Navbar />
       <main className={styles.mainContent}>
         <div className={styles.searchSection}>
