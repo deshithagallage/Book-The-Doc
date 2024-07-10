@@ -37,7 +37,7 @@ function App() {
         <Route path="/register/user" element={<UserSignUp />} />
         <Route path="/register/center" element={<CenterSignUp />} />
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute role="patient" />}>
           <Route path="/dashboard/user" element={<UserDashboard />} />
           <Route
             path="/dashboard/user/appointment-history"
@@ -51,8 +51,10 @@ function App() {
             path="/dashboard/user/manage-profile"
             element={<ManageProfile />}
           />
+        </Route>
 
-          {/* Center Dashboard Routes */}
+        {/* Center Dashboard Routes */}
+        <Route element={<ProtectedRoute role="medicalCenter" />}>
           <Route path="/dashboard/center" element={<CenterDashboard />} />
           <Route
             path="/dashboard/center/appointments"
