@@ -1,16 +1,16 @@
 import React from "react";
-import styles from './FindDoc.module.css';
-import { useNavigate } from 'react-router-dom';
+import styles from "./FindDoc.module.css";
+import { useNavigate } from "react-router-dom";
 
-import cardiologistImage from "../../images/DoctorImages/cardiologist.jpg";
-import pediatricianImage from "../../images/DoctorImages/pediatrician.png";
-import neurologistImage from "../../images/DoctorImages/neurologist.jpg";
-import oncologistImage from "../../images/DoctorImages/oncologist.png";
-import dermatologistImage from "../../images/DoctorImages/dermatologist.png";
-import radiologistImage from "../../images/DoctorImages/radiologist.jpeg";
-import psychiatristImage from "../../images/DoctorImages/psychiatrist.jpeg";
-import ophthalmologyImage from "../../images/DoctorImages/ophthalmology.jpeg";
-import otherImage from "../../images/DoctorImages/otherdoctor.jpeg";
+import cardiologistImage from "../../assets/DoctorImages/cardiologist.jpg";
+import pediatricianImage from "../../assets/DoctorImages/pediatrician.png";
+import neurologistImage from "../../assets/DoctorImages/neurologist.jpg";
+import oncologistImage from "../../assets/DoctorImages/oncologist.png";
+import dermatologistImage from "../../assets/DoctorImages/dermatologist.png";
+import radiologistImage from "../../assets/DoctorImages/radiologist.jpeg";
+import psychiatristImage from "../../assets/DoctorImages/psychiatrist.jpeg";
+import ophthalmologyImage from "../../assets/DoctorImages/ophthalmology.jpeg";
+import otherImage from "../../assets/DoctorImages/otherdoctor.jpeg";
 
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -18,32 +18,23 @@ function FindDoc() {
   const navigate = useNavigate();
 
   const handleCardiologistButtonClick = () => {
-    navigate('/find-doctor/cardiologist');
+    navigate("/find-doctor/cardiologist");
   };
 
   const handlePediatricianButtonClick = () => {
-    navigate('/find-doctor/pediatrician');
+    navigate("/find-doctor/pediatrician");
   };
 
   const handleNeurologistButtonClick = () => {
-    navigate('/find-doctor/neurologist');
+    navigate("/find-doctor/neurologist");
   };
 
   return (
-    <div className={styles['find-doc-container']}>
+    <div className={styles.container}>
       <Navbar />
-      <main className={styles['main-content']}>
+      <main className={styles.main}>
         <div>
-          <div className={styles['search-section']}>
-            <input
-              type="text"
-              placeholder="Find Your Doctor"
-              className={styles['search-input']}
-            />
-            <button className={styles['search-button']}>🔍</button>
-          </div>
-
-          <div className={styles['doctor-image']}>
+          <div className={styles.doctorImg}>
             <img
               src="https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg"
               width="300"
@@ -53,101 +44,107 @@ function FindDoc() {
           </div>
         </div>
 
-        <div className={styles['category-section']}>
+        <div className={styles.categories}>
           <h2>Category</h2>
-          <p>
-            <b>Find your doctor according to your need.</b>
-          </p>
-          <div className={styles['popular-categories']}>
-            <h3>
-              <b>Popular</b>
-            </h3>
-            <div className={styles['category-cards']}>
-              <div className={styles['category-card']}>
-                <button className={styles['cardiologist-button']} onClick={handleCardiologistButtonClick}>
-                  <img src={cardiologistImage} width="100" height="100" alt="Cardiologist" />
-                  <p><b>Cardiologist</b></p>
+          <p>Find your doctor according to your need.</p>
+          <div className={styles.popular}>
+            <h3>Popular</h3>
+            <div className={styles.categoryCards}>
+              <div className={styles.categoryCard}>
+                <button
+                  className={styles.cardiologist}
+                  onClick={handleCardiologistButtonClick}
+                >
+                  <img
+                    src={cardiologistImage}
+                    width="100"
+                    height="100"
+                    alt="Cardiologist"
+                  />
+                  <p>Cardiologist</p>
                 </button>
               </div>
-              <div className={styles['category-card']}>
-                <button className={styles['pediatrician-button']} onClick={handlePediatricianButtonClick}>
-                  <img src={pediatricianImage} width="100" height="100" alt="Pediatrician" />
-                  <p><b>Pediatrician</b></p>
+              <div className={styles.categoryCard}>
+                <button
+                  className={styles.pediatrician}
+                  onClick={handlePediatricianButtonClick}
+                >
+                  <img
+                    src={pediatricianImage}
+                    width="100"
+                    height="100"
+                    alt="Pediatrician"
+                  />
+                  <p>Pediatrician</p>
                 </button>
               </div>
-              <div className={styles['category-card']}>
-                <button className={styles['neurologist-button']} onClick={handleNeurologistButtonClick}>
-                  <img src={neurologistImage} width="100" height="100" alt="Neurologist" />
-                  <p><b>Neurologist</b></p>
+              <div className={styles.categoryCard}>
+                <button
+                  className={styles.neurologist}
+                  onClick={handleNeurologistButtonClick}
+                >
+                  <img
+                    src={neurologistImage}
+                    width="100"
+                    height="100"
+                    alt="Neurologist"
+                  />
+                  <p>Neurologist</p>
                 </button>
               </div>
             </div>
           </div>
-          <div className={styles['alternative-section']}>
-            <h3>
-              <b>Alternative you can try</b>
-            </h3>
-            <div className={styles['alternative-cards']}>
-              <div className={styles['alternative-card']}>
+          <div className={styles.alternative}>
+            <h3>Alternative you can try</h3>
+            <div className={styles.alternativeCards}>
+              <div className={styles.alternativeCard}>
                 <img
                   src={oncologistImage}
                   width="100"
                   height="100"
                   alt="Oncologist"
                 />
-                <p>
-                  <b>Oncologist</b>
-                </p>
+                <p>Oncologist</p>
               </div>
-              <div className={styles['alternative-card']}>
+              <div className={styles.alternativeCard}>
                 <img
                   src={dermatologistImage}
                   width="100"
                   height="100"
                   alt="Dermatologist"
                 />
-                <p>
-                  <b>Dermatologist</b>
-                </p>
+                <p>Dermatologist</p>
               </div>
-              <div className={styles['alternative-card']}>
+              <div className={styles.alternativeCard}>
                 <img
                   src={radiologistImage}
                   width="100"
                   height="100"
                   alt="Radiologist"
                 />
-                <p>
-                  <b>Radiologist</b>
-                </p>
+                <p>Radiologist</p>
               </div>
-              <div className={styles['alternative-card']}>
+              <div className={styles.alternativeCard}>
                 <img
                   src={psychiatristImage}
                   width="100"
                   height="100"
                   alt="Psychiatrist"
                 />
-                <p>
-                  <b>Psychiatrist</b>
-                </p>
+                <p>Psychiatrist</p>
               </div>
-              <div className={styles['alternative-card']}>
+              <div className={styles.alternativeCard}>
                 <img
                   src={ophthalmologyImage}
                   width="100"
                   height="100"
                   alt="Ophthalmology"
                 />
-                <p>
-                  <b>Ophthalmology</b>
-                </p>
+                <p>Ophthalmology</p>
               </div>
-              <div className={styles['alternative-card']}>
+              <div className={styles.alternativeCard}>
                 <img src={otherImage} width="100" height="100" alt="Other" />
-                <p>
-                  <b>Other</b>
-                </p>
+                <p>Other</p>
               </div>
             </div>
           </div>
