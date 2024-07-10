@@ -90,6 +90,7 @@
   text-align: center;
   gap: 0.5rem;
   cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .popularCard img {
@@ -101,3 +102,10 @@
   width: 100px;
   border-radius: 10px;
 }
+
+.popularCard img:hover,
+.alternativeCard img:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
