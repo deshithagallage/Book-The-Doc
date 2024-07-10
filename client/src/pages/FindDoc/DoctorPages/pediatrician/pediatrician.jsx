@@ -1,29 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from '../categories.module.css'; // Import CSS module
+import axios from "axios";
 
 import pediatricianImage from '../../../../images/DoctorImages/pediatrician.png';
 import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
 
 function Pediatrician() {
   const [searchQuery, setSearchQuery] = useState("");
-  const pediatricians = [
-    "Dr. John Smith",
-    "Dr. Emily Davis",
-    "Dr. Michael Brown",
-    "Dr. Sarah Wilson",
-    "Dr. David Johnson",
-    "Dr. Jessica Lee",
-    "Dr. Andrew Miller",
-    "Dr. Olivia Clark",
-    "Dr. Benjamin Garcia",
-    "Dr. Sophia Martinez",
-    "Dr. Ethan Thompson",
-    "Dr. Isabella White",
-    "Dr. Jacob Harris",
-    "Dr. Mia Lopez",
-    "Dr. Alexander Robinson",
-    "Dr. Ava Young",
-  ];
+  const [pediatriciansData, setPediatriciansData] = useState([]);
+  const pediatricians = pediatriciansData.map((doctor) => doctor.name);
 
   const filteredPediatricians = pediatricians.filter(pediatrician =>
     pediatrician.toLowerCase().includes(searchQuery.toLowerCase())
@@ -32,6 +17,17 @@ function Pediatrician() {
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/doctors/specialization/pediatrician")
+      .then((res) => {
+        setPediatriciansData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className={styles.findDocContainer}>
