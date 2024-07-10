@@ -5,10 +5,16 @@ import axios from "axios";
 import pediatricianImage from "../../../../assets/DoctorImages/pediatrician.png";
 import Navbar from "../../../../components/Navbar/Navbar";
 
+import Cookie from "js-cookie";
+
 function Pediatrician() {
   const [searchQuery, setSearchQuery] = useState("");
   const [pediatriciansData, setPediatriciansData] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [appointmentSlots, setAppointmentSlots] = useState([]);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+
+
 
   const filteredPediatricians = pediatriciansData.filter((pediatrician) =>
     pediatrician.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -20,11 +26,56 @@ function Pediatrician() {
 
   const handleDoctorClick = (doctor) => {
     setSelectedDoctor(doctor);
+    setAppointmentSlots([]); // Clear previous appointment slots
+    setSelectedSlot(null); // Clear previous selected slot
   };
 
   const handleClosePopup = () => {
     setSelectedDoctor(null);
+    setSelectedSlot(null); // Clear selected slot when popup is closed
   };
+
+  const handleAppointmentTimeSlots = () => {
+    axios
+      .get(`http://localhost:3000/api/timeslots/doctor/${selectedDoctor._id}`, {
+        headers: { 'x-auth-token': Cookie.get('token') }
+      })
+      .then((res) => {
+        setAppointmentSlots(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSlotClick = (slot) => {
+    setSelectedSlot(slot);
+  };
+
+  const handleConfirmAppointment = () => {
+    axios
+      .post(
+        "http://localhost:3000/api/appointments",
+        {
+          timeslotId: selectedSlot._id,
+        },
+        {
+          headers: { 'x-auth-token': Cookie.get('token') }
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        alert("Appointment confirmed successfully");
+        setSelectedDoctor(null);
+        setSelectedSlot(null);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Failed to confirm appointment");
+      });
+  };
+  
 
   useEffect(() => {
     axios
@@ -103,9 +154,36 @@ function Pediatrician() {
               Close
             </button>
             <br />
-            <button className={styles.closeButton} onClick={handleClosePopup}>
-              Book an Appointment
+            <button className={styles.viewSlotsButton} onClick={handleAppointmentTimeSlots}>
+              View Appointment Slots
             </button>
+            {appointmentSlots.length > 0 && (
+              <div className={styles.appointmentSlots}>
+                <h5>Available Appointment Slots:</h5>
+                <ul>
+                  {appointmentSlots.map((slot, index) => (
+                    <li key={index}>
+                      <button
+                        className={`${styles.slotButton} ${
+                          selectedSlot === slot ? styles.selectedSlotButton : ""
+                        }`}
+                        onClick={() => handleSlotClick(slot)}
+                      >
+                        {slot.startTime} - {slot.endTime}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                {selectedSlot && (
+                  <button
+                    className={styles.confirmButton}
+                    onClick={handleConfirmAppointment}
+                  >
+                    Confirm Appointment
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}

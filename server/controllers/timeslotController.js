@@ -28,6 +28,7 @@ const getTimeslotsByDoctor = async (req, res) => {
   const { doctorId } = req.params;
 
   try {
+    console.log(doctorId);
     const timeslots = await Timeslot.find({ doctor: doctorId });
     res.json(timeslots);
   } catch (error) {
