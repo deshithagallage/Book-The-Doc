@@ -25,6 +25,15 @@
     margin: 0;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+    width: 13rem;
+    height: 4rem;
+    font-size: 24px;
+}
+/* 
 .button {
     background-color: #007bff;
     color: white;
@@ -38,4 +47,4 @@
   
   .button:hover {
     background-color: #0056b3;
-  }
+  } */

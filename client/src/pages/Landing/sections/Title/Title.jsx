@@ -26,10 +26,7 @@ function Title() {
           Appointments
         </p>
         <div className={styles.buttonContainer}>
-          <PrimaryButton
-            text="Find a Doctor"
-            onClickFunc={handleDocButtonClick}
-          />
+          <PrimaryButton text="Find a Doctor" onClick={handleDocButtonClick} />
         </div>
       </div>
       <div className={styles.image}>

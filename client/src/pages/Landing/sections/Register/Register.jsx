@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
+import PrimaryButton from "../../../../components/PrimaryButton/PrimaryButton";
 
 function Register() {
   const navigate = useNavigate();
@@ -21,9 +22,12 @@ function Register() {
         platform offers the tools you need to enhance your healthcare
         experience.
       </p>
-      <button className={styles.button} onClick={handleRegisterButtonClick}>
-        Register Now
-      </button>
+      <div className={styles.buttonContainer}>
+        <PrimaryButton
+          text="Register Now"
+          onClick={handleRegisterButtonClick}
+        />
+      </div>
     </div>
   );
 }
