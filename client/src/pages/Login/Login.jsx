@@ -31,6 +31,7 @@ function Login() {
         email,
         password,
       });
+      console.log(res);
       if (res.status >= 200 && res.status < 300) {
         setIsLoginSuccess(1);
         console.log(res.data);
@@ -43,7 +44,12 @@ function Login() {
         setIsLoginSuccess(0);
       }
     } catch (err) {
-      console.log("msg", err);
+      if (err.response.status === 400) {
+        // console.log("msg", err);
+        setIsLoginSuccess(0);
+      } else {
+        console.log("msg", err.message);
+      }
     }
   };
 
