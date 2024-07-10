@@ -1,46 +1,41 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import styles from './UpcomingAppointments.module.css'; // Updated import
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import UserSidebar from "../Sidebar/UserSidebar.jsx";
+import styles from "./UpcomingAppointments.module.css"; // Updated import
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const UpcomingAppointments = () => {
-  const [appointments, setAppointments] = useState([
-    {
-      _id: 1,
-      doctor: 'Dr. Sarah Connor',
-      date: '2024-07-15T09:00:00Z',
-      time: '9:00 AM',
-      status: 'Upcoming'
-    },
-    {
-      _id: 2,
-      doctor: 'Dr. James Cameron',
-      date: '2024-07-20T14:00:00Z',
-      time: '2:00 PM',
-      status: 'Upcoming'
-    },
-    {
-      _id: 3,
-      doctor: 'Dr. Ellen Ripley',
-      date: '2024-07-25T11:00:00Z',
-      time: '11:00 AM',
-      status: 'Upcoming'
-    }
-  ]);
+  const [appointments, setAppointments] = useState([]);
+  const token = Cookies.get("token");
 
   useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await axios.get('http://localhost:8000/api/appointments/upcoming');
-        setAppointments(response.data);
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-      }
-    };
-
-    fetchAppointments();
+    axios
+      .get("http://localhost:3000/api/appointments/patient", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setAppointments(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+  const upcomingAppointments = appointments.filter(
+    (appointment) => appointment.status === "upcoming"
+  );
+
+  const formatDate = (dateString, index) => {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return null;
+    } else {
+      return date.toLocaleString().split(", ")[index];
+    }
+  };
 
   return (
     <div className={styles.upcomingAppointments}>
@@ -48,13 +43,29 @@ const UpcomingAppointments = () => {
       <div className={styles.content}>
         <h1>Upcoming Appointments</h1>
         <div className={styles.appointmentList}>
-          {appointments.length > 0 ? (
-            appointments.map((appointment) => (
-              <div key={appointment._id} className={styles.appointmentItem}>
-                <h2>{appointment.doctor}</h2>
-                <p><strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}</p>
-                <p><strong>Time:</strong> {appointment.time}</p>
-                <p><strong>Status:</strong> <span className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}>{appointment.status}</span></p>
+          {upcomingAppointments.length > 0 ? (
+            upcomingAppointments.map((appointment) => (
+              <div className="flex justify-center items-center">
+                <div className={styles.appointmentItem}>
+                  <h2>{appointment.queueNumber}</h2>
+                </div>
+                <div key={appointment._id} className={styles.appointmentItem}>
+                  <h2>{appointment.doctor}</h2>
+                  <p>
+                    <strong>Date:</strong> {formatDate(appointment.date, 0)}
+                  </p>
+                  <p>
+                    <strong>Time:</strong> {formatDate(appointment.date, 1)}
+                  </p>
+                  <p>
+                    <strong>Status:</strong>{" "}
+                    <span
+                      className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}
+                    >
+                      {appointment.status}
+                    </span>
+                  </p>
+                </div>
               </div>
             ))
           ) : (
