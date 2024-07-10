@@ -8,14 +8,22 @@ import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct p
 function Neurologist() {
   const [searchQuery, setSearchQuery] = useState("");
   const [neurologistsData, setNeurologistsData] = useState([]);
-  const neurologists = neurologistsData.map((doctor) => doctor.name);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  const filteredNeurologists = neurologists.filter(neurologist =>
-    neurologist.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredNeurologists = neurologistsData.filter(neurologist =>
+    neurologist.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleDoctorClick = (doctor) => {
+    setSelectedDoctor(doctor);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedDoctor(null);
   };
 
   useEffect(() => {
@@ -57,7 +65,9 @@ function Neurologist() {
             <ul>
               {filteredNeurologists.length > 0 ? (
                 filteredNeurologists.map((neurologist, index) => (
-                  <li key={index}>{neurologist}</li>
+                  <li key={index} onClick={() => handleDoctorClick(neurologist)}>
+                    {neurologist.name}
+                  </li>
                 ))
               ) : (
                 <li>No neurologists found</li>
@@ -66,6 +76,20 @@ function Neurologist() {
           </div>
         </div>
       </main>
+      {selectedDoctor && (
+        <div className={styles.popup}>
+          <div className={styles.popupContent}>
+            <h4><b>{selectedDoctor.name}</b></h4>
+            <div className={styles.space}></div>
+            <p><strong>Qualifications:</strong> {selectedDoctor.qualifications}</p>
+            <p><strong>SLMC Registration Number:</strong> {selectedDoctor.SLMCNumber}</p>
+            <p><strong>Gender:</strong> {selectedDoctor.gender}</p>
+            <button className={styles.closeButton} onClick={handleClosePopup}>Close</button>
+            <br />
+            <button className={styles.closeButton} onClick={handleClosePopup}>Book an Appointment</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
