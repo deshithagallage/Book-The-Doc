@@ -1,29 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from '../categories.module.css'; // Import CSS module
+import axios from "axios";
 
 import neurologistImage from '../../../../images/DoctorImages/neurologist.jpg';
 import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
 
 function Neurologist() {
   const [searchQuery, setSearchQuery] = useState("");
-  const neurologists = [
-    "Dr. John Smith",
-  "Dr. Emily Davis",
-  "Dr. Michael Brown",
-  "Dr. Sarah Wilson",
-  "Dr. David Johnson",
-  "Dr. Jessica Lee",
-  "Dr. Andrew Miller",
-  "Dr. Olivia Clark",
-  "Dr. Benjamin Garcia",
-  "Dr. Sophia Martinez",
-  "Dr. Ethan Thompson",
-  "Dr. Isabella White",
-  "Dr. Jacob Harris",
-  "Dr. Mia Lopez",
-  "Dr. Alexander Robinson",
-  "Dr. Ava Young",
-  ];
+  const [neurologistsData, setNeurologistsData] = useState([]);
+  const neurologists = neurologistsData.map((doctor) => doctor.name);
 
   const filteredNeurologists = neurologists.filter(neurologist =>
     neurologist.toLowerCase().includes(searchQuery.toLowerCase())
@@ -32,6 +17,17 @@ function Neurologist() {
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/doctors/specialization/neurologist")
+      .then((res) => {
+        setNeurologistsData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } , []);
 
   return (
     <div className={styles.findDocContainer}>
