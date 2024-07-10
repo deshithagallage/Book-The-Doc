@@ -1,35 +1,82 @@
-/* UpcomingAppointments.module.css */
+/* AppointmentHistory.module.css */
 
-.upcomingAppointments {
+.appointmentHistory {
   display: flex;
 }
 
 .content {
   flex: 1;
   padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.content.shifted {
+  margin-left: 250px;
 }
 
 .appointmentList {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .appointmentItem {
-  border: 1px solid #ccc;
+  border: solid #bdc3c7;
   border-radius: 8px;
   padding: 15px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(28, 142, 236, 0.392);
+  transition: transform 0.2s;
+}
+
+.appointmentItem:hover {
+  transform: scale(1.02);
 }
 
 .appointmentItem h2 {
   margin-top: 0;
+  color: #2980b9;
+}
+
+.appointmentItem p {
+  margin: 5px 0;
 }
 
 .status {
   font-weight: bold;
 }
 
-.status.upcoming {
-  color: blue;
+.status.completed {
+  color: green;
+}
+
+.status.cancelled {
+  color: red;
+}
+
+.sidebarToggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.sidebarToggle:hover {
+  background-color: #2980b9;
+}
+
+/* Add styles for UserSidebar based on its open/close state */
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
 }
