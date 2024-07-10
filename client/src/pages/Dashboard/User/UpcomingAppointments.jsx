@@ -1,11 +1,33 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import './UpcomingAppointments.css'; // Assuming you have a CSS file for styling
+import styles from './UpcomingAppointments.module.css'; // Updated import
 import axios from 'axios';
 
 const UpcomingAppointments = () => {
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState([
+    {
+      _id: 1,
+      doctor: 'Dr. Sarah Connor',
+      date: '2024-07-15T09:00:00Z',
+      time: '9:00 AM',
+      status: 'Upcoming'
+    },
+    {
+      _id: 2,
+      doctor: 'Dr. James Cameron',
+      date: '2024-07-20T14:00:00Z',
+      time: '2:00 PM',
+      status: 'Upcoming'
+    },
+    {
+      _id: 3,
+      doctor: 'Dr. Ellen Ripley',
+      date: '2024-07-25T11:00:00Z',
+      time: '11:00 AM',
+      status: 'Upcoming'
+    }
+  ]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -21,18 +43,18 @@ const UpcomingAppointments = () => {
   }, []);
 
   return (
-    <div className="upcoming-appointments">
+    <div className={styles.upcomingAppointments}>
       <UserSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Upcoming Appointments</h1>
-        <div className="appointment-list">
+        <div className={styles.appointmentList}>
           {appointments.length > 0 ? (
             appointments.map((appointment) => (
-              <div key={appointment._id} className="appointment-item">
+              <div key={appointment._id} className={styles.appointmentItem}>
                 <h2>{appointment.doctor}</h2>
                 <p><strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}</p>
                 <p><strong>Time:</strong> {appointment.time}</p>
-                <p><strong>Status:</strong> <span className={`status ${appointment.status.toLowerCase()}`}>{appointment.status}</span></p>
+                <p><strong>Status:</strong> <span className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}>{appointment.status}</span></p>
               </div>
             ))
           ) : (

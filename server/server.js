@@ -1,6 +1,7 @@
-const express = require('express');
-const connectDB = require('./config/db');
-require('dotenv').config();
+const express = require("express");
+const connectDB = require("./config/db");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
@@ -8,12 +9,14 @@ const app = express();
 connectDB();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Define Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/hospitals', require('./routes/hospitalRoutes'));
 app.use('/api/doctors', require('./routes/doctorRoutes'));
+app.use('/api/patients', require('./routes/patientRoutes'));
 
 const PORT = process.env.PORT || 5000;
 

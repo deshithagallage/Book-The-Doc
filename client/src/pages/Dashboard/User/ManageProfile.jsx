@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import './ManageProfile.css'; // Assuming you have a CSS file for styling
+import styles from './ManageProfile.module.css'; // Updated import
 
 const ManageProfile = () => {
   const [user, setUser] = useState({
@@ -38,15 +38,15 @@ const ManageProfile = () => {
   };
 
   return (
-    <div className="manage-profile">
+    <div className={styles.manageProfile}>
       <UserSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Manage Profile</h1>
-        <div className="profile-container">
-          <img src={user.profilePicture} alt="Profile" className="profile-picture" />
-          <div className="profile-details">
+        <div className={styles.profileContainer}>
+          <img src={user.profilePicture} alt="Profile" className={styles.profilePicture} />
+          <div className={styles.profileDetails}>
             {isEditing ? (
-              <div className="edit-form">
+              <div className={styles.editForm}>
                 <label>
                   Username:
                   <input
@@ -110,13 +110,13 @@ const ManageProfile = () => {
                     onChange={handleChange}
                   />
                 </label>
-                <div className="buttons">
+                <div className={styles.buttons}>
                   <button onClick={handleSave}>Save</button>
                   <button onClick={handleCancel}>Cancel</button>
                 </div>
               </div>
             ) : (
-              <div className="view-form">
+              <div className={styles.viewForm}>
                 <p><strong>Username:</strong> {user.username}</p>
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Name:</strong> {user.name}</p>

@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
-/* ./pages/Dashboard/Center/AppointmentCalendar.jsx */
-
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
+import styles from './AppointmentCalendar.module.css'; // Import CSS Module for styling
 
 const localizer = momentLocalizer(moment);
 
@@ -27,16 +26,17 @@ const AppointmentCalendar = () => {
   ];
 
   return (
-    <div className="appointment-calendar">
+    <div className={styles.appointmentCalendar}>
       <CenterSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Appointment Calendar</h1>
-        <div style={{ height: '500px' }}>
+        <div className={styles.calendarContainer}>
           <Calendar
             localizer={localizer}
             events={events}
             startAccessor="start"
             endAccessor="end"
+            style={{ height: 500 }}
           />
         </div>
       </div>

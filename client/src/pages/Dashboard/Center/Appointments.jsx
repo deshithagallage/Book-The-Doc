@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import './Appointments.css';
+import styles from './Appointments.module.css';
 
 const Appointments = () => {
   const ongoingAppointment = {
@@ -23,18 +23,18 @@ const Appointments = () => {
   ];
 
   return (
-    <div className="appointments">
+    <div className={styles.appointments}>
       <CenterSidebar />
-      <div className="content">
+      <div className={styles.content}>
         <h1>Appointments</h1>
-        <div className="cards-container">
-          <div className="card ongoing-appointment">
+        <div className={styles.cardsContainer}>
+          <div className={`${styles.card} ${styles.ongoingAppointment}`}>
             <h2>Ongoing Appointment</h2>
             <p><strong>Patient:</strong> {ongoingAppointment.patientName}</p>
             <p><strong>Time:</strong> {ongoingAppointment.time}</p>
             <p><strong>Description:</strong> {ongoingAppointment.description}</p>
           </div>
-          <div className="card upcoming-appointments">
+          <div className={`${styles.card} ${styles.upcomingAppointments}`}>
             <h2>Today's Upcoming Appointments</h2>
             <ul>
               {upcomingAppointments.map((appointment, index) => (
@@ -45,7 +45,7 @@ const Appointments = () => {
               ))}
             </ul>
           </div>
-          <div className="card calendar-top">
+          <div className={`${styles.card} ${styles.calendarTop}`}>
             <h2>Calendar</h2>
             <ul>
               {calendarEvents.map((event, index) => (
@@ -56,7 +56,7 @@ const Appointments = () => {
               ))}
             </ul>
           </div>
-          <div className="card calendar-bottom">
+          <div className={`${styles.card} ${styles.calendarBottom}`}>
             <h2>Notes</h2>
             <p>Some additional information or notes can go here.</p>
           </div>

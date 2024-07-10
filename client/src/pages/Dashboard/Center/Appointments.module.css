@@ -1,0 +1,42 @@
+/* ./pages/Dashboard/Center/Appointments.module.css */
+
+.appointments {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-areas:
+    "ongoing calendarTop"
+    "upcoming calendarBottom";
+  grid-gap: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid Areas */
+.ongoingAppointment {
+  grid-area: ongoing;
+}
+
+.upcomingAppointments {
+  grid-area: upcoming;
+}
+
+.calendarTop {
+  grid-area: calendarTop;
+}
+
+.calendarBottom {
+  grid-area: calendarBottom;
+}

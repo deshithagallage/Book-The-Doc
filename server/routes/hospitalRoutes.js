@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const authorize = require('../middleware/authorize');
 const router = express.Router();
 
-router.get('/', auth, authorize(['doctor', 'patient']), getHospitals);
-router.post('/', auth, authorize(['doctor']), createHospital);
+router.get('/', auth, authorize(['doctor', 'patient', 'medicalCenter']), getHospitals);
+router.post('/', auth, authorize(['doctor', 'medicalCenter']), createHospital);
 
 module.exports = router;

@@ -1,0 +1,59 @@
+/* Dashboard.module.css */
+
+.manageProfile {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profilePicture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profileDetails {
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.profileDetails p {
+  margin: 10px 0;
+}
+
+.editForm label {
+  display: block;
+  margin: 10px 0;
+}
+
+.editForm input {
+  width: calc(100% - 20px);
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+}

@@ -17,7 +17,6 @@ import ManageProfile from "./pages/Dashboard/User/ManageProfile";
 import Appointments from "./pages/Dashboard/Center/Appointments";
 import AppointmentCalendar from "./pages/Dashboard/Center/AppointmentCalendar";
 import UsersList from "./pages/Dashboard/Center/UsersList";
-import Messages from "./pages/Dashboard/Center/Messages";
 import DoctorManagement from "./pages/Dashboard/Center/DoctorManagement";
 import DoctorForm from "./pages/Dashboard/Center/DoctorForm";
 
@@ -61,7 +60,6 @@ function App() {
           element={<AppointmentCalendar />}
         />
         <Route path="/dashboard/center/users-list" element={<UsersList />} />
-        <Route path="/dashboard/center/messages" element={<Messages />} />
         <Route
           path="/dashboard/center/doctor-management"
           element={<DoctorManagement />}
