@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
-import styles from '../categories.module.css'; // Import CSS module
+import styles from "../categories.module.css";
 import axios from "axios";
-
-import pediatricianImage from '../../../../images/DoctorImages/pediatrician.png';
-import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
+import pediatricianImage from "../../../../images/DoctorImages/pediatrician.png";
+import Navbar from "../../../../components/Navbar/Navbar";
 
 function Pediatrician() {
   const [searchQuery, setSearchQuery] = useState("");
   const [pediatriciansData, setPediatriciansData] = useState([]);
-  const pediatricians = pediatriciansData.map((doctor) => doctor.name);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  const filteredPediatricians = pediatricians.filter(pediatrician =>
-    pediatrician.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredPediatricians = pediatriciansData.filter((pediatrician) =>
+    pediatrician.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleDoctorClick = (doctor) => {
+    setSelectedDoctor(doctor);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedDoctor(null);
   };
 
   useEffect(() => {
@@ -23,6 +30,7 @@ function Pediatrician() {
       .get("http://localhost:3000/api/doctors/specialization/pediatrician")
       .then((res) => {
         setPediatriciansData(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -53,11 +61,19 @@ function Pediatrician() {
 
           <div className={styles.categorySection}>
             <h2>Pediatricians</h2>
-            <p>Our expert pediatricians specialize in diagnosing and treating diseases in children.</p>
+            <p>
+              Our expert pediatricians specialize in diagnosing and treating
+              diseases in children.
+            </p>
             <ul>
               {filteredPediatricians.length > 0 ? (
                 filteredPediatricians.map((pediatrician, index) => (
-                  <li key={index}>{pediatrician}</li>
+                  <li
+                    key={index}
+                    onClick={() => handleDoctorClick(pediatrician)}
+                  >
+                    {pediatrician.name}
+                  </li>
                 ))
               ) : (
                 <li>No pediatricians found</li>
@@ -66,6 +82,34 @@ function Pediatrician() {
           </div>
         </div>
       </main>
+
+      {selectedDoctor && (
+        <div className={styles.popup}>
+          <div className={styles.popupContent}>
+            <h4>
+              <b>{selectedDoctor.name}</b>
+            </h4>
+            <div className={styles.space}></div>
+            <p>
+              <strong>Qualifications:</strong> {selectedDoctor.qualifications}
+            </p>
+            <p>
+              <strong>SLMC Registration Number:</strong>{" "}
+              {selectedDoctor.SLMCNumber}
+            </p>
+            <p>
+              <strong>Gender:</strong> {selectedDoctor.gender}
+            </p>
+            <button className={styles.closeButton} onClick={handleClosePopup}>
+              Close
+            </button>
+            <br />
+            <button className={styles.closeButton} onClick={handleClosePopup}>
+              Book an Appointment
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
