@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PrimaryInput from "../../components/PrimaryInput/PrimaryInput";
 import axios from "axios";
 import Alert from "../../components/Alert/Alert";
+import Cookies from "js-cookie";
 
 function Login() {
   const [email, setEmail] = React.useState("");
@@ -33,8 +34,10 @@ function Login() {
       if (res.status >= 200 && res.status < 300) {
         setIsLoginSuccess(1);
         console.log(res.data);
-        const { token } = res.data;
-        localStorage.setItem("token", token);
+        const { token, userId, userRole } = res.data;
+        Cookies.set("token", token);
+        Cookies.set("userId", userId);
+        Cookies.set("userRole", userRole);
         navigate("/");
       } else {
         setIsLoginSuccess(0);
