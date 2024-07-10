@@ -90,7 +90,7 @@ function Footer() {
           <div className={styles.contactItem}>
             <FaPhone className={styles.contactIcon} />
             <a href="tel:4146875892" className={styles.phone}>
-              0414-687-5892
+              0114-687-5892
             </a>
           </div>
           <div className={styles.contactItem}>
