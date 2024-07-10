@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "../categories.module.css"; // Updated to CSS module
+import styles from "../categories.module.css";
 import axios from "axios";
 
-import cardiologistImage from "../../../../images/DoctorImages/cardiologist.jpg";
-import Navbar from "../../../../components/Navbar/Navbar"; // Assuming this is the correct path to the Navbar component
+import cardiologistImage from "../../../../assets/DoctorImages/cardiologist.jpg";
+import Navbar from "../../../../components/Navbar/Navbar";
 
 function Cardiologist() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,7 +39,7 @@ function Cardiologist() {
   }, []);
 
   return (
-    <div className={styles.findDocContainer}>
+    <div className={styles.container}>
       <Navbar />
       <main className={styles.mainContent}>
         <div className={styles.searchSection}>
@@ -52,20 +52,18 @@ function Cardiologist() {
           />
           <button className={styles.searchButton}>🔍</button>
         </div>
-
-        <div className={styles.space}></div>
-
         <div className={styles.contentContainer}>
           <div className={styles.doctorImage}>
             <img src={cardiologistImage} alt="Cardiologist" />
           </div>
-
           <div className={styles.categorySection}>
-            <h2>Cardiologists</h2>
-            <p>
-              Our expert cardiologists specialize in diagnosing and treating
-              diseases of the cardiovascular system.
-            </p>
+            <div className={styles.title}>
+              <h2>Cardiologists</h2>
+              <p>
+                Our expert cardiologists specialize in diagnosing and treating
+                diseases of the cardiovascular system.
+              </p>
+            </div>
             <ul>
               {filteredCardiologists.length > 0 ? (
                 filteredCardiologists.map((cardiologist, index) => (

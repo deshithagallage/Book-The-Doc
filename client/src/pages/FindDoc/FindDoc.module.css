@@ -1,127 +1,111 @@
-.find-doc-container {
-    font-family: Arial, sans-serif;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .nav a {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #333333;
-  }
-  
-  .login-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .main-content {
-    display: flex;
-    padding: 20px;
-  }
-  
-  .search-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 200px;
-  }
-  
-  .search-button {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  .cardiologist-button {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
-  .neurologist-button {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
+.main {
+  flex: 1;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+}
 
-  .pediatrician-button {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  .doctor-image img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  .category-section {
-    padding: 20px;
-  }
-  
-  .category-section h2 {
-    margin-top: 0;
-  }
-  
-  .category-cards,
-  .alternative-cards {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .category-card,
-  .alternative-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .category-card img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  .alternative-card {
-    flex: 1;
-  }
-  
+.doctorImg {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctorImg img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.categories {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+}
+
+.title h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.popular,
+.alternative {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  gap: 0.8rem;
+}
+
+.popular h3,
+.alternative h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.popularCards,
+.alternativeCards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.popularCard,
+.alternativeCard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.popularCard img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.alternativeCard img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.popularCard img:hover,
+.alternativeCard img:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+

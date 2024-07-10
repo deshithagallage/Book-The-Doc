@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "../categories.module.css"; // Import CSS module
+import styles from "../categories.module.css";
 import axios from "axios";
 
-import neurologistImage from "../../../../images/DoctorImages/neurologist.jpg";
-import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
+import neurologistImage from "../../../../assets/DoctorImages/neurologist.jpg";
+import Navbar from "../../../../components/Navbar/Navbar";
 
 function Neurologist() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,7 +38,7 @@ function Neurologist() {
   }, []);
 
   return (
-    <div className={styles.findDocContainer}>
+    <div className={styles.container}>
       <Navbar />
       <main className={styles.mainContent}>
         <div className={styles.searchSection}>
@@ -51,20 +51,18 @@ function Neurologist() {
           />
           <button className={styles.searchButton}>🔍</button>
         </div>
-
-        <div className={styles.space}></div>
-
         <div className={styles.contentContainer}>
           <div className={styles.doctorImage}>
             <img src={neurologistImage} alt="Neurologist" />
           </div>
-
           <div className={styles.categorySection}>
-            <h2>Neurologists</h2>
-            <p>
-              Our expert neurologists specialize in diagnosing and treating
-              diseases of the nervous system.
-            </p>
+            <div className={styles.title}>
+              <h2>Neurologists</h2>
+              <p>
+                Our expert neurologists specialize in diagnosing and treating
+                diseases of the nervous system.
+              </p>
+            </div>
             <ul>
               {filteredNeurologists.length > 0 ? (
                 filteredNeurologists.map((neurologist, index) => (
