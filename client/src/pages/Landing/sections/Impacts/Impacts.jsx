@@ -47,7 +47,7 @@ function Impacts() {
           </p>
         </div>
         <div className={styles.countBox}>
-          <h3 className={styles.subtitle}>Medical Centers</h3>
+          <h3 className={styles.subtitle}>Channelling Centers</h3>
           <p className={styles.count}>
             {isVisible && <CountUp end={678} duration={3} />}
           </p>

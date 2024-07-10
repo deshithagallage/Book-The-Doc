@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const role = "user";
   return (
-    <header>
+    <header className="w-full">
       <div className="w-full h-full flex flex-col items-center">
-        <nav className="w-screen h-16 flex justify-between items-center px-6 bg-blue-200 text-blue-500">
+        <nav className="w-full h-16 flex justify-between items-center px-6 bg-blue-200 text-blue-500">
           <div className="flex h-12 my-auto">
             <img
               src="/src/assets/logo.png"

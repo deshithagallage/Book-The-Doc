@@ -33,11 +33,14 @@
 }
 
 .title {
+    display: flex;
+    flex-direction: column;
     width: 60%;
     align-items: left;
     padding-left: 4rem;
     box-sizing: border-box;
     z-index: 1;
+    gap: 1rem;
 }
 
 .title h1 {
@@ -66,19 +69,6 @@
     width: 13rem;
     height: 4rem;
     font-size: 24px;
-}
-
-.doctorButton {
-    background-color: #0073e6;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.doctorButton:hover {
-    background-color: #005bb5;
 }
 
 .image {
