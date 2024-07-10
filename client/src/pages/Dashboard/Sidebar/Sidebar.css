@@ -1,75 +1,56 @@
-/* Sidebar.css */
-
 .sidebar {
-  
-  color: #0802a2;
-  position: fixed;
+  color: #c3c2ed;
+  position:absolute;
   top: 65px;
-  left: -200px; /* Sidebar initially hidden */
-  width: 150px; /* Adjust sidebar width as needed */
+  left: -214px; /* Sidebar initially hidden */
+  width: 250px; /* Adjusted width */
   height: 100%;
-  background-color: #b8c2ddaf;
+  background-color: #bbc8ebaf;
   padding: 20px;
   transition: left 0.3s ease; /* Smooth transition for opening/closing */
 }
 
 .sidebar.open {
-  width: 250px;
-  top: 65px;
-  left: 0px ; /* Sidebar visible when open */
+  left: -20px; /* Sidebar visible when open */
 }
 
 .sidebar ul {
-  width: 150px;
   list-style-type: none;
-  padding: 0;
-  color: #0802a2;
+  padding: 0px;
+  left: 1px;
+  color: #cac9e3;
 }
 
 .sidebar ul li {
-  width: 150px;
-  margin-bottom: 10px;
-  color: #0802a2;
+  width: 195px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #a0cbf6;
 }
 
 .sidebar ul li a {
-  
-  width: 180px;
-  border-radius: 5px;
-  background-color: #7eafeb;
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: #0802a2;
-  cursor: pointer; /* Default cursor style */
-  transition: color 0.3s ease;
+  color: #090673;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
-  color: #007bff; /* Change color on hover */
-}
-
-.toggle-button {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 20px; /* Adjust width and height as needed */
-  height: 100%;
-  cursor: pointer; /* Change cursor to pointer */
-  background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
-  z-index: 1000; /* Ensure it's above the sidebar */
+  background-color: #9fc5f6;
+  color: #e7edf3; /* Change color on hover */
 }
 
 .closebtn {
-  
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-
-
-
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #04022c;
+  background-color: transparent;
+  
 }
-
 

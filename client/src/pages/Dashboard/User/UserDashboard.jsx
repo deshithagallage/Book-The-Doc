@@ -9,14 +9,15 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Navbar from '../../../components/Navbar/Navbar';
-
+import profilePic from '../../../../src/assets/image.png';
 const localizer = momentLocalizer(moment);
 
 const UserDashboard = () => {
   const [user, setUser] = useState({
     username: 'JohnDoe',
     email: 'john.doe@example.com',
-    profilePicture: 'https://via.placeholder.com/150',
+    
+    profilePicture: profilePic,
     age: 30,
     city: 'New York',
     sugarLevel: 'Normal',
@@ -77,7 +78,9 @@ const UserDashboard = () => {
           <h1>User Dashboard</h1>
 
           <div className={`${styles.card1} ${styles.greeting}`}>
-            <p>{greeting}, {user.username}</p>
+          <p>
+        <span className="greeting">{greeting}</span>, <span className="username">{user.username}</span>
+      </p>
             <p>Appointment Number: {user.totalAppointments}</p>
           </div>
 

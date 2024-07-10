@@ -30,6 +30,8 @@ const UpcomingAppointments = () => {
     }
   ]);
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
@@ -43,29 +45,33 @@ const UpcomingAppointments = () => {
     fetchAppointments();
   }, []);
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div>
-    <Navbar />
-    <div className={styles.upcomingAppointments}>
-      <UserSidebar />
-      <div className={styles.content}>
-        <h1>Upcoming Appointments</h1>
-        <div className={styles.appointmentList}>
-          {appointments.length > 0 ? (
-            appointments.map((appointment) => (
-              <div key={appointment._id} className={styles.appointmentItem}>
-                <h2>{appointment.doctor}</h2>
-                <p><strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}</p>
-                <p><strong>Time:</strong> {appointment.time}</p>
-                <p><strong>Status:</strong> <span className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}>{appointment.status}</span></p>
-              </div>
-            ))
-          ) : (
-            <p>No upcoming appointments found.</p>
-          )}
+      <Navbar />
+      <div className={sidebarOpen ? `${styles.upcomingAppointments} ${styles.sidebarOpen}` : styles.upcomingAppointments}>
+        <UserSidebar />
+        <div className={styles.content}>
+          <h1 className={styles.appointmentstag}>Upcoming Appointments</h1>
+          <div className={styles.appointmentList}>
+            {appointments.length > 0 ? (
+              appointments.map((appointment) => (
+                <div key={appointment._id} className={styles.appointmentItem}>
+                  <h2>{appointment.doctor}</h2>
+                  <p><strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}</p>
+                  <p><strong>Time:</strong> {appointment.time}</p>
+                  <p><strong>Status:</strong> <span className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}>{appointment.status}</span></p>
+                </div>
+              ))
+            ) : (
+              <p>No upcoming appointments found.</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

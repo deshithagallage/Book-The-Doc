@@ -64,6 +64,9 @@
   height: auto;
   border-radius: 50%;
   top: auto;
+  width: 200px;
+  height: 200px;
+
   
 
 }
@@ -71,6 +74,7 @@
 .card3 .card-content {
   margin-top: 10px;
   top: auto;
+  text-align: left;
   left: 5cap;
   right: auto;
   bottom: auto;
@@ -96,4 +100,13 @@
 
 .no-appointments {
   color: #888;
+}
+
+.greeting {
+  font-family:sans-serif;
+  font-size: 30px;
+}
+
+.username {
+  font-family:monospace
 }
