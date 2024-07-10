@@ -1,20 +1,46 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import UserSidebar from '../Sidebar/UserSidebar.jsx';
-import styles from './ManageProfile.module.css'; // Updated import
+import React, { useState, useEffect } from "react";
+import UserSidebar from "../Sidebar/UserSidebar.jsx";
+import styles from "./ManageProfile.module.css"; // Updated import
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const ManageProfile = () => {
-  const [user, setUser] = useState({
-    username: 'JohnDoe',
-    email: 'john.doe@example.com',
-    profilePicture: 'https://via.placeholder.com/150',
-    name: 'John Doe',
-    age: 30,
-    city: 'New York',
-    totalAppointments: 15,
-    previousDoctors: ['Dr. Alice Williams', 'Dr. Robert Davis'],
-    sugarLevel: 90, // mg/dL
-  });
+  const token = Cookies.get("token");
+  const [user, setUser] = useState({});
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/patients/patient", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/appointments/patient", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setAppointments(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -37,22 +63,44 @@ const ManageProfile = () => {
     setIsEditing(false);
   };
 
+  const calculateAge = (dateString) => {
+    const birthDate = new Date(dateString);
+    if (isNaN(birthDate.getTime())) {
+      return null;
+    } else {
+      const ageDiffMs = Date.now() - birthDate.getTime();
+      const ageDate = new Date(ageDiffMs); // miliseconds from epoch
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+  };
+
+  const upcomingAppointmentsCount = appointments.filter(
+    (appointment) => appointment.status === "upcoming"
+  ).length;
+  const pastAppointmentsCount = appointments.filter(
+    (appointment) => appointment.status === "completed"
+  ).length;
+
   return (
     <div className={styles.manageProfile}>
       <UserSidebar />
       <div className={styles.content}>
         <h1>Manage Profile</h1>
         <div className={styles.profileContainer}>
-          <img src={user.profilePicture} alt="Profile" className={styles.profilePicture} />
+          <img
+            src={user.profilePicture}
+            alt="Profile"
+            className={styles.profilePicture}
+          />
           <div className={styles.profileDetails}>
             {isEditing ? (
               <div className={styles.editForm}>
                 <label>
-                  Username:
+                  Name:
                   <input
                     type="text"
-                    name="username"
-                    value={user.username}
+                    name="name"
+                    value={user.name}
                     onChange={handleChange}
                   />
                 </label>
@@ -66,24 +114,24 @@ const ManageProfile = () => {
                   />
                 </label>
                 <label>
-                  Name:
+                  Age:
                   <input
-                    type="text"
-                    name="name"
-                    value={user.name}
+                    type="number"
+                    name="age"
+                    value={calculateAge(user.dob)}
                     onChange={handleChange}
                   />
                 </label>
                 <label>
                   Age:
                   <input
-                    type="number"
-                    name="age"
-                    value={user.age}
+                    type="text"
+                    name="phone"
+                    value={user.phone}
                     onChange={handleChange}
                   />
                 </label>
-                <label>
+                {/* <label>
                   City:
                   <input
                     type="text"
@@ -91,25 +139,7 @@ const ManageProfile = () => {
                     value={user.city}
                     onChange={handleChange}
                   />
-                </label>
-                <label>
-                  Total Appointments:
-                  <input
-                    type="number"
-                    name="totalAppointments"
-                    value={user.totalAppointments}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Sugar Level (mg/dL):
-                  <input
-                    type="number"
-                    name="sugarLevel"
-                    value={user.sugarLevel}
-                    onChange={handleChange}
-                  />
-                </label>
+                </label> */}
                 <div className={styles.buttons}>
                   <button onClick={handleSave}>Save</button>
                   <button onClick={handleCancel}>Cancel</button>
@@ -117,14 +147,29 @@ const ManageProfile = () => {
               </div>
             ) : (
               <div className={styles.viewForm}>
-                <p><strong>Username:</strong> {user.username}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Name:</strong> {user.name}</p>
-                <p><strong>Age:</strong> {user.age}</p>
-                <p><strong>City:</strong> {user.city}</p>
-                <p><strong>Total Appointments:</strong> {user.totalAppointments}</p>
-                <p><strong>Previous Doctors:</strong> {user.previousDoctors.join(', ')}</p>
-                <p><strong>Sugar Level:</strong> {user.sugarLevel} mg/dL</p>
+                <p>
+                  <strong>Name:</strong> {user.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {user.email}
+                </p>
+                <p>
+                  <strong>Age:</strong> {calculateAge(user.dob)}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {user.phone}
+                </p>
+                {/* <p>
+                  <strong>City:</strong> {user.city}
+                </p> */}
+                <p>
+                  <strong>Total Ongoing Appointments:</strong>{" "}
+                  {upcomingAppointmentsCount}
+                </p>
+                <p>
+                  <strong>Total Past Appointments:</strong>{" "}
+                  {pastAppointmentsCount}
+                </p>
                 <button onClick={handleEdit}>Edit</button>
               </div>
             )}
