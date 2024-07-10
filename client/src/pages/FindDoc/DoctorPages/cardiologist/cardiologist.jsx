@@ -23,6 +23,7 @@ function Cardiologist() {
       .get("http://localhost:3000/api/doctors/specialization/cardiologist")
       .then((res) => {
         setCardiologistsData(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
