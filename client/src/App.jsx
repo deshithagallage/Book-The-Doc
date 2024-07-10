@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
 import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
 import ChooseSignUp from "./pages/SignUp/ChooseSign/ChooseSignUp";
@@ -35,40 +37,45 @@ function App() {
         <Route path="/register/user" element={<UserSignUp />} />
         <Route path="/register/center" element={<CenterSignUp />} />
 
-        <Route path="/dashboard/user" element={<UserDashboard />} />
-        <Route
-          path="/dashboard/user/appointment-history"
-          element={<AppointmentHistory />}
-        />
-        <Route
-          path="/dashboard/user/upcoming-appointments"
-          element={<UpcomingAppointments />}
-        />
-        <Route
-          path="/dashboard/user/manage-profile"
-          element={<ManageProfile />}
-        />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard/user" element={<UserDashboard />} />
+          <Route
+            path="/dashboard/user/appointment-history"
+            element={<AppointmentHistory />}
+          />
+          <Route
+            path="/dashboard/user/upcoming-appointments"
+            element={<UpcomingAppointments />}
+          />
+          <Route
+            path="/dashboard/user/manage-profile"
+            element={<ManageProfile />}
+          />
 
-        {/* Center Dashboard Routes */}
-        <Route path="/dashboard/center" element={<CenterDashboard />} />
-        <Route
-          path="/dashboard/center/appointments"
-          element={<Appointments />}
-        />
-        <Route
-          path="/dashboard/center/appointment-calendar"
-          element={<AppointmentCalendar />}
-        />
-        <Route path="/dashboard/center/users-list" element={<UsersList />} />
-        <Route
-          path="/dashboard/center/doctor-management"
-          element={<DoctorManagement />}
-        />
-        <Route
-          path="/dashboard/center/doctors/edit/:doctorId"
-          element={<DoctorForm />}
-        />
-        <Route path="/dashboard/center/doctors/new" element={<DoctorForm />} />
+          {/* Center Dashboard Routes */}
+          <Route path="/dashboard/center" element={<CenterDashboard />} />
+          <Route
+            path="/dashboard/center/appointments"
+            element={<Appointments />}
+          />
+          <Route
+            path="/dashboard/center/appointment-calendar"
+            element={<AppointmentCalendar />}
+          />
+          <Route path="/dashboard/center/users-list" element={<UsersList />} />
+          <Route
+            path="/dashboard/center/doctor-management"
+            element={<DoctorManagement />}
+          />
+          <Route
+            path="/dashboard/center/doctors/edit/:doctorId"
+            element={<DoctorForm />}
+          />
+          <Route
+            path="/dashboard/center/doctors/new"
+            element={<DoctorForm />}
+          />
+        </Route>
 
         <Route path="/find-doctor" element={<FindDoc />} />
         <Route
