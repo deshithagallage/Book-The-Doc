@@ -1,5 +1,7 @@
 const Appointment = require('../models/appointment');
 const Timeslot = require('../models/timeslot');
+const Doctor = require('../models/doctor');
+const Center = require('../models/center');
 
 // Book an appointment
 const bookAppointment = async (req, res) => {
@@ -42,7 +44,24 @@ const getAppointmentsByPatient = async (req, res) => {
 
   try {
     const appointments = await Appointment.find({ patient: patientId }).populate('timeslot');
-    res.json(appointments);
+    const output = [];
+
+    for (let i = 0; i < appointments.length; i++) {
+        const doctor = await Doctor.findById(appointments[i].timeslot.doctor).select('name');
+        const medicalCenter = await Center.findById(appointments[i].timeslot.channellingCenter).select('name');
+        const details = {
+            medicalCenter: medicalCenter.name,
+            doctor: doctor.name,
+            date: appointments[i].timeslot.date,
+            startTime: appointments[i].timeslot.startTime,
+            endTime: appointments[i].timeslot.endTime,
+            queueNumber: appointments[i].queueNumber,
+            status: appointments[i].status
+            
+        }
+        output.push(details);
+    }
+    res.json(output);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
