@@ -2,10 +2,7 @@ const Patient = require('../models/patient');
 
 const getPatientInfo = async (req, res) => {
     try {
-        const patientId = user.id;
-        if (req.user.id !== patientId) {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
+        const patientId = req.user.id;
         const patient = await Patient.findById(patientId);
         res.json(patient);
     }
