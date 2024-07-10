@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../categories.module.css"; // Updated to CSS module
 import axios from "axios";
 
-import cardiologistImage from "../../../../images/DoctorImages/cardiologist.jpg";
+import cardiologistImage from "../../../../assets/DoctorImages/cardiologist.jpg";
 import Navbar from "../../../../components/Navbar/Navbar"; // Assuming this is the correct path to the Navbar component
 
 function Cardiologist() {

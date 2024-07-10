@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styles from '../categories.module.css'; // Import CSS module
+import styles from "../categories.module.css"; // Import CSS module
 import axios from "axios";
 
-import neurologistImage from '../../../../images/DoctorImages/neurologist.jpg';
+import neurologistImage from "../../../../assets/DoctorImages/neurologist.jpg";
 import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
 
 function Neurologist() {
@@ -10,7 +10,7 @@ function Neurologist() {
   const [neurologistsData, setNeurologistsData] = useState([]);
   const neurologists = neurologistsData.map((doctor) => doctor.name);
 
-  const filteredNeurologists = neurologists.filter(neurologist =>
+  const filteredNeurologists = neurologists.filter((neurologist) =>
     neurologist.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -27,7 +27,7 @@ function Neurologist() {
       .catch((err) => {
         console.log(err);
       });
-  } , []);
+  }, []);
 
   return (
     <div className={styles.findDocContainer}>
@@ -53,7 +53,10 @@ function Neurologist() {
 
           <div className={styles.categorySection}>
             <h2>Neurologists</h2>
-            <p>Our expert neurologists specialize in diagnosing and treating diseases of the nervous system.</p>
+            <p>
+              Our expert neurologists specialize in diagnosing and treating
+              diseases of the nervous system.
+            </p>
             <ul>
               {filteredNeurologists.length > 0 ? (
                 filteredNeurologists.map((neurologist, index) => (

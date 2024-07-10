@@ -1,74 +1,103 @@
 .container {
-  /* font-family: Arial, sans-serif; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .main {
+  flex: 1;
   display: flex;
-  padding: 20px;
+  align-items: start;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
 }
 
-.cardiologist {
-  padding: 10px;
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 5px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.neurologist {
-  padding: 10px;
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 5px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.pediatrician {
-  padding: 10px;
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 5px;
-  margin-left: 10px;
-  cursor: pointer;
+.doctorImg {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .doctorImg img {
-  max-width: 100%;
-  border-radius: 10px;
+  width: 100%;
+  border-radius: 20px;
 }
 
 .categories {
-  padding: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.categories h2 {
-  margin-top: 0;
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
 }
 
-.categoryCards,
+.title h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.popular,
+.alternative {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  gap: 0.8rem;
+}
+
+.popular h3,
+.alternative h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.popularCards,
 .alternativeCards {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
 }
 
-.categoryCard,
+.popularCard,
 .alternativeCard {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  gap: 0.5rem;
+  cursor: pointer;
 }
 
-.categoryCard img {
-  max-width: 100%;
+.popularCard img {
+  width: 200px;
   border-radius: 10px;
 }
 
-.alternativeCard {
-  flex: 1;
+.alternativeCard img {
+  width: 100px;
+  border-radius: 10px;
 }

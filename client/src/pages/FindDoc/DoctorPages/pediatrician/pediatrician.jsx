@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styles from '../categories.module.css'; // Import CSS module
+import styles from "../categories.module.css"; // Import CSS module
 import axios from "axios";
 
-import pediatricianImage from '../../../../images/DoctorImages/pediatrician.png';
+import pediatricianImage from "../../../../assets/DoctorImages/pediatrician.png";
 import Navbar from "../../../../components/Navbar/Navbar"; // Assuming correct path to Navbar component
 
 function Pediatrician() {
@@ -10,7 +10,7 @@ function Pediatrician() {
   const [pediatriciansData, setPediatriciansData] = useState([]);
   const pediatricians = pediatriciansData.map((doctor) => doctor.name);
 
-  const filteredPediatricians = pediatricians.filter(pediatrician =>
+  const filteredPediatricians = pediatricians.filter((pediatrician) =>
     pediatrician.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -53,7 +53,10 @@ function Pediatrician() {
 
           <div className={styles.categorySection}>
             <h2>Pediatricians</h2>
-            <p>Our expert pediatricians specialize in diagnosing and treating diseases in children.</p>
+            <p>
+              Our expert pediatricians specialize in diagnosing and treating
+              diseases in children.
+            </p>
             <ul>
               {filteredPediatricians.length > 0 ? (
                 filteredPediatricians.map((pediatrician, index) => (

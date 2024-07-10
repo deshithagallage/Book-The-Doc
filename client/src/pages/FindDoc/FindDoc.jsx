@@ -33,69 +33,47 @@ function FindDoc() {
     <div className={styles.container}>
       <Navbar />
       <main className={styles.main}>
-        <div>
-          <div className={styles.doctorImg}>
-            <img
-              src="https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg"
-              width="300"
-              height="400"
-              alt="Doctor"
-            />
-          </div>
+        <div className={styles.doctorImg}>
+          <img
+            src="https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg"
+            width="300"
+            height="400"
+            alt="Doctor"
+          />
         </div>
-
         <div className={styles.categories}>
-          <h2>Category</h2>
-          <p>Find your doctor according to your need.</p>
+          <div className={styles.title}>
+            <h2>Category</h2>
+            <p>Find your doctor according to your need.</p>
+          </div>
           <div className={styles.popular}>
             <h3>Popular</h3>
-            <div className={styles.categoryCards}>
-              <div className={styles.categoryCard}>
-                <button
-                  className={styles.cardiologist}
-                  onClick={handleCardiologistButtonClick}
-                >
-                  <img
-                    src={cardiologistImage}
-                    width="100"
-                    height="100"
-                    alt="Cardiologist"
-                  />
-                  <p>Cardiologist</p>
-                </button>
+            <div className={styles.popularCards}>
+              <div
+                className={styles.popularCard}
+                onClick={handleCardiologistButtonClick}
+              >
+                <img src={cardiologistImage} alt="Cardiologist" />
+                <p>Cardiologist</p>
               </div>
-              <div className={styles.categoryCard}>
-                <button
-                  className={styles.pediatrician}
-                  onClick={handlePediatricianButtonClick}
-                >
-                  <img
-                    src={pediatricianImage}
-                    width="100"
-                    height="100"
-                    alt="Pediatrician"
-                  />
-                  <p>Pediatrician</p>
-                </button>
+              <div
+                className={styles.popularCard}
+                onClick={handlePediatricianButtonClick}
+              >
+                <img src={pediatricianImage} alt="Pediatrician" />
+                <p>Pediatrician</p>
               </div>
-              <div className={styles.categoryCard}>
-                <button
-                  className={styles.neurologist}
-                  onClick={handleNeurologistButtonClick}
-                >
-                  <img
-                    src={neurologistImage}
-                    width="100"
-                    height="100"
-                    alt="Neurologist"
-                  />
-                  <p>Neurologist</p>
-                </button>
+              <div
+                className={styles.popularCard}
+                onClick={handleNeurologistButtonClick}
+              >
+                <img src={neurologistImage} alt="Neurologist" />
+                <p>Neurologist</p>
               </div>
             </div>
           </div>
           <div className={styles.alternative}>
-            <h3>Alternative you can try</h3>
+            <h3>Alternative You Can Try</h3>
             <div className={styles.alternativeCards}>
               <div className={styles.alternativeCard}>
                 <img

@@ -6,13 +6,6 @@
     width: 100%;
 }
 
-.header {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-}
-
 .main {
     flex: 1;
     display: flex;
@@ -25,9 +18,4 @@
     text-align: center;
     min-height: 100%;
     width: 100%;
-}
-
-.footer {
-    margin-top: auto;
-    padding: 10px 0;
 }
