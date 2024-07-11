@@ -1,42 +1,67 @@
-const Appointment = require("../models/appointment");
-const Timeslot = require("../models/timeslot");
-const Doctor = require("../models/doctor");
-const Center = require("../models/center");
+const Appointment = require('../models/appointment');
+const Timeslot = require('../models/timeslot');
+const Doctor = require('../models/doctor');
+const Center = require('../models/center');
+const mongoose = require('mongoose');
 
 // Book an appointment
 const bookAppointment = async (req, res) => {
   const { timeslotId } = req.body;
-  patient = req.user.id;
-  console.log(patient);
-  console.log(timeslotId);
+  const patient = req.user.id;
+  const maxRetries = 3; // Number of retries before giving up
 
-  try {
-    const timeslot = await Timeslot.findById(timeslotId);
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    const session = await mongoose.startSession();
+    session.startTransaction();
 
-    if (!timeslot) {
-      return res.status(404).json({ message: "Timeslot not found" });
+    try {
+      const timeslot = await Timeslot.findById(timeslotId).session(session);
+
+      if (!timeslot) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(404).json({ message: 'Timeslot not found' });
+      }
+
+      // Check if the patient has already booked this timeslot
+      const existingAppointment = await Appointment.findOne({ patient, timeslot: timeslotId }).session(session);
+      if (existingAppointment) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(400).json({ message: 'You have already booked this timeslot' });
+      }
+
+      if (timeslot.bookedPatients.length >= timeslot.maxPatients) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(400).json({ message: 'Timeslot is fully booked' });
+      }
+
+      const queueNumber = timeslot.bookedPatients.length + 1;
+
+      const appointment = new Appointment({
+        patient,
+        timeslot: timeslotId,
+        queueNumber,
+      });
+
+      await appointment.save({ session });
+
+      timeslot.bookedPatients.push(patient);
+      await timeslot.save({ session });
+
+      await session.commitTransaction();
+      session.endSession();
+
+      return res.status(201).json(appointment);
+    } catch (error) {
+      await session.abortTransaction();
+      session.endSession();
+      
+      if (attempt === maxRetries - 1) {
+        return res.status(500).json({ message: error.message });
+      }
     }
-
-    if (timeslot.bookedPatients.length >= timeslot.maxPatients) {
-      return res.status(400).json({ message: "Timeslot is fully booked" });
-    }
-
-    const queueNumber = timeslot.bookedPatients.length + 1;
-
-    const appointment = new Appointment({
-      patient,
-      timeslot: timeslotId,
-      queueNumber,
-    });
-
-    await appointment.save();
-
-    timeslot.bookedPatients.push(patient);
-    await timeslot.save();
-
-    res.status(201).json(appointment);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
   }
 };
 
