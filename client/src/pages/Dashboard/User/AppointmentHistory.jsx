@@ -4,6 +4,8 @@ import UserSidebar from "../Sidebar/UserSidebar.jsx";
 import styles from "./AppointmentHistory.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Navbar from "../../../components/Navbar/Navbar";
+
 
 const AppointmentHistory = () => {
   const [appointments, setAppointments] = useState([]);
@@ -38,6 +40,8 @@ const AppointmentHistory = () => {
   };
 
   return (
+    <div>
+    <Navbar />
     <div className={styles.appointmentHistory}>
       <UserSidebar />
       <div className={styles.content}>
@@ -68,6 +72,7 @@ const AppointmentHistory = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

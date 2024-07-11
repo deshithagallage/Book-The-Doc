@@ -3,17 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './DoctorForm.module.css'; // Import CSS module
-
+import Navbar from '../../../components/Navbar/Navbar.jsx';
 const DoctorForm = () => {
   const { doctorId } = useParams();
   const navigate = useNavigate();
-  const [doctor, setDoctor] = useState({ name: '', timeslots: [''] });
+  const [doctor, setDoctor] = useState({
+    name: '',
+    specialization: '',
+    qualifications: '',
+    gender: '',
+    category: '',
+    timeslots: ['']
+  });
 
   useEffect(() => {
     if (doctorId !== 'new') {
       // Fetch the doctor data based on doctorId and set it to state
       // For now, we will use dummy data
-      const fetchedDoctor = { name: 'Dr. John Doe', timeslots: ['9am - 12pm', '2pm - 5pm'] };
+      const fetchedDoctor = {
+        name: 'Dr. John Doe',
+        specialization: 'Cardiology',
+        qualifications: 'MD, PhD',
+        gender: 'Male',
+        category: 'Cardiologist',
+        timeslots: ['9am - 12pm', '2pm - 5pm']
+      };
       setDoctor(fetchedDoctor);
     }
   }, [doctorId]);
@@ -40,6 +54,9 @@ const DoctorForm = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
+    
     <div className={styles.doctorForm}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -48,6 +65,38 @@ const DoctorForm = () => {
           <div>
             <label htmlFor="name">Name</label>
             <input type="text" id="name" name="name" value={doctor.name} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label htmlFor="specialization">Specialization</label>
+            <input type="text" id="specialization" name="specialization" value={doctor.specialization} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label htmlFor="qualifications">Qualifications</label>
+            <input type="text" id="qualifications" name="qualifications" value={doctor.qualifications} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label htmlFor="gender">Gender</label>
+            <select id="gender" name="gender" value={doctor.gender} onChange={handleInputChange} required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="category">Category</label>
+            <select id="category" name="category" value={doctor.category} onChange={handleInputChange} required>
+              <option value="">Select Category</option>
+              <option value="Cardiologist">Cardiologist</option>
+              <option value="Pediatrician">Pediatrician</option>
+              <option value="Neurologist">Neurologist</option>
+              <option value="Oncologist">Oncologist</option>
+              <option value="Dermatologist">Dermatologist</option>
+              <option value="Radiologist">Radiologist</option>
+              <option value="Psychiatrist">Psychiatrist</option>
+              <option value="Ophthalmologist">Ophthalmologist</option>
+              <option value="Other">General</option>
+            </select>
           </div>
           {doctor.timeslots.map((timeslot, index) => (
             <div key={index}>
@@ -66,6 +115,7 @@ const DoctorForm = () => {
           <button type="submit">{doctorId === 'new' ? 'Add Doctor' : 'Save Changes'}</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

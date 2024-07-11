@@ -1,37 +1,104 @@
-/* UpcomingAppointments.module.css */
-
-.upcomingAppointments {
+.dashboard {
   display: flex;
+  flex-direction: row;
 }
 
-.content {
+.sidebar {
+  width: 17%;
+}
+
+.main {
   flex: 1;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.main h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
 }
 
 .appointmentList {
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .appointmentItem {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  transition: transform 0.2s ease-in-out;
 }
 
-.appointmentItem h2 {
-  margin-top: 0;
+.appointmentItem:hover {
+  transform: scale(1.02);
+}
+
+.queueNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ececec;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.queueNumber h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.details h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.details p {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: #666;
 }
 
 .status {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
-.status.upcoming {
-  color: blue;
+.upcoming {
+  background-color: #e6f7ff;
+}
+
+.past {
+  background-color: #ffe6e6;
+}
+
+.upcoming .status {
+  background-color: #1890ff;
+  color: white;
+}
+
+.past .status {
+  background-color: #ff4d4f;
+  color: white;
 }

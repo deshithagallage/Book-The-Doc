@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './DoctorManagement.module.css'; // Import CSS module
+import Navbar from '../../../components/Navbar/Navbar.jsx';
 
 const DoctorManagement = () => {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ const DoctorManagement = () => {
   ];
 
   return (
+    <div>
+      <Navbar/>
     <div className={styles.doctorManagement}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -44,6 +47,7 @@ const DoctorManagement = () => {
           Add New Doctor
         </button>
       </div>
+    </div>
     </div>
   );
 };

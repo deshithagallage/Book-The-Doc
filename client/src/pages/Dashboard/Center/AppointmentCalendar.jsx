@@ -5,6 +5,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import styles from './AppointmentCalendar.module.css'; // Import CSS Module for styling
+import Navbar from "../../../components/Navbar/Navbar";
 
 const localizer = momentLocalizer(moment);
 
@@ -26,6 +27,8 @@ const AppointmentCalendar = () => {
   ];
 
   return (
+    <div>
+    <Navbar />
     <div className={styles.appointmentCalendar}>
       <CenterSidebar />
       <div className={styles.content}>
@@ -40,6 +43,7 @@ const AppointmentCalendar = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };
