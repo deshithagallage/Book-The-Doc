@@ -1,13 +1,19 @@
 import React from "react";
 import "./PrimaryInput.css";
 
-const PrimaryInput = ({ type, value, onChange, label }) => {
+const PrimaryInput = ({
+  type,
+  value,
+  onChange,
+  label,
+  bgColor = "bg-white",
+}) => {
   return (
     <div>
       <input
         type={type}
         placeholder=" "
-        className="floating-label-input w-full h-10 rounded-md bg-white opacity-80 pl-3 drop-shadow-lg"
+        className={`floating-label-input w-full h-10 rounded-md ${bgColor} opacity-80 px-3 drop-shadow-lg`}
         value={value}
         onChange={onChange}
       />

@@ -4,6 +4,7 @@ import UserSidebar from "../Sidebar/UserSidebar.jsx";
 import styles from "./UpcomingAppointments.module.css"; // Updated import
 import axios from "axios";
 import Cookies from "js-cookie";
+import Navbar from "../../../components/Navbar/Navbar.jsx";
 
 const UpcomingAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -22,7 +23,7 @@ const UpcomingAppointments = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [token]);
 
   const upcomingAppointments = appointments.filter(
     (appointment) => appointment.status === "upcoming"
@@ -37,40 +38,101 @@ const UpcomingAppointments = () => {
     }
   };
 
+  const getAllMedicalCenters = (appointments) => {
+    const medicalCenters = {};
+    appointments.forEach((appointment) => {
+      if (!medicalCenters.hasOwnProperty(appointment.medicalCenter)) {
+        medicalCenters[appointment.medicalCenter] = [appointment];
+      } else {
+        medicalCenters[appointment.medicalCenter].push(appointment);
+      }
+    });
+    return medicalCenters;
+  };
+
+  const medicalCentersAppointments = getAllMedicalCenters(upcomingAppointments);
+
   return (
-    <div className={styles.upcomingAppointments}>
-      <UserSidebar />
-      <div className={styles.content}>
-        <h1>Upcoming Appointments</h1>
-        <div className={styles.appointmentList}>
-          {upcomingAppointments.length > 0 ? (
-            upcomingAppointments.map((appointment) => (
-              <div className="flex justify-center items-center">
-                <div className={styles.appointmentItem}>
-                  <h2>{appointment.queueNumber}</h2>
+    <div>
+      <Navbar />
+      <div className="flex w-full h-full">
+        <div className="w-[17%] h-full">
+          <UserSidebar />
+        </div>
+        <div className="w-[83%] h-full my-16 py-14 px-10 flex flex-col justify-center items-center">
+          <h1 className="text-4xl font-bold mb-7">Upcoming Appointments</h1>
+          <div className="w-5/6 h-full">
+            {Object.keys(medicalCentersAppointments).length > 0 ? (
+              Object.keys(medicalCentersAppointments).map((medicalCenter) => (
+                <div key={medicalCenter} className="flex flex-col gap-y-3">
+                  <h1 className="text-2xl font-bold text-start">
+                    {`Medical Center Name : ${medicalCenter[0].toUpperCase() + medicalCenter.slice(1)}`}
+                  </h1>
+                  <div className="flex justify-center items-center">
+                    <div className="w-1/6 h-16 flex justify-start items-center">
+                      <h2 className="text-lg text-start font-bold pl-3 border-l-2 border-gray-300">
+                        Queue Number
+                      </h2>
+                    </div>
+                    <div className="w-5/6 h-16 bg-gray-100 flex justify-center items-center">
+                      <h2 className="w-1/4 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Doctor
+                      </h2>
+                      <h2 className="w-1/4 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Date
+                      </h2>
+                      <h2 className="w-1/4 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Time
+                      </h2>
+                      <h2 className="w-1/4 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Status
+                      </h2>
+                    </div>
+                  </div>
+                  {medicalCentersAppointments[medicalCenter].map(
+                    (appointment) => (
+                      <div
+                        key={appointment._id}
+                        className="flex justify-center items-center border-b-2 border-gray-300 shadow-md rounded-md"
+                      >
+                        <div className="w-1/6 h-16 bg-blue-300 flex justify-center items-center">
+                          <div className="rounded-full bg-white w-10 h-10 flex justify-center items-center">
+                            <h2 className="text-2xl font-bold">
+                              {appointment.queueNumber}
+                            </h2>
+                          </div>
+                        </div>
+                        <div className="w-5/6 h-16 bg-gray-100 flex justify-center items-center px-auto">
+                          <h2 className="w-1/4 text-lg font-bold pl-3 text-start border-r-2 border-gray-300">
+                            {appointment.doctor}
+                          </h2>
+                          <div className="w-1/4 font-bold pl-3 text-start border-r-2 border-gray-300">
+                            {formatDate(appointment.date, 0)}
+                          </div>
+                          <div className="w-1/4 font-bold pl-3 text-start border-r-2 border-gray-300">
+                            {formatDate(appointment.date, 1)}
+                          </div>
+                          <div className="w-1/4 font-bold pl-3 text-start">
+                            <span
+                              className={`${
+                                appointment.status === "upcoming"
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }`}
+                            >
+                              {appointment.status}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  )}
                 </div>
-                <div key={appointment._id} className={styles.appointmentItem}>
-                  <h2>{appointment.doctor}</h2>
-                  <p>
-                    <strong>Date:</strong> {formatDate(appointment.date, 0)}
-                  </p>
-                  <p>
-                    <strong>Time:</strong> {formatDate(appointment.date, 1)}
-                  </p>
-                  <p>
-                    <strong>Status:</strong>{" "}
-                    <span
-                      className={`${styles.status} ${styles[appointment.status.toLowerCase()]}`}
-                    >
-                      {appointment.status}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No upcoming appointments found.</p>
-          )}
+              ))
+            ) : (
+              <p>No upcoming appointments found.</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
