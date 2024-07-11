@@ -26,6 +26,7 @@ import FindDoc from "./pages/FindDoc/FindDoc";
 import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist/cardiologist";
 import PediatricianPage from "./pages/FindDoc/DoctorPages/pediatrician/pediatrician";
 import NeurologistPage from "./pages/FindDoc/DoctorPages/neurologist/neurologist";
+import GeneralDoctorPage from "./pages/FindDoc/DoctorPages/generalDoctor/generalDoctor";
 
 function App() {
   return (
@@ -88,7 +89,12 @@ function App() {
           path="/find-doctor/pediatrician"
           element={<PediatricianPage />}
         />
-        <Route path="/find-doctor/neurologist" element={<NeurologistPage />} />
+        <Route path="/find-doctor/neurologist"
+        element={<NeurologistPage />} 
+        />
+        <Route path="/find-doctor/generalDoctor"
+        element={<GeneralDoctorPage />} 
+        />
       </Routes>
     </BrowserRouter>
   );

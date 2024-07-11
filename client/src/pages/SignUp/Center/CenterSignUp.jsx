@@ -60,7 +60,7 @@ function UserSignUp() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center">
+    <div className="w-full h-screen flex flex-col items-center p-16">
       <Navbar />
       <div className="w-1/2 h-hull mt-7 flex justify-center items-center">
         <div className="w-1/2 h-full bg-blue-500 bg-opacity-70 rounded-l-xl">
