@@ -45,13 +45,15 @@ const getDoctorsBySpecialization = async (req, res) => {
 
 const addDoctor = async (req, res) => {
   const { name, specialization, qualifications, gender } = req.body;
-
+  const medicalCenter = req.user.id;
   try {
     const newDoctor = new Doctor({
       name,
       specialization,
       qualifications,
       gender,
+      medicalCenter,
+      medicalCenterName: medicalCenter.medicalCenterName,
     });
     await newDoctor.save();
     res.status(201).json(newDoctor);
