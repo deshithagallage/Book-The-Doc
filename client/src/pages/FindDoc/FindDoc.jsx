@@ -10,7 +10,7 @@ import dermatologistImage from "../../assets/DoctorImages/dermatologist.png";
 import radiologistImage from "../../assets/DoctorImages/radiologist.jpeg";
 import psychiatristImage from "../../assets/DoctorImages/psychiatrist.jpeg";
 import ophthalmologyImage from "../../assets/DoctorImages/ophthalmology.jpeg";
-import otherImage from "../../assets/DoctorImages/otherdoctor.jpeg";
+import GeneralImage from "../../assets/DoctorImages/otherdoctor.jpeg";
 
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -25,8 +25,8 @@ function FindDoc() {
     navigate("/find-doctor/pediatrician");
   };
 
-  const handleNeurologistButtonClick = () => {
-    navigate("/find-doctor/neurologist");
+  const handleGeneralDoctorButtonClick = () => {
+    navigate("/find-doctor/generalDoctor");
   };
 
   return (
@@ -47,10 +47,18 @@ function FindDoc() {
           <div className={styles.popular}>
             <h3>Popular</h3>
             <div className={styles.popularCards}>
+            <div className={styles.popularCard}
+                onClick={handleGeneralDoctorButtonClick}
+              >
+                <img src={GeneralImage} width="100" height="100" alt="Other" />
+                <p>General</p>
+              </div>
+              
               <div
                 className={styles.popularCard}
                 onClick={handleCardiologistButtonClick}
               >
+                
                 <img src={cardiologistImage} alt="Cardiologist" />
                 <p>Cardiologist</p>
               </div>
@@ -60,13 +68,6 @@ function FindDoc() {
               >
                 <img src={pediatricianImage} alt="Pediatrician" />
                 <p>Pediatrician</p>
-              </div>
-              <div
-                className={styles.popularCard}
-                onClick={handleNeurologistButtonClick}
-              >
-                <img src={neurologistImage} alt="Neurologist" />
-                <p>Neurologist</p>
               </div>
             </div>
           </div>
@@ -118,9 +119,10 @@ function FindDoc() {
                 />
                 <p>Ophthalmology</p>
               </div>
-              <div className={styles.alternativeCard}>
-                <img src={otherImage} width="100" height="100" alt="Other" />
-                <p>Other</p>
+              <div
+                className={styles.alternativeCard}>
+                <img src={neurologistImage} alt="Neurologist" />
+                <p>Neurologist</p>
               </div>
             </div>
           </div>
