@@ -4,6 +4,9 @@ import UserSidebar from "../Sidebar/UserSidebar.jsx";
 import styles from "./ManageProfile.module.css"; // Updated import
 import axios from "axios";
 import Cookies from "js-cookie";
+import Navbar from "../../../components/Navbar/Navbar.jsx";
+import PrimaryInput from "../../../components/PrimaryInput/PrimaryInput.jsx";
+import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
 
 const ManageProfile = () => {
   const token = Cookies.get("token");
@@ -82,97 +85,104 @@ const ManageProfile = () => {
   ).length;
 
   return (
-    <div className={styles.manageProfile}>
-      <UserSidebar />
-      <div className={styles.content}>
-        <h1>Manage Profile</h1>
-        <div className={styles.profileContainer}>
-          <img
-            src={user.profilePicture}
-            alt="Profile"
-            className={styles.profilePicture}
-          />
-          <div className={styles.profileDetails}>
-            {isEditing ? (
-              <div className={styles.editForm}>
-                <label>
-                  Name:
-                  <input
-                    type="text"
-                    name="name"
-                    value={user.name}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Email:
-                  <input
-                    type="email"
-                    name="email"
-                    value={user.email}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Age:
-                  <input
-                    type="number"
-                    name="age"
-                    value={calculateAge(user.dob)}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Age:
-                  <input
-                    type="text"
-                    name="phone"
-                    value={user.phone}
-                    onChange={handleChange}
-                  />
-                </label>
-                {/* <label>
-                  City:
-                  <input
-                    type="text"
-                    name="city"
+    <div>
+      <Navbar />
+      <div className="flex w-full h-full">
+        <div className="w-[17%] h-full">
+          <UserSidebar />
+        </div>
+        <div className="w-[83%] h-full my-24 flex justify-center items-center">
+          <div className="w-1/2 p-10 pr-0 flex justify-end">
+            <img
+              src="https://thumbs.wbm.im/pw/small/39573f81d4d58261e5e1ed8f1ff890f6.jpg"
+              alt="Profile"
+              className="w-4/5 h-[550px] object-cover rounded-2xl shadow-2xl"
+            />
+          </div>
+          <div className="w-2/5 p-10 pl-0 mr-28 rounded-r-2xl bg-white shadow-2xl flex flex-col justify-start">
+            <h1 className="text-4xl font-bold mb-5">Manage Profile</h1>
+            <div className="flex flex-col items-center">
+              {isEditing ? (
+                <div className="w-1/2">
+                  <div className="relative mb-4">
+                    <PrimaryInput
+                      type="text"
+                      value={user.name}
+                      onChange={handleChange}
+                      label="Name"
+                      bgColor="bg-blue-100"
+                    />
+                  </div>
+                  <div className="relative mb-4">
+                    <PrimaryInput
+                      type="email"
+                      value={user.email}
+                      onChange={handleChange}
+                      label="Email"
+                      bgColor="bg-blue-100"
+                    />
+                  </div>
+                  <div className="relative mb-4">
+                    <PrimaryInput
+                      type="date"
+                      value={user.dob}
+                      onChange={handleChange}
+                      label="Date of Birth"
+                      bgColor="bg-blue-100"
+                    />
+                  </div>
+                  <div className="relative mb-4">
+                    <PrimaryInput
+                      type="text"
+                      value={user.phone}
+                      onChange={handleChange}
+                      label={"Phone"}
+                      bgColor="bg-blue-100"
+                    />
+                  </div>
+                  {/* <PrimaryInput
+                    type="text" 
                     value={user.city}
                     onChange={handleChange}
-                  />
-                </label> */}
-                <div className={styles.buttons}>
-                  <button onClick={handleSave}>Save</button>
-                  <button onClick={handleCancel}>Cancel</button>
+                    label="City"
+                    />
+                  */}
+                  <div className="flex h-10 gap-4">
+                    <PrimaryButton text="Save" onClick={handleSave} />
+                    <PrimaryButton text="Cancel" onClick={handleCancel} />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className={styles.viewForm}>
-                <p>
-                  <strong>Name:</strong> {user.name}
-                </p>
-                <p>
-                  <strong>Email:</strong> {user.email}
-                </p>
-                <p>
-                  <strong>Age:</strong> {calculateAge(user.dob)}
-                </p>
-                <p>
-                  <strong>Phone:</strong> {user.phone}
-                </p>
-                {/* <p>
-                  <strong>City:</strong> {user.city}
-                </p> */}
-                <p>
-                  <strong>Total Ongoing Appointments:</strong>{" "}
-                  {upcomingAppointmentsCount}
-                </p>
-                <p>
-                  <strong>Total Past Appointments:</strong>{" "}
-                  {pastAppointmentsCount}
-                </p>
-                <button onClick={handleEdit}>Edit</button>
-              </div>
-            )}
+              ) : (
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <p>
+                    <strong>Name:</strong> {user.name}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {user.email}
+                  </p>
+                  <p>
+                    <strong>Age:</strong> {calculateAge(user.dob)}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {user.phone}
+                  </p>
+                  {/* <p>
+                    <strong>City:</strong> {user.city}
+                  </p> */}
+                  <p>
+                    <strong>Total Ongoing Appointments:</strong>{" "}
+                    {upcomingAppointmentsCount}
+                  </p>
+                  <p>
+                    <strong>Total Past Appointments:</strong>{" "}
+                    {pastAppointmentsCount}
+                  </p>
+                  <div className="w-24 h-8 mt-4 flex justify-center">
+                    <PrimaryButton text="Edit" onClick={handleEdit} />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
