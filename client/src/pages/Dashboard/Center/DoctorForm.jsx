@@ -66,9 +66,21 @@ const DoctorForm = () => {
             <label htmlFor="name">Name</label>
             <input type="text" id="name" name="name" value={doctor.name} onChange={handleInputChange} required />
           </div>
+          
           <div>
             <label htmlFor="specialization">Specialization</label>
-            <input type="text" id="specialization" name="specialization" value={doctor.specialization} onChange={handleInputChange} required />
+            <select id="specialization" name="specialization" value={doctor.category} onChange={handleInputChange} required>
+              <option value="">Select Category</option>
+              <option value="cardiologist">Cardiologist</option>
+              <option value="pediatrician">Pediatrician</option>
+              <option value="neurologist">Neurologist</option>
+              <option value="oncologist">Oncologist</option>
+              <option value="dermatologist">Dermatologist</option>
+              <option value="radiologist">Radiologist</option>
+              <option value="psychiatrist">Psychiatrist</option>
+              <option value="ophthalmologist">Ophthalmologist</option>
+              <option value="general">General</option>
+            </select>
           </div>
           <div>
             <label htmlFor="qualifications">Qualifications</label>
@@ -83,21 +95,7 @@ const DoctorForm = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-          <div>
-            <label htmlFor="category">Category</label>
-            <select id="category" name="category" value={doctor.category} onChange={handleInputChange} required>
-              <option value="">Select Category</option>
-              <option value="Cardiologist">Cardiologist</option>
-              <option value="Pediatrician">Pediatrician</option>
-              <option value="Neurologist">Neurologist</option>
-              <option value="Oncologist">Oncologist</option>
-              <option value="Dermatologist">Dermatologist</option>
-              <option value="Radiologist">Radiologist</option>
-              <option value="Psychiatrist">Psychiatrist</option>
-              <option value="Ophthalmologist">Ophthalmologist</option>
-              <option value="Other">General</option>
-            </select>
-          </div>
+          
           {doctor.timeslots.map((timeslot, index) => (
             <div key={index}>
               <label htmlFor={`timeslot-${index}`}>Timeslot {index + 1}</label>
@@ -111,6 +109,7 @@ const DoctorForm = () => {
               />
             </div>
           ))}
+          
           <button type="button" onClick={addTimeslot}>Add Timeslot</button>
           <button type="submit">{doctorId === 'new' ? 'Add Doctor' : 'Save Changes'}</button>
         </form>

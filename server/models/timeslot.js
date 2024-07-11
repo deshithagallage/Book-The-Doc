@@ -33,4 +33,5 @@ const timeslotSchema = new mongoose.Schema({
   },
 });
 
+
 module.exports = mongoose.model('Timeslot', timeslotSchema);

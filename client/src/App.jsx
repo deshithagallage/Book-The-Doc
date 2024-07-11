@@ -21,6 +21,7 @@ import AppointmentCalendar from "./pages/Dashboard/Center/AppointmentCalendar";
 import UsersList from "./pages/Dashboard/Center/UsersList";
 import DoctorManagement from "./pages/Dashboard/Center/DoctorManagement";
 import DoctorForm from "./pages/Dashboard/Center/DoctorForm";
+import DoctorAdd from "./pages/Dashboard/Center/AddDoctor";
 
 import FindDoc from "./pages/FindDoc/FindDoc";
 import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist/cardiologist";
@@ -75,7 +76,7 @@ function App() {
           />
           <Route
             path="/dashboard/center/doctors/new"
-            element={<DoctorForm />}
+            element={<DoctorAdd />}
           />
         </Route>
 
