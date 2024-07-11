@@ -3,7 +3,6 @@ const { createTimeslot, getTimeslotsByDoctor } = require('../controllers/timeslo
 const auth = require('../middleware/auth');
 const authorize = require('../middleware/authorize');
 const router = express.Router();
-console.log('timeslotRoutes.js');
 
 router.post('/', auth, authorize(['medicalCenter']), createTimeslot);
 router.get('/doctor/:doctorId', auth, authorize(['patient', 'medicalCenter']), getTimeslotsByDoctor);
