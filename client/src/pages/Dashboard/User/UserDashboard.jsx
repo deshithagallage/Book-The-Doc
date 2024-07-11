@@ -114,11 +114,6 @@ const UserDashboard = () => {
                   />
                 </div>
               </div>
-              {/* <Link to="/find-doctor">
-                <button className={styles["find-doc-button"]}>
-                  Find a Doctor
-                </button>
-              </Link> */}
             </div>
             <div className={styles.appointments}>
               <div className={styles.appointmentsSection}>
