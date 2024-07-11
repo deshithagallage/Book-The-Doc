@@ -42,6 +42,9 @@ function Pediatrician() {
       })
       .then((res) => {
         setAppointmentSlots(res.data);
+        if(res.data.length === 0){
+          alert("No available slots");
+        }
         console.log(res.data);
       })
       .catch((err) => {
@@ -169,7 +172,7 @@ function Pediatrician() {
                         }`}
                         onClick={() => handleSlotClick(slot)}
                       >
-                        {slot.startTime} - {slot.endTime}
+                        {slot.startTime} - {slot.endTime}   :   {slot.channellingCenterName}
                       </button>
                     </li>
                   ))}
