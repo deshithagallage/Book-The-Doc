@@ -33,7 +33,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="w-full">
+    <header className="w-full fixed top-0 left-0 z-10">
       <div className="w-full h-full flex flex-col items-center">
         <nav className="w-full h-16 flex justify-between items-center px-6 bg-blue-200 text-blue-500">
           <Link to="/">
@@ -47,14 +47,12 @@ const Navbar = () => {
           </Link>
           <ul className="flex h-[60px] justify-between items-end pb-3 text-lg tracking-widest font-semibold">
             <NavListItem text="Home" href="/" />
-            {/* If user is logged in, show dashboard link */}
             {isLoggedIn && (
               <NavListItem
                 text="Dashboard"
                 href={`/dashboard/${userRole === "patient" ? "user" : "center"}`}
               />
             )}
-
             <NavListItem text="Doctors" href="/find-doctor" />
             <NavListItem text="About" />
             <NavListItem text="Contact" />

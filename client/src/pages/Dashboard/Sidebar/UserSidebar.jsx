@@ -1,13 +1,12 @@
-/* eslint-disable no-unused-vars */
-
-import "./Sidebar.css";
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
+
+import styles from "./Sidebar.module.css";
 
 const UserSidebar = () => {
   return (
     <div>
-      <div className="sidebar">
+      <div className={styles.sidebar}>
         <ul>
           <li>
             <Link to="/dashboard/user">Dashboard</Link>

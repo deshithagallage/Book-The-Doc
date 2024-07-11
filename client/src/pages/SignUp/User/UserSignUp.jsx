@@ -59,7 +59,7 @@ function UserSignUp() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center">
+    <div className="w-full h-screen flex flex-col items-center pt-12">
       <Navbar />
       <div className="w-1/2 h-hull mt-7 flex justify-center items-center">
         <div className="w-1/2 h-full bg-blue-500 bg-opacity-70 rounded-l-xl">
@@ -127,7 +127,7 @@ function UserSignUp() {
                     type="date"
                     value={dob}
                     onChange={(e) => setDob(e.target.value)}
-                    label="dob"
+                    label="Date of Birth"
                   />
                 </div>
               </div>

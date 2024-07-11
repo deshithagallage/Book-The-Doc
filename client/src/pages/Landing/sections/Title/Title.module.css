@@ -33,13 +33,13 @@
 }
 
 .title {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 60%;
     align-items: left;
     padding-left: 4rem;
     box-sizing: border-box;
-    z-index: 1;
     gap: 1rem;
 }
 
@@ -72,12 +72,12 @@
 }
 
 .image {
+    position: relative;
     width: 40%;
     padding-right: 4rem;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    z-index: 1;
 }
 
 .image img {

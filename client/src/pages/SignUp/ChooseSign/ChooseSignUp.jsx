@@ -17,7 +17,7 @@ function ChooseSignUp() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center">
+    <div className="w-full h-screen flex flex-col items-center pt-16">
       <Navbar />
       <h1 className="text-3xl font-bold mt-16 mb-4">
         Choose Your Account Type
