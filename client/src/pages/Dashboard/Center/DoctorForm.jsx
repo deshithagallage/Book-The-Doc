@@ -4,7 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Axios from 'axios'; // Import Axios for making HTTP requests
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './DoctorForm.module.css'; // Import CSS module
-
+import Cookies from 'js-cookie';
+import Navbar from '../../../components/Navbar/Navbar.jsx';
 const DoctorForm = () => {
   const { doctorId } = useParams();
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const DoctorForm = () => {
   });
 
   
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTimeslotFormData({ ...timeslotFormData, [name]: value });
@@ -25,19 +27,29 @@ const DoctorForm = () => {
   const addTimeslot = async () => {
     try {
       const newTimeslot = {
-      
         date: timeslotFormData.date,
         startTime: timeslotFormData.startTime,
         endTime: timeslotFormData.endTime,
         maxPatients: parseInt(timeslotFormData.maxPatients),
       };
 
-      // Send POST request to API endpoint
-      const response = await Axios.post(`http://localhost:3000/api/timeslots/${doctorId}`, newTimeslot);
+      // Configure headers with x-auth-token
+      const config = {
+        headers: {
+          "x-auth-token": Cookies.get("token"),
+        },
+      };
+
+      // Send POST request to API endpoint with headers
+      const response = await Axios.post(
+        `http://localhost:3000/api/timeslots/${doctorId}`,
+        newTimeslot,
+        config
+      );
+
       console.log('Timeslot added:', response.data); // Log the response data for verification
 
-      // Update state or UI as needed
-      setDoctor({ ...doctor, timeslots: [...doctor.timeslots, `${timeslotFormData.startTime} - ${timeslotFormData.endTime}`] });
+     
     } catch (error) {
       console.error('Error adding timeslot:', error);
       // Handle error gracefully, e.g., show a notification to the user
@@ -51,12 +63,15 @@ const DoctorForm = () => {
   };
 
   return (
+    <div>
+      <Navbar />
+    
     <div className={styles.doctorForm}>
       <CenterSidebar />
       <div className={styles.content}>
-        <h1>Edit Doctor</h1>
+        <h1>Add TimeSlot</h1>
         <form className={styles.formStyle} onSubmit={handleSubmit}>
-          
+         
           <div>
             <label htmlFor="date">Date</label>
             <input type="date" id="date" name="date" value={timeslotFormData.date} onChange={handleInputChange} required />
@@ -73,10 +88,11 @@ const DoctorForm = () => {
             <label htmlFor="maxPatients">Max Patients</label>
             <input type="number" id="maxPatients" name="maxPatients" value={timeslotFormData.maxPatients} onChange={handleInputChange} required />
           </div>
-          <button type="button" onClick={addTimeslot}>Add Timeslot</button>
-          <button type="submit">Save Changes</button>
+          <button type="button" onClick={addTimeslot}>Save Changes</button>
+         
         </form>
       </div>
+    </div>
     </div>
   );
 };
