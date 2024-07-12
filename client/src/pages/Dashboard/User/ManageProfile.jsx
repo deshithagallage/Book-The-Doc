@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import UserSidebar from "../Sidebar/UserSidebar.jsx";
-import styles from "./ManageProfile.module.css"; // Updated import
+import styles from "./ManageProfile.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
 import PrimaryInput from "../../../components/PrimaryInput/PrimaryInput.jsx";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
+
+import profilePic from "../../../assets/UserProfilePic.jpg";
 
 const ManageProfile = () => {
   const token = Cookies.get("token");
@@ -94,7 +96,7 @@ const ManageProfile = () => {
         <div className="w-[83%] h-full my-24 flex justify-center items-center">
           <div className="w-1/2 p-10 pr-0 flex justify-end">
             <img
-              src="https://thumbs.wbm.im/pw/small/39573f81d4d58261e5e1ed8f1ff890f6.jpg"
+              src={profilePic}
               alt="Profile"
               className="w-4/5 h-[550px] object-cover rounded-2xl shadow-2xl"
             />
