@@ -1,5 +1,6 @@
 .addDoctorForm {
-    max-width: 400px;
+    
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -8,12 +9,20 @@
 }
 
 .formGroup {
+
+   width: 80%;
     margin-bottom: 15px;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
+}
+.Form{
+    padding-left: 10rem;
+    justify-items: center;
+    width: 100%;
+    background-color: #f9f9f9;
 }
 
 input[type="text"],
@@ -23,24 +32,29 @@ select {
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 3px;
+    background-color: #ccc;
 }
 
-button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    font-size: 16px;
-    cursor: pointer;
+
+
+
+.Cancel {
+    background-color: #ea4335;
+    color: white;
+    padding: 15px 15px;
     border: none;
-    border-radius: 3px;
-    background-color: #007bff;
-    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
 
-.buttonGroup {
-    margin-top: 15px;
-    text-align: right;
+.Save {
+    background-color: #09d806;
+    color: white;
+    padding: 15px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
 }
