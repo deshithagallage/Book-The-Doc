@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import UserSidebar from "../Sidebar/UserSidebar.jsx";
-import styles from "./UpcomingAppointments.module.css"; // Updated import
 import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 const UpcomingAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const token = Cookies.get("token");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -19,9 +20,19 @@ const UpcomingAppointments = () => {
       })
       .then((res) => {
         setAppointments(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response && err.response.status === 401) {
+          Cookies.remove("token");
+          Cookies.remove("userRole");
+          Cookies.remove("userId");
+          console.log(err.response.status);
+          window.location.reload();
+        } else {
+          console.log(err);
+          setIsLoading(false);
+        }
       });
   }, [token]);
 
@@ -62,7 +73,12 @@ const UpcomingAppointments = () => {
         <div className="w-[83%] h-full my-16 py-14 px-10 flex flex-col justify-center items-center">
           <h1 className="text-4xl font-bold mb-7">Upcoming Appointments</h1>
           <div className="w-5/6 h-full">
-            {Object.keys(medicalCentersAppointments).length > 0 ? (
+            {isLoading ? (
+              <div className="flex justify-center items-center h-full gap-x-4 font-semibold text-lg">
+                <LoadingSpinner />
+                <p>Appoinments Loading...</p>
+              </div>
+            ) : Object.keys(medicalCentersAppointments).length > 0 ? (
               Object.keys(medicalCentersAppointments).map((medicalCenter) => (
                 <div key={medicalCenter} className="flex flex-col gap-y-3">
                   <h1 className="text-2xl font-bold text-start">

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import UserSidebar from "../Sidebar/UserSidebar.jsx";
-import styles from "./ManageProfile.module.css"; // Updated import
 import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
@@ -38,12 +37,19 @@ const ManageProfile = () => {
       })
       .then((res) => {
         setAppointments(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response && err.response.status === 401) {
+          Cookies.remove("token");
+          Cookies.remove("userRole");
+          Cookies.remove("userId");
+          console.log(err.response.status);
+          window.location.reload();
+        } else {
+          console.log(err);
+        }
       });
-  }, []);
+  }, [token]);
 
   const [isEditing, setIsEditing] = useState(false);
 
