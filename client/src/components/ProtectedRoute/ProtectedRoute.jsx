@@ -15,9 +15,10 @@ const ProtectedRoute = ({ role }) => {
         content={
           <div className="w-96 h-64 flex flex-col justify-center items-center">
             <p className="text-xl font-bold mb-8">
-              You Can't Access This Page <br />
-              Please Login or <br />
-              Create an Account.
+              You cannot access this page, <br />
+              Your Toker is Expired or Invalid <br />
+              Please Login or Register <br />
+              to Continue
             </p>
             <div className="flex p-4 space-x-4 justify-center">
               <div className="w-24 h-10">
