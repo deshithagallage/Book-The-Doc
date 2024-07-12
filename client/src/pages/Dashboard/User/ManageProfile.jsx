@@ -13,6 +13,11 @@ const ManageProfile = () => {
   const token = Cookies.get("token");
   const [user, setUser] = useState({});
   const [appointments, setAppointments] = useState([]);
+  const [tempName, setTempName] = useState({});
+  const [tempEmail, setTempEmail] = useState({});
+  const [tempDob, setTempDob] = useState({});
+  const [tempPhone, setTempPhone] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     axios
@@ -53,14 +58,11 @@ const ManageProfile = () => {
       });
   }, [token]);
 
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
   const handleEdit = () => {
+    setTempName(user.name);
+    setTempEmail(user.email);
+    setTempDob(user.dob);
+    setTempPhone(user.phone);
     setIsEditing(true);
   };
 
@@ -71,6 +73,10 @@ const ManageProfile = () => {
 
   const handleCancel = () => {
     // Add cancel logic here (e.g., revert to original user details)
+    setTempName(user.name);
+    setTempEmail(user.email);
+    setTempDob(user.dob);
+    setTempPhone(user.phone);
     setIsEditing(false);
   };
 
@@ -115,8 +121,8 @@ const ManageProfile = () => {
                   <div className="relative mb-4">
                     <PrimaryInput
                       type="text"
-                      value={user.name}
-                      onChange={handleChange}
+                      value={tempName}
+                      onChange={(e) => setTempName(e.target.value)}
                       label="Name"
                       bgColor="bg-blue-100"
                     />
@@ -124,8 +130,8 @@ const ManageProfile = () => {
                   <div className="relative mb-4">
                     <PrimaryInput
                       type="email"
-                      value={user.email}
-                      onChange={handleChange}
+                      value={tempEmail}
+                      onChange={(e) => setTempEmail(e.target.value)}
                       label="Email"
                       bgColor="bg-blue-100"
                     />
@@ -133,8 +139,8 @@ const ManageProfile = () => {
                   <div className="relative mb-4">
                     <PrimaryInput
                       type="date"
-                      value={user.dob}
-                      onChange={handleChange}
+                      value={tempDob}
+                      onChange={(e) => setTempDob(e.target.value)}
                       label="Date of Birth"
                       bgColor="bg-blue-100"
                     />
@@ -142,8 +148,8 @@ const ManageProfile = () => {
                   <div className="relative mb-4">
                     <PrimaryInput
                       type="text"
-                      value={user.phone}
-                      onChange={handleChange}
+                      value={tempPhone}
+                      onChange={(e) => setTempPhone(e.target.value)}
                       label={"Phone"}
                       bgColor="bg-blue-100"
                     />

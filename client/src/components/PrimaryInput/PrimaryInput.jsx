@@ -3,6 +3,7 @@ import "./PrimaryInput.css";
 
 const PrimaryInput = ({
   type,
+  name,
   value,
   onChange,
   label,
@@ -12,6 +13,7 @@ const PrimaryInput = ({
     <div>
       <input
         type={type}
+        name={name}
         placeholder=" "
         className={`floating-label-input w-full h-10 rounded-md ${bgColor} opacity-80 px-3 drop-shadow-lg`}
         value={value}
