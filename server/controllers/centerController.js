@@ -32,15 +32,16 @@ const createAppoinmentList = async (appointments, doctor=null) =>{
 
 const getCountAppointmentsTodayForCenter = async (req, res) => {
     const centerId = req.user.id;
-    const today = new Date().setHours(0, 0, 0, 0);
-  
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+
     try {
       const count = await Appointment.countDocuments({
         channellingCenter: centerId,
-        date: {
-          $gte: new Date(today),
-          $lt: new Date(today + 24 * 60 * 60 * 1000)
-        }
+        date: { $gte: today, $lt: tomorrow }
       });
       res.json({ count });
     } catch (error) {
@@ -51,15 +52,16 @@ const getCountAppointmentsTodayForCenter = async (req, res) => {
   
 const getAppointmentsTodayForCenter = async (req, res) => {
     const centerId = req.user.id;
-    const today = new Date().setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    
     try {
         const appointments = await Appointment.find({
         channellingCenter: centerId,
-        date: {
-            $gte: new Date(today),
-            $lt: new Date(today + 24 * 60 * 60 * 1000)
-        }
+        date: { $gte: today, $lt: tomorrow }
         }).populate('timeslot');
         res.json(appointments);
         } catch (error) {
@@ -69,14 +71,12 @@ const getAppointmentsTodayForCenter = async (req, res) => {
 
 
 const getCountUpcomingAppointments = async (req, res) => {
-    const today = new Date();
     const centerId = req.user.id;
   
     try {
         const count = await Appointment.countDocuments({
         channellingCenter: centerId,    
         status: 'upcoming',
-        date: { $gte: today },
         timeslot: {
           $in: await Timeslot.find({ channellingCenter: centerId }).distinct('_id')
         }
@@ -90,14 +90,12 @@ const getCountUpcomingAppointments = async (req, res) => {
 
 
 const getUpcomingAppointments = async (req, res) => {
-    const today = new Date();
     const centerId = req.user.id;
   
     try {
       const count = await Appointment.find({
         channellingCenter: centerId,
         status: 'upcoming',
-        date: { $gte: today },
         timeslot: {
           $in: await Timeslot.find({ channellingCenter: centerId }).distinct('_id')
         }
@@ -123,14 +121,18 @@ const getCountDoctorsForCenter = async (req, res) => {
 
 // Error
 const getDoctorsForCenter = async (req, res) => {
-    const centerId = req.params.centerId;
+  const centerId = req.user.id;
 
-    try {
-        const doctors = await Doctor.find({ channellingCenter: centerId });
-        res.json(doctors);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+  try {
+    const center = await MedicalCenter.findById(centerId).populate('doctors');
+    if (!center) {
+      return res.status(404).json({ message: 'Medical center not found' });
     }
+
+    res.json(center.doctors);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 const getMedicalCenterDetails = async (req, res) => {
