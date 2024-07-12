@@ -39,7 +39,10 @@ const DoctorManagement = () => {
                     <li key={index}>{slot}</li>
                   ))}
                 </ul>
-                <button className={styles.Edit} onClick={() => handleEditDoctor(doctor.id)}>
+                <button
+                  className={styles.Edit}
+                  onClick={() => handleEditDoctor(doctor.id)}
+                >
                   Edit
                 </button>
               </div>

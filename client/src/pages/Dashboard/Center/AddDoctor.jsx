@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
 import styles from "./AddDoctor.module.css"; // Import the CSS module
-import Navbar from '../../../components/Navbar/Navbar.jsx';
-import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-
+import Navbar from "../../../components/Navbar/Navbar.jsx";
+import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 
 const AddDoctor = () => {
   const token = Cookie.get("token");
@@ -70,11 +69,9 @@ const AddDoctor = () => {
           <CenterSidebar />
         </div>
         <div className="w-[83%] h-full my-24 flex flex-col justify-center items-center">
-          
           <form className={styles.Form} onSubmit={handleSubmit}>
-          
             <div className={styles.formGroup}>
-            <h2 className={styles.h2tag}>Add New Doctor</h2>
+              <h2 className={styles.h2tag}>Add New Doctor</h2>
               <label htmlFor="name">Name:</label>
               <input
                 type="text"
@@ -128,12 +125,19 @@ const AddDoctor = () => {
               </select>
 
               <div className={styles.buttonContainer}>
-              <button className={styles.Save} type="submit">Save</button>
-              <br />
-              <button className={styles.Cancel} type="button" onClick={handleCancel}>Cancel</button>
+                <button className={styles.Save} type="submit">
+                  Save
+                </button>
+                <br />
+                <button
+                  className={styles.Cancel}
+                  type="button"
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-            </div>
-
           </form>
         </div>
       </div>
