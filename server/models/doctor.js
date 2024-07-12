@@ -16,7 +16,7 @@ const doctorSchema = new mongoose.Schema({
   gender: {
     type: String,
     required: true,
-  }
+  },
 });
 
 module.exports = mongoose.model("Doctor", doctorSchema);

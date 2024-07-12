@@ -2,11 +2,13 @@
 
 .doctorManagement {
   display: flex;
+  
 }
 
 .content {
-  flex-grow: 1;
-  padding: 20px;
+  flex:content;
+  padding: 5rem;
+  padding-left: 18rem;
   background-color: #f9f9f9;
 }
 
@@ -32,6 +34,7 @@ h1 {
 
 .doctorCard h2 {
   margin: 0 0 10px;
+  font-size:large;
 }
 
 .doctorCard ul {
@@ -47,8 +50,8 @@ h1 {
   margin-bottom: 5px;
 }
 
-button {
-  background-color: #007bff;
+.Edit {
+  background-color: #0abfed;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -57,21 +60,34 @@ button {
   margin-top: 10px;
 }
 
-button:hover {
+.Edit:hover {
   background-color: #0056b3;
 }
-
-.addDoctor {
-  background-color: #28a745;
+.addDoctor{
+  background-color: #09d806;
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
-  display: block;
+  margin-top: 10px;
 }
+.addDoctor:hover {
+  background-color: #09d806;
+}
+.addDoctorForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+
+  
+}
+
 
 .addDoctor:hover {
   background-color: #218838;
+  
 }
