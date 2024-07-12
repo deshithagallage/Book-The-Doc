@@ -65,11 +65,14 @@ const DoctorForm = () => {
   return (
     <div>
       <Navbar />
+      <div className="flex w-full h-full">
+        <div className="w-[17%] h-full">
+          <CenterSidebar />
+        </div>
+        <div className="w-[83%] h-full my-24 flex flex-col justify-center items-center">
     
-    <div className={styles.doctorForm}>
-      <CenterSidebar />
-      <div className={styles.content}>
-        <h1>Add TimeSlot</h1>
+     
+        <h1 className={styles.hitag}>Add TimeSlot</h1>
         <form className={styles.formStyle} onSubmit={handleSubmit}>
          
           <div>
