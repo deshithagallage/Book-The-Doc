@@ -5,7 +5,7 @@ import styles from "./UserDashboard.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar";
-
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner.jsx";
 import profilePic from "../../../assets/UserProfilePic.jpg";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
 
@@ -13,6 +13,7 @@ const UserDashboard = () => {
   const [user, setUser] = useState({});
   const token = Cookies.get("token");
   const [appointments, setAppointments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -39,12 +40,21 @@ const UserDashboard = () => {
       })
       .then((res) => {
         setAppointments(res.data);
-        console.log(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response && err.response.status === 401) {
+          Cookies.remove("token");
+          Cookies.remove("userRole");
+          Cookies.remove("userId");
+          console.log(err.response.status);
+          window.location.reload();
+        } else {
+          console.log(err);
+          setIsLoading(false);
+        }
       });
-  }, []);
+  }, [token]);
 
   const upcomingAppointments = appointments.filter(
     (appointment) => appointment.status === "upcoming"
@@ -118,7 +128,12 @@ const UserDashboard = () => {
             <div className={styles.appointments}>
               <div className={styles.appointmentsSection}>
                 <h2>Upcoming Appointments</h2>
-                {upcomingAppointments.length > 0 ? (
+                {isLoading ? (
+                  <div className="flex justify-center items-center h-full gap-x-4 font-semibold text-lg">
+                    <LoadingSpinner />
+                    <p>Appoinments Loading...</p>
+                  </div>
+                ) : upcomingAppointments.length > 0 ? (
                   <ul>
                     {upcomingAppointments.slice(0, 3).map((appointment) => (
                       <li key={appointment._id} className={styles.upcoming}>
@@ -149,7 +164,12 @@ const UserDashboard = () => {
               </div>
               <div className={styles.appointmentsSection}>
                 <h2>Past Appointments</h2>
-                {pastAppointments.length > 0 ? (
+                {isLoading ? (
+                  <div className="flex justify-center items-center h-full gap-x-4 font-semibold text-lg">
+                    <LoadingSpinner />
+                    <p>Appoinments Loading...</p>
+                  </div>
+                ) : pastAppointments.length > 0 ? (
                   <ul>
                     {pastAppointments.slice(0, 3).map((appointment) => (
                       <li key={appointment._id} className={styles.past}>
