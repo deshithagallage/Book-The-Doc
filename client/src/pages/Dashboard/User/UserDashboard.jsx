@@ -120,20 +120,24 @@ const UserDashboard = () => {
                 <h2>Upcoming Appointments</h2>
                 {upcomingAppointments.length > 0 ? (
                   <ul>
-                    {/* mul thuna witharak map krnn */}
                     {upcomingAppointments.slice(0, 3).map((appointment) => (
                       <li key={appointment._id} className={styles.upcoming}>
-                        <p>
-                          <strong>Doctor:</strong> {appointment.doctor}
-                        </p>
-                        <p>
-                          <strong>Date:</strong>{" "}
-                          {formatDate(appointment.date, 0)}
-                        </p>
-                        <p>
-                          <strong>Time:</strong>{" "}
-                          {formatDate(appointment.date, 1)}
-                        </p>
+                        <div className={styles.queueNumber}>
+                          <span>{appointment.queueNumber}</span>
+                        </div>
+                        <div className={styles.details}>
+                          <p>
+                            <strong>Doctor:</strong> {appointment.doctor}
+                          </p>
+                          <p>
+                            <strong>Date:</strong>{" "}
+                            {formatDate(appointment.date, 0)}
+                          </p>
+                          <p>
+                            <strong>Time:</strong>{" "}
+                            {formatDate(appointment.date, 1)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -149,17 +153,22 @@ const UserDashboard = () => {
                   <ul>
                     {pastAppointments.slice(0, 3).map((appointment) => (
                       <li key={appointment._id} className={styles.past}>
-                        <p>
-                          <strong>Doctor:</strong> {appointment.doctor}
-                        </p>
-                        <p>
-                          <strong>Date:</strong>{" "}
-                          {formatDate(appointment.date, 0)}
-                        </p>
-                        <p>
-                          <strong>Time:</strong>{" "}
-                          {formatDate(appointment.date, 1)}
-                        </p>
+                        <div className={styles.queueNumber}>
+                          <span>{appointment.queueNumber}</span>
+                        </div>
+                        <div className={styles.details}>
+                          <p>
+                            <strong>Doctor:</strong> {appointment.doctor}
+                          </p>
+                          <p>
+                            <strong>Date:</strong>{" "}
+                            {formatDate(appointment.date, 0)}
+                          </p>
+                          <p>
+                            <strong>Time:</strong>{" "}
+                            {formatDate(appointment.date, 1)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>

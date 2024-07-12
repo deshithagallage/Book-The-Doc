@@ -95,9 +95,32 @@
 }
 
 .appointmentsSection li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
   padding: 0.5rem;
   box-sizing: border-box;
+}
+
+.queueNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  margin-right: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
 }
 
 .upcoming {
