@@ -58,6 +58,7 @@ const registerCenter = async (req, res) => {
     city,
     zipCode,
     phone,
+    doctors: [],
   } = req.body;
 
   try {

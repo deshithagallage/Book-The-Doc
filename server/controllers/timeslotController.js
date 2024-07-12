@@ -1,5 +1,6 @@
 const Timeslot = require('../models/timeslot');
 const MedicalCenter = require('../models/center');
+const Doctor = require('../models/doctor');
 
 // Create a timeslot
 const createTimeslot = async (req, res) => {
@@ -40,4 +41,20 @@ const getTimeslotsByDoctor = async (req, res) => {
   }
 };
 
-module.exports = { createTimeslot, getTimeslotsByDoctor };
+const getDoctorsByCenter = async (req, res) => {
+  const centerId = req.user.id;
+
+  try {
+    const center = await MedicalCenter.findById(centerId).populate('doctors');
+    if (!center) {
+      return res.status(404).json({ message: 'Channelling center not found' });
+    }
+
+    res.json(center.doctors);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+module.exports = { createTimeslot, getTimeslotsByDoctor, getDoctorsByCenter };

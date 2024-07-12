@@ -1,6 +1,5 @@
 const Doctor = require("../models/doctor");
-const Hospital = require("../models/hospital");
-const MedicalCenter = require("../models/center");
+const ChannellingCenter  = require("../models/center");
 
 const getDoctors = async (req, res) => {
   try {
@@ -46,6 +45,7 @@ const getDoctorsBySpecialization = async (req, res) => {
 
 const addDoctor = async (req, res) => {
   const { name, specialization, qualifications, gender } = req.body;
+  centerId = req.user.id;
   try {
     const newDoctor = new Doctor({
       name,
@@ -54,11 +54,22 @@ const addDoctor = async (req, res) => {
       gender
     });
     await newDoctor.save();
+
+    const center = await ChannellingCenter.findById(centerId);
+    if (!center) {
+      return res.status(404).json({ message: 'Channelling center not found' });
+    }
+
+    center.doctors.push(newDoctor);
+    await center.save();
+
     res.status(201).json(newDoctor);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+
 
 module.exports = {
   getDoctors,

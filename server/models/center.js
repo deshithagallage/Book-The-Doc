@@ -34,6 +34,10 @@ const medicalCenterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  doctors: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'doctor',
+  }],
   role: {
     type: String,
     default: "medicalCenter",
