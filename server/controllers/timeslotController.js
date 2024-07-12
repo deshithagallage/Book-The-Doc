@@ -1,11 +1,13 @@
 const Timeslot = require('../models/timeslot');
+const MedicalCenter = require('../models/center');
 
 // Create a timeslot
 const createTimeslot = async (req, res) => {
   const { doctor, date, startTime, endTime, maxPatients } = req.body;
-  channellingCenter = req.user.id;
+  const channellingCenter = await MedicalCenter.findById(req.user.id);
+  const channellingCenterName = channellingCenter.name;
+  const channellingCenterId = channellingCenter._id;
   console.log(channellingCenter);
-
   try {
     const timeslot = new Timeslot({
       doctor,
@@ -13,7 +15,9 @@ const createTimeslot = async (req, res) => {
       startTime,
       endTime,
       maxPatients,
-      channellingCenter,
+      bookedPatients: [],
+      channellingCenter: channellingCenterId,
+      channellingCenterName,
     });
 
     await timeslot.save();

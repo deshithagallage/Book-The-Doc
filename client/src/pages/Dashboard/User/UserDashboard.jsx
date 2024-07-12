@@ -6,7 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner.jsx";
-import profilePic from "../../../assets/UserProfilePic.png";
+import profilePic from "../../../assets/UserProfilePic.jpg";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
 
 const UserDashboard = () => {
@@ -96,7 +96,7 @@ const UserDashboard = () => {
                   alt="User Profile"
                   className={styles.circleImg}
                 />
-                <div className={styles.details}>
+                <div className={styles.userDetails}>
                   <p>
                     <strong>Name:</strong> {user.name}
                   </p>
@@ -124,11 +124,6 @@ const UserDashboard = () => {
                   />
                 </div>
               </div>
-              {/* <Link to="/find-doctor">
-                <button className={styles["find-doc-button"]}>
-                  Find a Doctor
-                </button>
-              </Link> */}
             </div>
             <div className={styles.appointments}>
               <div className={styles.appointmentsSection}>
@@ -140,20 +135,24 @@ const UserDashboard = () => {
                   </div>
                 ) : upcomingAppointments.length > 0 ? (
                   <ul>
-                    {/* mul thuna witharak map krnn */}
                     {upcomingAppointments.slice(0, 3).map((appointment) => (
                       <li key={appointment._id} className={styles.upcoming}>
-                        <p>
-                          <strong>Doctor:</strong> {appointment.doctor}
-                        </p>
-                        <p>
-                          <strong>Date:</strong>{" "}
-                          {formatDate(appointment.date, 0)}
-                        </p>
-                        <p>
-                          <strong>Time:</strong>{" "}
-                          {formatDate(appointment.date, 1)}
-                        </p>
+                        <div className={styles.queueNumber}>
+                          <span>{appointment.queueNumber}</span>
+                        </div>
+                        <div className={styles.details}>
+                          <p>
+                            <strong>Doctor:</strong> {appointment.doctor}
+                          </p>
+                          <p>
+                            <strong>Date:</strong>{" "}
+                            {formatDate(appointment.date, 0)}
+                          </p>
+                          <p>
+                            <strong>Time:</strong>{" "}
+                            {formatDate(appointment.date, 1)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -174,17 +173,22 @@ const UserDashboard = () => {
                   <ul>
                     {pastAppointments.slice(0, 3).map((appointment) => (
                       <li key={appointment._id} className={styles.past}>
-                        <p>
-                          <strong>Doctor:</strong> {appointment.doctor}
-                        </p>
-                        <p>
-                          <strong>Date:</strong>{" "}
-                          {formatDate(appointment.date, 0)}
-                        </p>
-                        <p>
-                          <strong>Time:</strong>{" "}
-                          {formatDate(appointment.date, 1)}
-                        </p>
+                        <div className={styles.queueNumber}>
+                          <span>{appointment.queueNumber}</span>
+                        </div>
+                        <div className={styles.details}>
+                          <p>
+                            <strong>Doctor:</strong> {appointment.doctor}
+                          </p>
+                          <p>
+                            <strong>Date:</strong>{" "}
+                            {formatDate(appointment.date, 0)}
+                          </p>
+                          <p>
+                            <strong>Time:</strong>{" "}
+                            {formatDate(appointment.date, 1)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
