@@ -3,7 +3,7 @@
 import React from 'react';
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './Appointments.module.css';
-
+import Navbar from '../../../components/Navbar/Navbar.jsx';
 const Appointments = () => {
   const ongoingAppointment = {
     patientName: "John Doe",
@@ -23,7 +23,10 @@ const Appointments = () => {
   ];
 
   return (
-    <div className={styles.appointments}>
+
+   <div>
+    <Navbar/>
+     <div className={styles.appointments}>
       <CenterSidebar />
       <div className={styles.content}>
         <h1>Appointments</h1>
@@ -63,6 +66,7 @@ const Appointments = () => {
         </div>
       </div>
     </div>
+   </div>
   );
 };
 
