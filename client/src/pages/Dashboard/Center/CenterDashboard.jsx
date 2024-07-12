@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 import styles from "./CenterDashboard.module.css";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
 import profilePic from "../../../assets/CenterProfilePic.png";
 
 const CenterDashboard = () => {
+  const token = Cookies.get("token");
   // Dummy data (replace with actual data fetching)
-  const [center, setCenter] = useState({
-    name: "Med Bay",
-    email: "med@gmail.com",
-    medicalNumber: "123456",
-    contact: "+1 234 567 8901",
-    district: "Colombo",
-    city: "Moratuwa",
-  });
-  const [doctorsCount, setDoctorsCount] = useState(24);
-  const [todayAppointmentsCount, setTodayAppointmentsCount] = useState(40);
+  const [center, setCenter] = useState({});
+  const [doctorsCount, setDoctorsCount] = useState();
+  const [todayAppointmentsCount, setTodayAppointmentsCount] = useState();
   const [todayTimeslotsCount, setTodayTimeslotsCount] = useState(10);
   const [timeSlots, setTimeSlots] = useState([
     {
@@ -37,14 +33,71 @@ const CenterDashboard = () => {
       maxPatientCount: 20,
     },
   ]);
-  const [doctors, setDoctors] = useState([
-    { _id: 1, doctor: "Dr. Sanjula Haritha", specialization: "General" },
-    { _id: 1, doctor: "Dr. Haritha Sanjula", specialization: "Dentist" },
-    { _id: 1, doctor: "Dr. Chirath Sanjana", specialization: "Cardiologist" },
-    { _id: 1, doctor: "Dr. Sanjana Chirath", specialization: "Pediatrician" },
-    { _id: 1, doctor: "Dr. Yoshan Haritha", specialization: "General" },
-    { _id: 1, doctor: "Dr. Halow Halow", specialization: "General" },
-  ]);
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/centers/appointments/today/count", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTodayAppointmentsCount(res.data.count);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/centers/doctors/count", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setDoctorsCount(res.data.count);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/centers/doctors", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setDoctors(res.data);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/centers/details", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setCenter(res.data);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -76,7 +129,7 @@ const CenterDashboard = () => {
                     <strong>Medical Number:</strong> {center.medicalNumber}
                   </p>
                   <p>
-                    <strong>Phone Number:</strong> {center.contact}
+                    <strong>Phone Number:</strong> {center.phone}
                   </p>
                   <p>
                     <strong>District:</strong> {center.district}
@@ -134,8 +187,8 @@ const CenterDashboard = () => {
                     {doctors.slice(0, 5).map((doctor) => (
                       <li key={doctor._id} className={styles.past}>
                         <p>
-                          <strong>{doctor.doctor}</strong> (
-                          {doctor.specialization})
+                          <strong>{doctor.name}</strong> (
+                          {doctor.specialization}, {doctor.qualifications})
                         </p>
                       </li>
                     ))}
