@@ -88,7 +88,7 @@ const DoctorForm = () => {
             <label htmlFor="maxPatients">Max Patients</label>
             <input type="number" id="maxPatients" name="maxPatients" value={timeslotFormData.maxPatients} onChange={handleInputChange} required />
           </div>
-          <button type="button" onClick={addTimeslot}>Save Changes</button>
+          <button className={styles.save} type="button" onClick={addTimeslot}>Save Changes</button>
          
         </form>
       </div>
