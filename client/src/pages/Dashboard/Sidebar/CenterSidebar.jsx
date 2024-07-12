@@ -19,7 +19,7 @@ const CenterSidebar = () => {
           <Link to="/dashboard/center/users-list">Patients List</Link>
         </li>
         <li>
-          <Link to="/dashboard/center/appointments">Appointments</Link>
+          <Link to="/dashboard/center/appointments">Time Slots</Link>
         </li>
         <li>
           <Link to="/dashboard/center/appointment-calendar">
