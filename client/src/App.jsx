@@ -21,6 +21,7 @@ import AppointmentCalendar from "./pages/Dashboard/Center/AppointmentCalendar";
 import UsersList from "./pages/Dashboard/Center/UsersList";
 import DoctorManagement from "./pages/Dashboard/Center/DoctorManagement";
 import DoctorForm from "./pages/Dashboard/Center/DoctorForm";
+import DoctorAdd from "./pages/Dashboard/Center/AddDoctor";
 
 import FindDoc from "./pages/FindDoc/FindDoc";
 import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist/cardiologist";
@@ -74,10 +75,7 @@ function App() {
             path="/dashboard/center/doctors/edit/:doctorId"
             element={<DoctorForm />}
           />
-          <Route
-            path="/dashboard/center/doctors/new"
-            element={<DoctorForm />}
-          />
+          <Route path="/dashboard/center/doctors/new" element={<DoctorAdd />} />
         </Route>
 
         <Route path="/find-doctor" element={<FindDoc />} />
@@ -89,11 +87,10 @@ function App() {
           path="/find-doctor/pediatrician"
           element={<PediatricianPage />}
         />
-        <Route path="/find-doctor/neurologist"
-        element={<NeurologistPage />} 
-        />
-        <Route path="/find-doctor/generalDoctor"
-        element={<GeneralDoctorPage />} 
+        <Route path="/find-doctor/neurologist" element={<NeurologistPage />} />
+        <Route
+          path="/find-doctor/generalDoctor"
+          element={<GeneralDoctorPage />}
         />
       </Routes>
     </BrowserRouter>
