@@ -70,9 +70,11 @@ const AddDoctor = () => {
           <CenterSidebar />
         </div>
         <div className="w-[83%] h-full my-24 flex flex-col justify-center items-center">
-          <h2>Add New Doctor</h2>
+          
           <form className={styles.Form} onSubmit={handleSubmit}>
+          
             <div className={styles.formGroup}>
+            <h2 className={styles.h2tag}>Add New Doctor</h2>
               <label htmlFor="name">Name:</label>
               <input
                 type="text"
@@ -124,12 +126,14 @@ const AddDoctor = () => {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-            </div>
-            <div>
+
+              <div className={styles.buttonContainer}>
               <button className={styles.Save} type="submit">Save</button>
               <br />
               <button className={styles.Cancel} type="button" onClick={handleCancel}>Cancel</button>
             </div>
+            </div>
+
           </form>
         </div>
       </div>
