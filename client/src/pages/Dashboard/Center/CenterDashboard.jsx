@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 import styles from "./CenterDashboard.module.css";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
 import profilePic from "../../../assets/CenterProfilePic.png";
+import SuccessButton from "../../../components/SuccessButton/SuccessButton.jsx";
 
 const CenterDashboard = () => {
   const token = Cookies.get("token");
-  // Dummy data (replace with actual data fetching)
   const [center, setCenter] = useState({});
   const [doctorsCount, setDoctorsCount] = useState();
   const [todayAppointmentsCount, setTodayAppointmentsCount] = useState();
@@ -99,6 +100,11 @@ const CenterDashboard = () => {
       });
   }, []);
 
+  const navigate = useNavigate();
+  const handleDocButtonClick = () => {
+    navigate("/dashboard/center/doctors/new");
+  };
+
   return (
     <div>
       <Navbar />
@@ -151,6 +157,19 @@ const CenterDashboard = () => {
                 <div className={styles.card}>
                   <h3>Today Timeslots Count</h3>
                   <p>{todayTimeslotsCount}</p>
+                </div>
+              </div>
+              <div className={styles.findDoctor}>
+                <h2>Add Doctors</h2>
+                <p>
+                  Want to expand your medical team? Use the button below to add
+                  a doctor to your medical center.
+                </p>
+                <div className={styles.buttonContainer}>
+                  <SuccessButton
+                    text="Add a Doctor"
+                    onClick={handleDocButtonClick}
+                  />
                 </div>
               </div>
             </div>
