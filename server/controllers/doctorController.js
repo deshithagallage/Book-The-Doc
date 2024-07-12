@@ -1,5 +1,6 @@
 const Doctor = require("../models/doctor");
 const Hospital = require("../models/hospital");
+const MedicalCenter = require("../models/center");
 
 const getDoctors = async (req, res) => {
   try {
@@ -45,15 +46,12 @@ const getDoctorsBySpecialization = async (req, res) => {
 
 const addDoctor = async (req, res) => {
   const { name, specialization, qualifications, gender } = req.body;
-  const medicalCenter = req.user.id;
   try {
     const newDoctor = new Doctor({
       name,
       specialization,
       qualifications,
-      gender,
-      medicalCenter,
-      medicalCenterName: medicalCenter.medicalCenterName,
+      gender
     });
     await newDoctor.save();
     res.status(201).json(newDoctor);
