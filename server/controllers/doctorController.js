@@ -45,7 +45,9 @@ const getDoctorsBySpecialization = async (req, res) => {
 };
 
 const addDoctor = async (req, res) => {
+
   const { name, specialization, qualifications, gender } = req.body;
+  console.log(req.body);
   try {
     const newDoctor = new Doctor({
       name,

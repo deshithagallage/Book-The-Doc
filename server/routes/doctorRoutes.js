@@ -22,6 +22,9 @@ router.get(
   getDoctorsByHospital
 );
 router.get("/specialization/:specialization", getDoctorsBySpecialization);
+
 router.post("/adddoc", auth, authorize(["medicalCenter"]), addDoctor);
+
+
 
 module.exports = router;

@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
 import styles from "./AddDoctor.module.css"; // Import the CSS module
+import Navbar from '../../../components/Navbar/Navbar.jsx';
+import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
+
 
 const AddDoctor = () => {
   const token = Cookie.get("token");
@@ -12,6 +15,19 @@ const AddDoctor = () => {
     qualifications: "",
     gender: "",
   });
+
+  const specializations = [
+    "cardiologist",
+    "dermatologist",
+    "neurologist",
+    "pediatrician",
+    "oncologist",
+    "radiologist",
+    "psychiatrist",
+    "ophthalmology",
+    "general",
+    // Add more specializations as needed
+  ];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,63 +63,80 @@ const AddDoctor = () => {
   };
 
   return (
-    <div className={styles.addDoctorForm}>
-      <h2>Add New Doctor</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+    <div>
+      <Navbar />
+      <div className="flex w-full h-full">
+        <div className="w-[17%] h-full">
+          <CenterSidebar />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="specialization">Specialization:</label>
-          <input
-            type="text"
-            id="specialization"
-            name="specialization"
-            value={formData.specialization}
-            onChange={handleChange}
-            required
-          />
+        <div className="w-[83%] h-full my-24 flex flex-col justify-center items-center">
+          
+          <form className={styles.Form} onSubmit={handleSubmit}>
+          
+            <div className={styles.formGroup}>
+            <h2 className={styles.h2tag}>Add New Doctor</h2>
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="specialization">Specialization:</label>
+              <select
+                id="specialization"
+                name="specialization"
+                value={formData.specialization}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Specialization</option>
+                {specializations.map((specialization) => (
+                  <option key={specialization} value={specialization}>
+                    {specialization}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="qualifications">Qualifications:</label>
+              <input
+                type="text"
+                id="qualifications"
+                name="qualifications"
+                value={formData.qualifications}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="gender">Gender:</label>
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+
+              <div className={styles.buttonContainer}>
+              <button className={styles.Save} type="submit">Save</button>
+              <br />
+              <button className={styles.Cancel} type="button" onClick={handleCancel}>Cancel</button>
+            </div>
+            </div>
+
+          </form>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="qualifications">Qualifications:</label>
-          <input
-            type="text"
-            id="qualifications"
-            name="qualifications"
-            value={formData.qualifications}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="gender">Gender:</label>
-          <select
-            id="gender"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
-        <div className={styles.buttonGroup}>
-          <button type="submit">Save</button>
-          <button type="button" onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

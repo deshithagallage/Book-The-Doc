@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
@@ -38,7 +39,7 @@ const DoctorManagement = () => {
                     <li key={index}>{slot}</li>
                   ))}
                 </ul>
-                <button onClick={() => handleEditDoctor(doctor.id)}>
+                <button className={styles.Edit} onClick={() => handleEditDoctor(doctor.id)}>
                   Edit
                 </button>
               </div>
