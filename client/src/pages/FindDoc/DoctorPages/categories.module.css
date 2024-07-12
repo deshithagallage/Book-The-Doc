@@ -132,7 +132,7 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  text-align: left;
+  text-align: center;
   width: 80%;
   max-width: 500px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -210,12 +210,12 @@
 }
 
 .selectedSlotButton {
-  background-color: #ffc107 !important;
+  background-color: #00e013 !important;
 }
 
 .confirmButton {
   padding: 10px;
-  background-color: #ffc107;
+  background-color: #0056b3;
   color: #fff;
   border: none;
   border-radius: 5px;
