@@ -6,7 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar";
 
-import profilePic from "../../../assets/UserProfilePic.png";
+import profilePic from "../../../assets/UserProfilePic.jpg";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
 
 const UserDashboard = () => {
