@@ -28,7 +28,11 @@ const timeslotSchema = new mongoose.Schema({
   }],
   channellingCenter: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'ChannellingCenter',
+    ref: 'center',
+    required: true,
+  },
+  channellingCenterName: {
+    type: String,
     required: true,
   },
 });
