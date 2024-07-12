@@ -1,69 +1,80 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Axios from 'axios'; // Import Axios for making HTTP requests
 import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
 import styles from './DoctorForm.module.css'; // Import CSS module
 
 const DoctorForm = () => {
   const { doctorId } = useParams();
   const navigate = useNavigate();
-  const [doctor, setDoctor] = useState({ name: '', timeslots: [''] });
+  const [doctor, setDoctor] = useState({ name: '', timeslots: [] });
+  const [timeslotFormData, setTimeslotFormData] = useState({
+    date: '',
+    startTime: '',
+    endTime: '',
+    maxPatients: '',
+  });
 
-  useEffect(() => {
-    if (doctorId !== 'new') {
-      // Fetch the doctor data based on doctorId and set it to state
-      // For now, we will use dummy data
-      const fetchedDoctor = { name: 'Dr. John Doe', timeslots: ['9am - 12pm', '2pm - 5pm'] };
-      setDoctor(fetchedDoctor);
-    }
-  }, [doctorId]);
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setDoctor({ ...doctor, [name]: value });
+    setTimeslotFormData({ ...timeslotFormData, [name]: value });
   };
 
-  const handleTimeslotChange = (index, value) => {
-    const newTimeslots = [...doctor.timeslots];
-    newTimeslots[index] = value;
-    setDoctor({ ...doctor, timeslots: newTimeslots });
-  };
+  const addTimeslot = async () => {
+    try {
+      const newTimeslot = {
+      
+        date: timeslotFormData.date,
+        startTime: timeslotFormData.startTime,
+        endTime: timeslotFormData.endTime,
+        maxPatients: parseInt(timeslotFormData.maxPatients),
+      };
 
-  const addTimeslot = () => {
-    setDoctor({ ...doctor, timeslots: [...doctor.timeslots, ''] });
+      // Send POST request to API endpoint
+      const response = await Axios.post(`http://localhost:3000/api/timeslots/${doctorId}`, newTimeslot);
+      console.log('Timeslot added:', response.data); // Log the response data for verification
+
+      // Update state or UI as needed
+      setDoctor({ ...doctor, timeslots: [...doctor.timeslots, `${timeslotFormData.startTime} - ${timeslotFormData.endTime}`] });
+    } catch (error) {
+      console.error('Error adding timeslot:', error);
+      // Handle error gracefully, e.g., show a notification to the user
+      alert('Error adding timeslot. Please try again later.');
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Save the doctor data
-    navigate('/dashboard/center/doctor-management');
+    navigate(`/dashboard/center/doctors/edit/${doctorId}`);
   };
 
   return (
     <div className={styles.doctorForm}>
       <CenterSidebar />
       <div className={styles.content}>
-        <h1>{doctorId === 'new' ? 'Add New Doctor' : 'Edit Doctor'}</h1>
-        <form onSubmit={handleSubmit}>
+        <h1>Edit Doctor</h1>
+        <form className={styles.formStyle} onSubmit={handleSubmit}>
+          
           <div>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" value={doctor.name} onChange={handleInputChange} required />
+            <label htmlFor="date">Date</label>
+            <input type="date" id="date" name="date" value={timeslotFormData.date} onChange={handleInputChange} required />
           </div>
-          {doctor.timeslots.map((timeslot, index) => (
-            <div key={index}>
-              <label htmlFor={`timeslot-${index}`}>Timeslot {index + 1}</label>
-              <input
-                type="text"
-                id={`timeslot-${index}`}
-                name={`timeslot-${index}`}
-                value={timeslot}
-                onChange={(e) => handleTimeslotChange(index, e.target.value)}
-                required
-              />
-            </div>
-          ))}
+          <div>
+            <label htmlFor="startTime">Start Time</label>
+            <input type="time" id="startTime" name="startTime" value={timeslotFormData.startTime} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label htmlFor="endTime">End Time</label>
+            <input type="time" id="endTime" name="endTime" value={timeslotFormData.endTime} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label htmlFor="maxPatients">Max Patients</label>
+            <input type="number" id="maxPatients" name="maxPatients" value={timeslotFormData.maxPatients} onChange={handleInputChange} required />
+          </div>
           <button type="button" onClick={addTimeslot}>Add Timeslot</button>
-          <button type="submit">{doctorId === 'new' ? 'Add Doctor' : 'Save Changes'}</button>
+          <button type="submit">Save Changes</button>
         </form>
       </div>
     </div>
