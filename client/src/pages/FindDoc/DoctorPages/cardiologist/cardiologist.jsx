@@ -47,6 +47,16 @@ function Cardiologist() {
       })
       .catch((err) => {
         console.log(err);
+        alert("Error : You Need to Login");
+        if (err.response && err.response.status === 401) {
+          Cookie.remove("token");
+          Cookie.remove("userRole");
+          Cookie.remove("userId");
+          console.log(err.response.status);
+          window.location.reload();
+        } else {
+          console.log(err);
+        }
       });
   };
 
