@@ -86,7 +86,7 @@ const UserDashboard = () => {
                   alt="User Profile"
                   className={styles.circleImg}
                 />
-                <div className={styles.details}>
+                <div className={styles.userDetails}>
                   <p>
                     <strong>Name:</strong> {user.name}
                   </p>
