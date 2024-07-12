@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
 import axios from "axios";
 import Cookies from "js-cookie";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
 import AddDoctorModal from "../../../components/Model/AddDoctorModal.jsx";
+import EditDoctorModal from "../../../components/Model/EditDoctorModal.jsx";
+import DoctorCard from "./DoctorCard.jsx";
 
 const DoctorManagement = () => {
-  const navigate = useNavigate();
   const [doctors, setDoctors] = useState([]);
   const [showModal, setShowModal] = useState(false);
-
-  const handleEditDoctor = (doctorId) => {
-    navigate(`/dashboard/center/doctors/edit/${doctorId}`);
-  };
-
-  const handleAddDoctor = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingDoctor, setEditingDoctor] = useState({});
 
   const refreshDoctors = () => {
     axios
@@ -68,7 +58,7 @@ const DoctorManagement = () => {
             <div className="h-12 mb-5">
               <PrimaryButton
                 text="Register New Doctor"
-                onClick={handleAddDoctor}
+                onClick={() => setShowModal(true)}
                 className="p-6"
                 removeTranslate={true}
               />
@@ -78,30 +68,17 @@ const DoctorManagement = () => {
               Registered Doctors
             </h2>
             <div className="w-full h-1 bg-gray-200 mt-1 mb-3"></div>
-            <div className="w-full grid grid-cols-2 gap-6">
+            <div className="w-full grid grid-cols-2 gap-x-6 gap-y-2">
               {doctors.length > 0 ? (
                 doctors.map((doctor) => (
-                  <div
-                    key={doctor._id}
-                    className="bg-white p-4 rounded-lg shadow-md flex items-center gap-4"
-                    onClick={() => handleEditDoctor(doctor._id)}
-                  >
-                    <img
-                      src={
-                        doctor.gender === "Male"
-                          ? "https://www.shutterstock.com/image-vector/male-doctor-smiling-selfconfidence-flat-260nw-2281709217.jpg"
-                          : "https://static.vecteezy.com/system/resources/previews/003/809/833/non_2x/woman-doctor-character-free-vector.jpg"
-                      }
-                      alt="Doctor Profile"
-                      className="w-32 h-32 mr-8 object-cover rounded-full"
-                    />
-                    <div className="flex flex-col justify-center items-start">
-                      <h2 className="font-bold">Name: {doctor.name}</h2>
-                      <p>Specialization: {doctor.specialization}</p>
-                      <p>Qualifications: {doctor.qualifications}</p>
-                      <p>SLMC Number: {doctor.SLMCNumber}</p>
-                    </div>
-                  </div>
+                  <DoctorCard
+                    doctor={doctor}
+                    handleEditDoctor={() => {
+                      setEditingDoctor(doctor);
+                      setShowEditModal(true);
+                    }}
+                    handleEditTimeSlots={() => console.log("Edit Time Slots")}
+                  />
                 ))
               ) : (
                 <h1 className="text-lg font-bold">No Doctors Found</h1>
@@ -112,7 +89,16 @@ const DoctorManagement = () => {
       </div>
       <AddDoctorModal
         showModal={showModal}
-        handleClose={handleCloseModal}
+        handleClose={() => setShowModal(false)}
+        refreshDoctors={refreshDoctors}
+      />
+      <EditDoctorModal
+        formData={editingDoctor}
+        showModal={showEditModal}
+        handleClose={() => {
+          setEditingDoctor({});
+          setShowEditModal(false);
+        }}
         refreshDoctors={refreshDoctors}
       />
     </div>
