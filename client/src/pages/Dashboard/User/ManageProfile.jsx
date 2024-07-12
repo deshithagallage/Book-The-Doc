@@ -95,11 +95,11 @@ const ManageProfile = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex w-full h-full">
+      <div className="flex w-full h-screen justify-center">
         <div className="w-[17%] h-full">
           <UserSidebar />
         </div>
-        <div className="w-[83%] h-full my-24 flex justify-center items-center">
+        <div className="w-[83%] h-full pt-16 flex justify-center items-center">
           <div className="w-1/2 p-10 pr-0 flex justify-end">
             <img
               src={profilePic}
