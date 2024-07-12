@@ -40,4 +40,50 @@ const getTimeslotsByDoctor = async (req, res) => {
   }
 };
 
-module.exports = { createTimeslot, getTimeslotsByDoctor };
+
+const getTimeslotsByCenterToday = async (req, res) => {
+  const centerId = req.user.id;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  try {
+    const timeslots = await Timeslot.find({
+      channellingCenter: centerId,
+      date: { $gte: today, $lt: tomorrow }
+    }).populate('doctor', 'name');
+
+    if (!timeslots.length) {
+      return res.status(404).json({ message: 'No timeslots found for today' });
+    }
+
+    res.json(timeslots);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getCountTimeslotsByCenterToday = async (req, res) => {
+  const centerId = req.user.id;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  try {
+    const count = await Timeslot.countDocuments({
+      channellingCenter: centerId,
+      date: { $gte: today, $lt: tomorrow }
+    });
+
+    res.json({ count });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+module.exports = { createTimeslot, getTimeslotsByDoctor, getTimeslotsByCenterToday, getCountTimeslotsByCenterToday};
