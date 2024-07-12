@@ -61,7 +61,7 @@ const AddDoctorModal = ({ showModal, handleClose, refreshDoctors }) => {
     "radiologist",
     "psychiatrist",
     "ophthalmology",
-    "general",
+    "generalDoctor",
   ];
 
   return (
