@@ -19,7 +19,7 @@
   left: 10px;
   font-size: 12px;
   font-style: italic;
-  color: rgba(156, 163, 175, 1); /* text-gray-400 */
+  color: rgb(156, 163, 175); /* text-gray-400 */
   opacity: 1;
   background: transparent;
   padding: 0 5px;
