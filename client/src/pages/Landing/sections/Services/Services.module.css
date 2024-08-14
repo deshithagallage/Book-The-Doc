@@ -1,0 +1,65 @@
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.serviceBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 300px;
+    background-color: #ecf5fd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    transition: box-shadow 0.3s ease;
+}
+
+.serviceBox:hover {
+    background-color: #c1e1ff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.serviceTitle {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.description {
+    font-size: 16px;
+    margin-top: 1.5rem;
+    color: #333;
+}

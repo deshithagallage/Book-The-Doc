@@ -1,0 +1,17 @@
+/* AppointmentCalendar.module.css */
+
+.appointmentCalendar {
+    display: flex;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .calendarContainer {
+    height: 600px;
+    width: 600px;
+    margin-left: 500px;
+  }
+  

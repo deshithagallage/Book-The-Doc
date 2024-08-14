@@ -1,0 +1,93 @@
+/* ./pages/Dashboard/Center/DoctorManagement.module.css */
+
+.doctorManagement {
+  display: flex;
+  
+}
+
+.content {
+  flex:content;
+  padding: 5rem;
+  padding-left: 18rem;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.doctorList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.doctorCard {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.doctorCard h2 {
+  margin: 0 0 10px;
+  font-size:large;
+}
+
+.doctorCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doctorCard li {
+  background: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.Edit {
+  background-color: #0abfed;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.Edit:hover {
+  background-color: #0056b3;
+}
+.addDoctor{
+  background-color: #09d806;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.addDoctor:hover {
+  background-color: #09d806;
+}
+.addDoctorForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+
+  
+}
+
+
+.addDoctor:hover {
+  background-color: #218838;
+  
+}
