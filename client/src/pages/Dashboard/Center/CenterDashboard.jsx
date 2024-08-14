@@ -8,11 +8,10 @@ import profilePic from "../../../assets/CenterProfilePic.png";
 
 const CenterDashboard = () => {
   const token = Cookies.get("token");
-  // Dummy data (replace with actual data fetching)
   const [center, setCenter] = useState({});
   const [doctorsCount, setDoctorsCount] = useState();
   const [todayAppointmentsCount, setTodayAppointmentsCount] = useState();
-  const [todayTimeslotsCount, setTodayTimeslotsCount] = useState(10);
+  const [todayTimeslotsCount, setTodayTimeslotsCount] = useState();
   const [timeSlots, setTimeSlots] = useState([
     {
       _id: 1,
@@ -60,6 +59,38 @@ const CenterDashboard = () => {
       })
       .then((res) => {
         setDoctorsCount(res.data.count);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/timeslots/center/today/count", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTodayTimeslotsCount(res.data.count);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/timeslots/center/today", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTimeSlots(res.data);
         // console.log(res.data);
       })
       .catch((err) => {
