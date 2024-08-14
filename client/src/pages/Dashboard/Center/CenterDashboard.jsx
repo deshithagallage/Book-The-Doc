@@ -12,26 +12,7 @@ const CenterDashboard = () => {
   const [doctorsCount, setDoctorsCount] = useState();
   const [todayAppointmentsCount, setTodayAppointmentsCount] = useState();
   const [todayTimeslotsCount, setTodayTimeslotsCount] = useState();
-  const [timeSlots, setTimeSlots] = useState([
-    {
-      _id: 1,
-      doctor: "Dr. John Doe",
-      time: "10:00 AM - 11:00 AM",
-      maxPatientCount: 20,
-    },
-    {
-      _id: 2,
-      doctor: "Dr. Jane Doe",
-      time: "11:00 AM - 12:00 PM",
-      maxPatientCount: 20,
-    },
-    {
-      _id: 3,
-      doctor: "Dr. John Doe",
-      time: "12:00 PM - 01:00 PM",
-      maxPatientCount: 20,
-    },
-  ]);
+  const [timeSlots, setTimeSlots] = useState([]);
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
@@ -196,11 +177,11 @@ const CenterDashboard = () => {
                           <strong>Doctor:</strong> {slot.doctor}
                         </p>
                         <p>
-                          <strong>Time:</strong> {slot.time}
+                          <strong>Time:</strong> {slot.startTime} -{" "}
+                          {slot.endTime}
                         </p>
                         <p>
-                          <strong>Max Patient Count:</strong>{" "}
-                          {slot.maxPatientCount}
+                          <strong>Max Patient Count:</strong> {slot.maxPatients}
                         </p>
                       </li>
                     ))}
