@@ -96,10 +96,10 @@ const Appointments = () => {
                           {timeslot.endTime}
                         </div>
                         <div className="w-1/5 font-bold pl-3 text-start border-r-2 border-gray-300">
-                          {timeslot.patientCount}
+                          {timeslot.bookedPatients.length}
                         </div>
                         <div className="w-1/5 font-bold pl-3 text-start border-gray-300">
-                          {timeslot.maxPatientCount}
+                          {timeslot.maxPatients}
                         </div>
                       </div>
                     </div>
