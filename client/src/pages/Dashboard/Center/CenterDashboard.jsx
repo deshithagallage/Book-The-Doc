@@ -5,36 +5,22 @@ import Cookies from "js-cookie";
 import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 import styles from "./CenterDashboard.module.css";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner.jsx";
 import profilePic from "../../../assets/CenterProfilePic.png";
-import SuccessButton from "../../../components/SuccessButton/SuccessButton.jsx";
+import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton.jsx";
+import AddDoctorModal from "../../../components/Model/AddDoctorModal.jsx";
 
 const CenterDashboard = () => {
   const token = Cookies.get("token");
   const [center, setCenter] = useState({});
   const [doctorsCount, setDoctorsCount] = useState();
   const [todayAppointmentsCount, setTodayAppointmentsCount] = useState();
-  const [todayTimeslotsCount, setTodayTimeslotsCount] = useState(10);
-  const [timeSlots, setTimeSlots] = useState([
-    {
-      _id: 1,
-      doctor: "Dr. John Doe",
-      time: "10:00 AM - 11:00 AM",
-      maxPatientCount: 20,
-    },
-    {
-      _id: 2,
-      doctor: "Dr. Jane Doe",
-      time: "11:00 AM - 12:00 PM",
-      maxPatientCount: 20,
-    },
-    {
-      _id: 3,
-      doctor: "Dr. John Doe",
-      time: "12:00 PM - 01:00 PM",
-      maxPatientCount: 20,
-    },
-  ]);
+  const [todayTimeslotsCount, setTodayTimeslotsCount] = useState();
+  const [timeSlots, setTimeSlots] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const [isLoadingTimeslots, setIsLoadingTimeslots] = useState(true);
+  const [isLoadingDoctors, setIsLoadingDoctors] = useState(true);
+  const [showAddDoctorModal, setShowAddDoctorModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -70,6 +56,38 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
+      .get("http://localhost:3000/api/timeslots/center/today/count", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTodayTimeslotsCount(res.data.count);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/timeslots/center/today", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTimeSlots(res.data);
+        setIsLoadingTimeslots(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
       .get("http://localhost:3000/api/centers/doctors", {
         headers: {
           "x-auth-token": token,
@@ -77,7 +95,7 @@ const CenterDashboard = () => {
       })
       .then((res) => {
         setDoctors(res.data);
-        // console.log(res.data);
+        setIsLoadingDoctors(false);
       })
       .catch((err) => {
         console.log(err);
@@ -100,10 +118,32 @@ const CenterDashboard = () => {
       });
   }, []);
 
-  const navigate = useNavigate();
-  const handleDocButtonClick = () => {
-    navigate("/dashboard/center/doctors/new");
+  const refreshDoctors = () => {
+    axios
+      .get("http://localhost:3000/api/centers/doctors", {
+        headers: {
+          "x-auth-token": Cookies.get("token"),
+        },
+      })
+      .then((res) => {
+        setDoctors(res.data);
+      })
+      .catch((err) => {
+        if (err.response && err.response.status === 401) {
+          Cookies.remove("token");
+          Cookies.remove("userRole");
+          Cookies.remove("userId");
+          console.log(err.response.status);
+          window.location.reload();
+        } else {
+          console.log(err);
+        }
+      });
   };
+
+  useEffect(() => {
+    refreshDoctors();
+  }, []);
 
   return (
     <div>
@@ -166,9 +206,11 @@ const CenterDashboard = () => {
                   a doctor to your medical center.
                 </p>
                 <div className={styles.buttonContainer}>
-                  <SuccessButton
+                  <PrimaryButton
                     text="Add a Doctor"
-                    onClick={handleDocButtonClick}
+                    color="green"
+                    onClick={() => setShowAddDoctorModal(true)}
+                    removeTranslate={true}
                   />
                 </div>
               </div>
@@ -176,7 +218,12 @@ const CenterDashboard = () => {
             <div className={styles.appointments}>
               <div className={styles.appointmentsSection}>
                 <h2>Upcoming Timeslots</h2>
-                {timeSlots.length > 0 ? (
+                {isLoadingTimeslots ? (
+                  <div className="flex justify-center items-center h-full gap-x-4 font-semibold text-lg">
+                    <LoadingSpinner />
+                    <p>Timeslots Loading...</p>
+                  </div>
+                ) : timeSlots.length > 0 ? (
                   <ul>
                     {timeSlots.slice(0, 3).map((slot) => (
                       <li key={slot._id} className={styles.upcoming}>
@@ -184,11 +231,11 @@ const CenterDashboard = () => {
                           <strong>Doctor:</strong> {slot.doctor}
                         </p>
                         <p>
-                          <strong>Time:</strong> {slot.time}
+                          <strong>Time:</strong> {slot.startTime} -{" "}
+                          {slot.endTime}
                         </p>
                         <p>
-                          <strong>Max Patient Count:</strong>{" "}
-                          {slot.maxPatientCount}
+                          <strong>Max Patient Count:</strong> {slot.maxPatients}
                         </p>
                       </li>
                     ))}
@@ -201,7 +248,12 @@ const CenterDashboard = () => {
               </div>
               <div className={styles.appointmentsSection}>
                 <h2>Registered Doctors</h2>
-                {doctors.length > 0 ? (
+                {isLoadingDoctors ? (
+                  <div className="flex justify-center items-center h-full gap-x-4 font-semibold text-lg">
+                    <LoadingSpinner />
+                    <p>Doctors Loading...</p>
+                  </div>
+                ) : doctors.length > 0 ? (
                   <ul>
                     {doctors.slice(0, 5).map((doctor) => (
                       <li key={doctor._id} className={styles.past}>
@@ -222,6 +274,11 @@ const CenterDashboard = () => {
           </div>
         </div>
       </div>
+      <AddDoctorModal
+        showModal={showAddDoctorModal}
+        handleClose={() => setShowAddDoctorModal(false)}
+        refreshDoctors={refreshDoctors}
+      />
     </div>
   );
 };

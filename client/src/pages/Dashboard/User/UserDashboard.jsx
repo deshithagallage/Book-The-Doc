@@ -121,6 +121,7 @@ const UserDashboard = () => {
                   <PrimaryButton
                     text="Find a Doctor"
                     onClick={handleDocButtonClick}
+                    removeTranslate={true}
                   />
                 </div>
               </div>

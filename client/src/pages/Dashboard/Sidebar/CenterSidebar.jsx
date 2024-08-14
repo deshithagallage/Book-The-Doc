@@ -15,17 +15,17 @@ const CenterSidebar = () => {
             Doctor Management
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/dashboard/center/users-list">Patients List</Link>
-        </li>
+        </li> */}
         <li>
-          <Link to="/dashboard/center/appointments">Time Slots</Link>
+          <Link to="/dashboard/center/timeslots">Time Slots</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/dashboard/center/appointment-calendar">
             Appointment Calendar
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

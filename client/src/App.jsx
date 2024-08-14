@@ -21,7 +21,6 @@ import AppointmentCalendar from "./pages/Dashboard/Center/AppointmentCalendar";
 import UsersList from "./pages/Dashboard/Center/UsersList";
 import DoctorManagement from "./pages/Dashboard/Center/DoctorManagement";
 import DoctorForm from "./pages/Dashboard/Center/DoctorForm";
-import DoctorAdd from "./pages/Dashboard/Center/AddDoctor";
 
 import FindDoc from "./pages/FindDoc/FindDoc";
 import CardiologistPage from "./pages/FindDoc/DoctorPages/cardiologist/cardiologist";
@@ -59,7 +58,7 @@ function App() {
         <Route element={<ProtectedRoute role="medicalCenter" />}>
           <Route path="/dashboard/center" element={<CenterDashboard />} />
           <Route
-            path="/dashboard/center/appointments"
+            path="/dashboard/center/timeslots"
             element={<Appointments />}
           />
           <Route
@@ -75,7 +74,6 @@ function App() {
             path="/dashboard/center/doctors/edit/:doctorId"
             element={<DoctorForm />}
           />
-          <Route path="/dashboard/center/doctors/new" element={<DoctorAdd />} />
         </Route>
 
         <Route path="/find-doctor" element={<FindDoc />} />

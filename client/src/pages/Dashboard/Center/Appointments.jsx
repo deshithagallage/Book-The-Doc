@@ -1,59 +1,30 @@
 import React, { useState, useEffect } from "react";
-import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 import axios from "axios";
+import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
 import Cookies from "js-cookie";
 import Navbar from "../../../components/Navbar/Navbar.jsx";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 const Appointments = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [timeSlots, setTimeSlots] = useState([
-    {
-      _id: 1,
-      date: "2022-12-12",
-      doctor: "Dr. John Doe",
-      startTime: "10:00 AM",
-      endTime: "11:00 AM",
-      patientCount: 10,
-      maxPatientCount: 20,
-    },
-    {
-      _id: 2,
-      date: "2022-12-12",
-      doctor: "Dr. Jane Doe",
-      startTime: "11:00 AM",
-      endTime: "12:00 PM",
-      patientCount: 15,
-      maxPatientCount: 20,
-    },
-    {
-      _id: 3,
-      date: "2022-12-12",
-      doctor: "Dr. John Doe",
-      startTime: "12:00 PM",
-      endTime: "01:00 PM",
-      patientCount: 15,
-      maxPatientCount: 20,
-    },
-    {
-      _id: 4,
-      date: "2022-12-12",
-      doctor: "Dr. Jane Doe",
-      startTime: "01:00 PM",
-      endTime: "02:00 PM",
-      patientCount: 20,
-      maxPatientCount: 20,
-    },
-    {
-      _id: 5,
-      date: "2022-12-12",
-      doctor: "Dr. John Doe",
-      startTime: "02:00 PM",
-      endTime: "03:00 PM",
-      patientCount: 12,
-      maxPatientCount: 20,
-    },
-  ]);
+  const token = Cookies.get("token");
+  const [isLoading, setIsLoading] = useState(true);
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/timeslots/center/today", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTimeSlots(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const getAllDoctors = (timeslots) => {
     const doctors = {};
