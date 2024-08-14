@@ -1,64 +1,114 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import CenterSidebar from '../Sidebar/CenterSidebar.jsx';
-import styles from './Appointments.module.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import CenterSidebar from "../Sidebar/CenterSidebar.jsx";
+import Cookies from "js-cookie";
+import Navbar from "../../../components/Navbar/Navbar.jsx";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 const Appointments = () => {
-  const ongoingAppointment = {
-    patientName: "John Doe",
-    time: "10:00 AM - 11:00 AM",
-    description: "Regular check-up"
+  const token = Cookies.get("token");
+  const [isLoading, setIsLoading] = useState(true);
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/timeslots/center/today", {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+      .then((res) => {
+        setTimeSlots(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const getAllDoctors = (timeslots) => {
+    const doctors = {};
+    timeslots.forEach((slot) => {
+      if (!doctors.hasOwnProperty(slot.doctor)) {
+        doctors[slot.doctor] = [slot];
+      } else {
+        doctors[slot.doctor].push(slot);
+      }
+    });
+    return doctors;
   };
 
-  const upcomingAppointments = [
-    { patientName: "Jane Smith", time: "11:00 AM - 12:00 PM" },
-    { patientName: "Bob Johnson", time: "1:00 PM - 2:00 PM" },
-    { patientName: "Alice Williams", time: "3:00 PM - 4:00 PM" }
-  ];
-
-  const calendarEvents = [
-    { date: "2024-07-10", event: "Doctor's Conference" },
-    { date: "2024-07-15", event: "Medical Camp" }
-  ];
+  const doctorsTimeSlots = getAllDoctors(timeSlots);
 
   return (
-    <div className={styles.appointments}>
-      <CenterSidebar />
-      <div className={styles.content}>
-        <h1>Appointments</h1>
-        <div className={styles.cardsContainer}>
-          <div className={`${styles.card} ${styles.ongoingAppointment}`}>
-            <h2>Ongoing Appointment</h2>
-            <p><strong>Patient:</strong> {ongoingAppointment.patientName}</p>
-            <p><strong>Time:</strong> {ongoingAppointment.time}</p>
-            <p><strong>Description:</strong> {ongoingAppointment.description}</p>
-          </div>
-          <div className={`${styles.card} ${styles.upcomingAppointments}`}>
-            <h2>Today's Upcoming Appointments</h2>
-            <ul>
-              {upcomingAppointments.map((appointment, index) => (
-                <li key={index}>
-                  <p><strong>Patient:</strong> {appointment.patientName}</p>
-                  <p><strong>Time:</strong> {appointment.time}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={`${styles.card} ${styles.calendarTop}`}>
-            <h2>Calendar</h2>
-            <ul>
-              {calendarEvents.map((event, index) => (
-                <li key={index}>
-                  <p><strong>Date:</strong> {event.date}</p>
-                  <p><strong>Event:</strong> {event.event}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={`${styles.card} ${styles.calendarBottom}`}>
-            <h2>Notes</h2>
-            <p>Some additional information or notes can go here.</p>
+    <div>
+      <Navbar />
+      <div className="flex w-full h-full">
+        <div className="w-[17%] h-full">
+          <CenterSidebar />
+        </div>
+        <div className="w-[83%] h-full mt-16 py-14 px-10 flex flex-col justify-center items-center">
+          <h1 className="text-4xl font-bold mb-7">Timeslots</h1>
+          <div className="w-5/6 h-full flex flex-col gap-y-10">
+            {isLoading ? (
+              <div className="flex justify-center items-center h-full gap-x-4 font-semibold text-lg">
+                <LoadingSpinner />
+                <p>Timeslots Loading...</p>
+              </div>
+            ) : Object.keys(doctorsTimeSlots).length > 0 ? (
+              Object.keys(doctorsTimeSlots).map((doctor) => (
+                <div key={doctor} className="flex flex-col gap-y-2">
+                  <h1 className="text-2xl font-bold text-start">
+                    {`Doctor : ${doctor[0].toUpperCase() + doctor.slice(1)}`}
+                  </h1>
+                  <div className="flex justify-center items-center">
+                    <div className="w-full h-12 bg-blue-300 flex justify-center items-center px-auto rounded-xl">
+                      <h2 className="w-1/5 text-lg font-bold pl-3 text-start border-gray-300">
+                        Date
+                      </h2>
+                      <h2 className="w-1/5 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Start Time
+                      </h2>
+                      <h2 className="w-1/5 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        End Time
+                      </h2>
+                      <h2 className="w-1/5 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Patient Count
+                      </h2>
+                      <h2 className="w-1/5 text-lg font-bold pl-3 text-start border-l-2 border-gray-300">
+                        Maximum Count
+                      </h2>
+                    </div>
+                  </div>
+                  {doctorsTimeSlots[doctor].map((timeslot) => (
+                    <div
+                      key={timeslot._id}
+                      className="flex justify-center items-center border-b-2 border-gray-300 shadow-md rounded-xl"
+                    >
+                      <div className="w-full h-12 bg-blue-100 flex justify-center items-center px-auto rounded-xl">
+                        <div className="w-1/5 font-bold pl-3 text-start border-r-2 border-gray-300">
+                          {timeslot.date}
+                        </div>
+                        <div className="w-1/5 font-bold pl-3 text-start border-r-2 border-gray-300">
+                          {timeslot.startTime}
+                        </div>
+                        <div className="w-1/5 font-bold pl-3 text-start border-r-2 border-gray-300">
+                          {timeslot.endTime}
+                        </div>
+                        <div className="w-1/5 font-bold pl-3 text-start border-r-2 border-gray-300">
+                          {timeslot.patientCount}
+                        </div>
+                        <div className="w-1/5 font-bold pl-3 text-start border-gray-300">
+                          {timeslot.maxPatientCount}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))
+            ) : (
+              <p>No upcoming appointments found.</p>
+            )}
           </div>
         </div>
       </div>

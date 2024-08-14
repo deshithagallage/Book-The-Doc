@@ -104,7 +104,7 @@ const UserDashboard = () => {
                     <strong>Email:</strong> {user.email}
                   </p>
                   <p>
-                    <strong>Birthday:</strong> {formatDate(user.dob)}
+                    <strong>Birthday:</strong> {formatDate(user.dob, 0)}
                   </p>
                   <p>
                     <strong>Phone:</strong> {user.phone}
@@ -121,6 +121,7 @@ const UserDashboard = () => {
                   <PrimaryButton
                     text="Find a Doctor"
                     onClick={handleDocButtonClick}
+                    removeTranslate={true}
                   />
                 </div>
               </div>
