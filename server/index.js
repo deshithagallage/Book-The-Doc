@@ -1,6 +1,11 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
+const corsConfig = {
+  origin: true,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
 require("dotenv").config();
 
 const app = express();
@@ -9,7 +14,8 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.options("", cors(corsConfig));
+app.use(cors(corsConfig));
 app.use(express.json());
 
 // Define Routes
