@@ -35,12 +35,15 @@ function Cardiologist() {
 
   const handleAppointmentTimeSlots = () => {
     axios
-      .get(`http://localhost:3000/api/timeslots/doctor/${selectedDoctor._id}`, {
-        headers: { 'x-auth-token': Cookie.get('token') }
-      })
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/timeslots/doctor/${selectedDoctor._id}`,
+        {
+          headers: { "x-auth-token": Cookie.get("token") },
+        }
+      )
       .then((res) => {
         setAppointmentSlots(res.data);
-        if(res.data.length === 0){
+        if (res.data.length === 0) {
           alert("No available slots");
         }
         console.log(res.data);
@@ -67,12 +70,12 @@ function Cardiologist() {
   const handleConfirmAppointment = () => {
     axios
       .post(
-        "http://localhost:3000/api/appointments",
+        `${import.meta.env.VITE_API_BASE_URL}/api/appointments`,
         {
           timeslotId: selectedSlot._id,
         },
         {
-          headers: { 'x-auth-token': Cookie.get('token') }
+          headers: { "x-auth-token": Cookie.get("token") },
         }
       )
       .then((res) => {
@@ -89,7 +92,9 @@ function Cardiologist() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/doctors/specialization/cardiologist")
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/doctors/specialization/cardiologist`
+      )
       .then((res) => {
         setCardiologistsData(res.data);
         console.log(res.data);
@@ -128,7 +133,10 @@ function Cardiologist() {
             <ul>
               {filteredCardiologists.length > 0 ? (
                 filteredCardiologists.map((cardiologist, index) => (
-                  <li key={index} onClick={() => handleDoctorClick(cardiologist)}>
+                  <li
+                    key={index}
+                    onClick={() => handleDoctorClick(cardiologist)}
+                  >
                     {cardiologist.name}
                   </li>
                 ))
@@ -160,7 +168,10 @@ function Cardiologist() {
               Close
             </button>
             <br />
-            <button className={styles.viewSlotsButton} onClick={handleAppointmentTimeSlots}>
+            <button
+              className={styles.viewSlotsButton}
+              onClick={handleAppointmentTimeSlots}
+            >
               View Appointment Slots
             </button>
             {appointmentSlots.length > 0 && (
@@ -175,7 +186,8 @@ function Cardiologist() {
                         }`}
                         onClick={() => handleSlotClick(slot)}
                       >
-                        {slot.startTime} - {slot.endTime}   :   {slot.channellingCenterName}
+                        {slot.startTime} - {slot.endTime} :{" "}
+                        {slot.channellingCenterName}
                       </button>
                     </li>
                   ))}
@@ -190,8 +202,6 @@ function Cardiologist() {
                 )}
               </div>
             )}
-
-            
           </div>
         </div>
       )}

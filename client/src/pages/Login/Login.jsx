@@ -27,10 +27,13 @@ function Login() {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
       console.log(res);
       if (res.status >= 200 && res.status < 300) {
         setIsLoginSuccess(1);

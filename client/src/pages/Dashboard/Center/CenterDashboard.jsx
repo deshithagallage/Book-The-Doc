@@ -23,11 +23,14 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/centers/appointments/today/count", {
-        headers: {
-          "x-auth-token": token,
-        },
-      })
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/centers/appointments/today/count`,
+        {
+          headers: {
+            "x-auth-token": token,
+          },
+        }
+      )
       .then((res) => {
         setTodayAppointmentsCount(res.data.count);
         // console.log(res.data);
@@ -39,7 +42,7 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/centers/doctors/count", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/centers/doctors/count`, {
         headers: {
           "x-auth-token": token,
         },
@@ -55,11 +58,14 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/timeslots/center/today/count", {
-        headers: {
-          "x-auth-token": token,
-        },
-      })
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/timeslots/center/today/count`,
+        {
+          headers: {
+            "x-auth-token": token,
+          },
+        }
+      )
       .then((res) => {
         setTodayTimeslotsCount(res.data.count);
         // console.log(res.data);
@@ -71,7 +77,7 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/timeslots/center/today", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/timeslots/center/today`, {
         headers: {
           "x-auth-token": token,
         },
@@ -87,7 +93,7 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/centers/doctors", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/centers/doctors`, {
         headers: {
           "x-auth-token": token,
         },
@@ -103,7 +109,7 @@ const CenterDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/centers/details", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/centers/details`, {
         headers: {
           "x-auth-token": token,
         },
@@ -119,7 +125,7 @@ const CenterDashboard = () => {
 
   const refreshDoctors = () => {
     axios
-      .get("http://localhost:3000/api/centers/doctors", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/centers/doctors`, {
         headers: {
           "x-auth-token": Cookies.get("token"),
         },

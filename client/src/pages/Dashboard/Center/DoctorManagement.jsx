@@ -16,7 +16,7 @@ const DoctorManagement = () => {
 
   const refreshDoctors = () => {
     axios
-      .get("http://localhost:3000/api/centers/doctors", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/centers/doctors`, {
         headers: {
           "x-auth-token": Cookies.get("token"),
         },

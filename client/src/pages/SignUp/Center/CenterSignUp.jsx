@@ -39,7 +39,7 @@ function UserSignUp() {
     }
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/register/center",
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/register/center`,
         {
           name,
           email,

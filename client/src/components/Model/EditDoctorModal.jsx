@@ -33,7 +33,7 @@ const EditDoctorModal = ({
     //     },
     //   };
     //   const res = await axios.post(
-    //     "http://localhost:3000/api/doctors/adddoc",
+    //     `${import.meta.env.VITE_API_BASE_URL}/api/doctors/adddoc`,
     //     tempFormData,
     //     config
     //   );

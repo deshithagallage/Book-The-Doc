@@ -14,8 +14,6 @@ function GeneralDoctor() {
   const [appointmentSlots, setAppointmentSlots] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-
-
   const filteredGeneralDoctors = generalDoctorsData.filter((generalDoctor) =>
     generalDoctor.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -37,12 +35,15 @@ function GeneralDoctor() {
 
   const handleAppointmentTimeSlots = () => {
     axios
-      .get(`http://localhost:3000/api/timeslots/doctor/${selectedDoctor._id}`, {
-        headers: { 'x-auth-token': Cookie.get('token') }
-      })
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/timeslots/doctor/${selectedDoctor._id}`,
+        {
+          headers: { "x-auth-token": Cookie.get("token") },
+        }
+      )
       .then((res) => {
         setAppointmentSlots(res.data);
-        if(res.data.length === 0){
+        if (res.data.length === 0) {
           alert("No available slots");
         }
         console.log(res.data);
@@ -69,12 +70,12 @@ function GeneralDoctor() {
   const handleConfirmAppointment = () => {
     axios
       .post(
-        "http://localhost:3000/api/appointments",
+        `${import.meta.env.VITE_API_BASE_URL}/api/appointments`,
         {
           timeslotId: selectedSlot._id,
         },
         {
-          headers: { 'x-auth-token': Cookie.get('token') }
+          headers: { "x-auth-token": Cookie.get("token") },
         }
       )
       .then((res) => {
@@ -88,11 +89,12 @@ function GeneralDoctor() {
         alert("Failed to confirm appointment");
       });
   };
-  
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/doctors/specialization/generalDoctor")
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/doctors/specialization/generalDoctor`
+      )
       .then((res) => {
         setGeneralDoctorsData(res.data);
         console.log(res.data);
@@ -123,9 +125,7 @@ function GeneralDoctor() {
           <div className={styles.categorySection}>
             <div className={styles.title}>
               <h2>General</h2>
-              <p>
-                For general health checkups and consultations
-              </p>
+              <p>For general health checkups and consultations</p>
             </div>
             <ul>
               {filteredGeneralDoctors.length > 0 ? (
@@ -166,7 +166,10 @@ function GeneralDoctor() {
               Close
             </button>
             <br />
-            <button className={styles.viewSlotsButton} onClick={handleAppointmentTimeSlots}>
+            <button
+              className={styles.viewSlotsButton}
+              onClick={handleAppointmentTimeSlots}
+            >
               View Appointment Slots
             </button>
             {appointmentSlots.length > 0 && (
@@ -181,7 +184,8 @@ function GeneralDoctor() {
                         }`}
                         onClick={() => handleSlotClick(slot)}
                       >
-                        {slot.startTime} - {slot.endTime}   :   {slot.channellingCenterName}
+                        {slot.startTime} - {slot.endTime} :{" "}
+                        {slot.channellingCenterName}
                       </button>
                     </li>
                   ))}

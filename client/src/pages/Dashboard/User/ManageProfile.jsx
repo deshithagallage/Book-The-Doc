@@ -21,7 +21,7 @@ const ManageProfile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/patients/patient", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/patients/patient`, {
         headers: {
           "x-auth-token": token,
         },
@@ -37,7 +37,7 @@ const ManageProfile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/appointments/patient", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/appointments/patient`, {
         headers: {
           "x-auth-token": token,
         },

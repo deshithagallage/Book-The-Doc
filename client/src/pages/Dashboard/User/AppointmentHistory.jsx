@@ -12,7 +12,7 @@ const AppointmentHistory = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/appointments/patient", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/appointments/patient`, {
         headers: {
           "x-auth-token": token,
         },

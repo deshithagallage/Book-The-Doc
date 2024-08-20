@@ -28,7 +28,9 @@ function Neurologist() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/doctors/specialization/neurologist")
+      .get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/doctors/specialization/neurologist`
+      )
       .then((res) => {
         setNeurologistsData(res.data);
       })

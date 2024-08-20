@@ -12,7 +12,7 @@ const Appointments = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/timeslots/center/today", {
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/timeslots/center/today`, {
         headers: {
           "x-auth-token": token,
         },
